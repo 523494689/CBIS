@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<!-- scan 扫描 其他位置 除了控制器的其他位置 -->
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.cbis"></context:component-scan>
+	<!-- 将src下的其他属性文件关联,关联数据库里面的数据 -->
+	<context:property-placeholder location="classpath:db.properties" />
+
+
+
+	<!-- 文件上传 -->
+
+
+	
+
+
+
+
+
+</beans>

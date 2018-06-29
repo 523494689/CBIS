@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+
+    <!-- 数据库 -->
+	<!-- 配置数据源，使用的是alibaba的Druid(德鲁伊)数据源 -->
+	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="0" />
+		<!-- 连接池最大使用连接数量 -->
+		<property name="maxActive" value="20" />
+		<!-- 连接池最大空闲 -->
+		<property name="maxIdle" value="20" />
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="0" />
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="25200000" />
+		<!-- 打开removeAbandoned功能 -->
+		<property name="removeAbandoned" value="true" />
+		<!-- 1800秒，也就是30分钟 -->
+		<property name="removeAbandonedTimeout" value="1800" />
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="true" />
+		<!-- 监控数据库 -->
+		<!-- <property name="filters" value="stat" /> -->
+		<property name="filters" value="mergeStat" />
+	</bean>
+
+
+    <!-- 配置工厂,dao.xml的配置 -->
+	<!-- 替换了之前的jdbctemplate,"工厂"-SqlSessionFactoryBean的配置,ssm的 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 1.SqlSessionFactory 需要一个 DataSource -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 2 .配置xxMapper.xml映射文件的路径 ,注意路径的格式 classpath xx/xx/xx/ -->
+		<property name="mapperLocations" value="classpath:com/cbis/dao/*.xml"></property>
+		<!-- 3.配置分页插件 -->
+	<!-- 	 <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+　　　　　　　　　　　　　　　　helperDialect=mysql
+　　　　　　　　　　　　　　</value>
+                    </property>
+                </bean>
+            </array>
+        </property> -->
+        
+	   </bean>
+
+
+    <!-- 配置跟dao有关的扫描器 -->
+	<!-- mapperScannerConfig,配置扫描器,也就说,持久化访问有关的dao的实例,需要使用这个bean去扫描; -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 1 属性设置 -->
+		<property name="basePackage" value="com.cbis.dao"></property>
+		<!-- 2 sessionFactroy ,这里要注意一下,是value是value是value ..... -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+	
+	
+    <!-- 事务日志 -->
+	<!-- 事务管理的bean -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- 注入上面的连接池 -->
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!-- 事务管理如果要用注解的话 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	
+	<!-- 拦截器方式配置事务 -->
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="modify*" propagation="REQUIRED" />
+            <tx:method name="edit*" propagation="REQUIRED" />
+            <tx:method name="get*" propagation="SUPPORTS" />
+            <tx:method name="find*" propagation="SUPPORTS" />
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:pointcut id="transactionPointcut" expression="execution(* com.cbis.service..*Impl.*(..))" />
+        <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
+    </aop:config>
+    
+    
+    <!-- 配置druid监控spring jdbc -->
+    <bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+    </bean>
+    <bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
+        <property name="patterns">
+            <list>
+                <value>com.cbis.service.*</value>
+            </list>
+        </property>
+    </bean>
+    <aop:config>
+        <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
+    </aop:config>
+
+</beans>

@@ -13,8 +13,8 @@ import com.cbis.service.UserService;
 
 /**
  * 用户的控制器
- * @author Administrator
- *
+ * @author fyh
+ * date:2018.06.30-16:08
  */
 
 @Controller

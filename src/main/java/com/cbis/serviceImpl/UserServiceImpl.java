@@ -14,8 +14,8 @@ import com.cbis.service.UserService;
 
 /**
  * user的service实现类
- * @author Administrator
- *
+ * @author fyh
+ * date:2018.06.30-16:08
  */
 @Service(value="userService")
 public class UserServiceImpl implements UserService{

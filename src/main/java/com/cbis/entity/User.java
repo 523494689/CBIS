@@ -3,7 +3,8 @@ package com.cbis.entity;
 
 /**
  * 用户注册的实体类
- * @author Administrator
+ * @author fyh
+ * date:2018.06.30-16:08
  *
  */
 public class User {

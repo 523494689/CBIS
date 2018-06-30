@@ -7,8 +7,8 @@ import com.cbis.entity.UserInfo;
 
 /**
  * userµÄdao
- * @author Administrator
- *
+ * @author fyh
+ * date:2018.06.30-16:08
  */
 
 @Repository(value="userDao")

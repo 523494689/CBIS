@@ -4,8 +4,8 @@ import com.cbis.entity.User;
 
 /**
  * userµÄserviceÀà
- * @author Administrator
- *
+ * @author fyh
+ * date:2018.06.30-16:08
  */
 public interface UserService {
 	

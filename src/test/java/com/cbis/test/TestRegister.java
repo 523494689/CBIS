@@ -15,8 +15,8 @@ import com.cbis.service.UserService;
 
 /**
  * ”√ªß◊¢≤·≤‚ ‘¿‡
- * 
- * @author Administrator
+ * @author fyh
+ * date:2018.06.30-16:08
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)

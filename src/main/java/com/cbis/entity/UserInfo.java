@@ -2,7 +2,7 @@ package com.cbis.entity;
 
 /**
  * 用户详情信息表实体类
- * @author Administrator
+ * @author fyh
  * 2018.06.30-14:23
  */
 public class UserInfo {

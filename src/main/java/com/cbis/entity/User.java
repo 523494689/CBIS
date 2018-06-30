@@ -4,7 +4,7 @@ package com.cbis.entity;
 /**
  * 用户注册的实体类
  * @author Administrator
- *
+ *ssss
  */
 public class User {
 	
@@ -108,7 +108,4 @@ public class User {
 				+ userType + ", userRegTime=" + userRegTime + ", userEmail=" + userEmail + "]";
 	}
 	
-	
-	
-
 }

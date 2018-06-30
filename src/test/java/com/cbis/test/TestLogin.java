@@ -1,8 +1,5 @@
 package com.cbis.test;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -21,26 +18,29 @@ import com.cbis.service.UserService;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:mybatis-spring.xml" })
-public class TestRegister {
+public class TestLogin {
 
 	@Resource
 	private UserService us;
 	@Test
-	public void register() {
-
-		// 系统的时间
-		Date date = new Date();
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String logDate = df.format(date);
-		//获取用户注册的信息
-		User user = new User("admin7", "admin7", 1, logDate, "123@qq.com");
-        //判断用户注册是否成功
-		boolean flag = us.userRegister(user);
+	public void login() {
 		
-		if (flag) {
-			System.out.println("两张表都成功了");
+		//获取用户登录的账号密码
+		String userName = "admin";
+		String userPassword = "admin211";
+		//实例化user
+		User user = new User();
+		//设置账号密码
+		user.setUserName(userName);
+		user.setUserPassword(userPassword);
+		User user2 = us.userLogin(user);
+		
+		if (null != user2) {
+			System.out.println("登录成功");
+		}else {
+			System.out.println("登录失败");
 		}
-		 
+	 
 
 	}
 

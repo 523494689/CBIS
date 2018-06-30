@@ -109,7 +109,4 @@ public class User {
 				+ userType + ", userRegTime=" + userRegTime + ", userEmail=" + userEmail + "]";
 	}
 	
-	
-	
-
 }

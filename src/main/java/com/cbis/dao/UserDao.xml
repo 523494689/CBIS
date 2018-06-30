@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 绑定UserDao  -->
+<mapper namespace="com.cbis.dao.UserDao">
+
+<!-- 实现的方法 -->
+
+	<!-- 用户注册的方法  -->
+	<insert id="userRegister" parameterType="com.cbis.entity.User" >
+		insert into users values (null,#{userName},#{userPassword},#{userType},#{userRegTime},#{userEmail})
+	   <!-- 获得用户的自增长id  -->
+	    <selectKey resultType="Integer" keyProperty="userId" order="AFTER">
+	       select  last_insert_id() as userId
+	    </selectKey>
+	</insert>
+	
+	<!-- 用户登录的方法  -->
+	<select id="userLogin" parameterType="com.cbis.entity.User" resultType="com.cbis.entity.User" >
+		select * from users where userName = #{userName} and userPassword = #{userPassword} 
+	</select>
+	
+
+
+	
+</mapper>

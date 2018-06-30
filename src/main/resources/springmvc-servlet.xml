@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+    <!-- 全局扫描  ,扫描控制器-->
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.cbis.controller"></context:component-scan>
+	
+	<!-- 视图解析器 -->
+	<!-- springmvc 默认配置有关的一些选项 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 允许jstl -->
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+		<!-- prefix 前缀 -->
+		<property name="prefix" value="/Front/"></property>
+		<!--suffix 后缀 -->
+		<property name="suffix" value=".jsp"></property>
+
+	</bean>
+	
+	   
+	<!-- 静态资源的访问 -->
+	<mvc:resources location="/" mapping="/**" />
+	<mvc:resources location="/jsp/" mapping="/jsp/**" />
+	<!-- 如果设置了静态资源访问,则原来的controller中对应的映射可能会失效,采用如下代码,其生效 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+
+
+
+</beans>

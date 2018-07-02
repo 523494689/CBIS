@@ -14,8 +14,10 @@
     <param-value>classpath:applicationContext.xml,classpath:mybatis-spring.xml</param-value>
   </context-param>
   <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+   <description>Spring监听器</description>
+		<listener-class>
+	org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
   
   <!-- springmvc的路径-->
   <servlet>

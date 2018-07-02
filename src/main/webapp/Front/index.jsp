@@ -64,6 +64,7 @@
 		<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	
 		<script type="text/javascript">
 			$(document).ready(function() {
 				/*$(".scroll").click(function(event) {
@@ -92,9 +93,61 @@
 					$("#registerBody").hide();
 					$("#loginBody").show();
 				})
+// 				验证器
+				$.validator.setDefaults({
+    submitHandler: function() {
+      alert("请按照条件注册，逗比");
+    }
+});
+				$("#formcheck").validate({
+				    rules: {
+				    	userName: {
+				        required: true,
+				        minlength: 4,
+				        maxlength:10
+				      },
+				      userPassword: {
+				        required: true,
+				        minlength: 5
+				      },
+				      confirm_password: {
+				        required: true,
+				        minlength: 5,
+				        equalTo: "#userPwd"
+				      },
+				      userEmail: {
+				        required: true,
+				        email: true
+				      },
+				      topic: {
+				        required: "#newsletter:checked",
+				        minlength: 2
+				      },
+				      agree: "required"
+				    },
+				    messages: {
+				    	userName: {
+				        required: "请输入用户名",
+				        minlength: "*用户名需由4个字符组成",
+				        maxlength:"*用户名不能超过10个字符"
+				      },
+				      userPassword: {
+				        required: "请输入密码",
+				        minlength: "*密码长度请大于 5 个字母"
+				      },
+				      confirm_password: {
+				        required: "请输入密码",
+				        minlength: "密码长度不能小于 5 个字母",
+				        equalTo: "两次密码输入不一致"
+				      },
+				      userEmail: "*请输入一个正确的邮箱",
+				      agree: "请接受我们的声明",
+				      topic: "请选择两个主题"
+				     }
+				    })
 			});
 		</script>
-
+     
 	</head>
 
 	<body>
@@ -235,35 +288,43 @@
 										<div id="registerBody" class="tabulation animate-box" style="display: none;" >
 
 											<!-- Tab panes -->
+											
 											<div class="tab-content">
-												<fieldset id="body">
-												<form action="${pageContext.request.contextPath}/register" method="post">
-													<fieldset>
+												<form id="formcheck"  action="${pageContext.request.contextPath}/register" method="post">
+												<fieldset>
 														<div class="col-xxs-12 col-xs-4 mt">
 															<label for="userName">Username</label>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
 															<input type="text" name="userName" id="username">
+															<div id="check"></div>
+							                        	<!-- 用户名验证的script -->
+							                          	<script>
+							             	$(document).ready (function (){
+								        	$("#userName").blur (function (){
+										    $.get ("/CBIS//?userName="+$("#userName").attr("value"),function (data,status){
+											$("#check").html(data);
+										         })
+									       })
+								        })
+								           </script>
+															
 														</div>
-													</fieldset>
-													<fieldset>
 														<div class="col-xxs-12 col-xs-4 mt">
 															<label for="userPassword">Password</label>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
 															<input type="password" name="userPassword" id="password">
 														</div>
-													</fieldset>
-													<fieldset>
 														<div class="col-xxs-12 col-xs-4 mt">
 															<label for="userEmail">Email</label>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
 															<input type="text" name="userEmail" id="email">
 														</div>
-													</fieldset>
 													
 													<input type="submit" class="btn btn-primary btn-block register" value="Register">
+													</fieldset>
 										</form>
 											</div>
 
@@ -418,6 +479,11 @@
         
 		<script src="${pageContext.request.contextPath}/Front/js/jquery.min.js"></script>
 		<!-- jQuery Easing -->
+		<!-- 验证器引入 -->
+	<script
+		src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+	<script
+		src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 		<script src="${pageContext.request.contextPath}/Front/js/jquery.easing.1.3.js"></script>
 		<!-- Bootstrap -->
 		<script src="${pageContext.request.contextPath}/Front/js/bootstrap.min.js"></script>
@@ -441,6 +507,7 @@
 		<!-- DATA TABLE SCRIPTS -->
 		<script src="${pageContext.request.contextPath}/Front/assets/js/dataTables/jquery.dataTables.js"></script>
 		<script src="${pageContext.request.contextPath}/Front/assets/js/dataTables/dataTables.bootstrap.js"></script>
+		
 
 		<script>
 			$(document).ready(function() {

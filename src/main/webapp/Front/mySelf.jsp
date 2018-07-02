@@ -27,7 +27,8 @@
 		<meta name="twitter:image" content="" />
 		<meta name="twitter:url" content="" />
 		<meta name="twitter:card" content="" />
-
+      <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js">
+      </script>
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 		<link rel="shortcut icon" href="favicon.ico">
 
@@ -82,6 +83,54 @@
 					$("#registerBody").hide();
 					$("#loginBody").show();
 				})
+// 				验证器
+$("#formcheck").validate({
+			rules : {
+				userName : {
+					required : true,
+					minlength : 2,
+					maxlength : 10
+				},
+				pIDCard : {
+					required : true,
+					minlength : 15
+				},
+				pTelphone : {
+					required : true,
+					number : true,
+					minlength : 7,
+				},
+				userEmail : {
+					required : true,
+					email : true
+				},
+				topic : {
+					required : "#newsletter:checked",
+					minlength : 2
+				},
+				agree : "required"
+			},
+			messages : {
+				userName : {
+					required : "*请输入真实姓名",
+					minlength : "*姓名不能少于两个字或英文",
+					maxlength : "*姓名长度过长"
+				},
+				pIDCard : {
+					required : "*请输入身份证",
+					minlength : "*身份证不能少于15位"
+				},
+				pTelphone : {
+					required : "*请输入手机号",
+					number : "*请输入合法的数字",
+					minlength : "请检验手机号码长度"
+				},
+
+				userEmail : "请输入一个正确的邮箱",
+				agree : "请接受我们的声明",
+				topic : "请选择两个主题"
+			}
+		})
 			});
 		</script>
 
@@ -142,7 +191,8 @@
 											<!-- Tab panes -->
 											<div class="tab-content">
 												<div role="tabpanel" class="tab-pane active" id="mySelfBody">
-												<form action="register" method="post">
+												<form action="register" id="formcheck" method="post">
+												<fieldset>
 													<div class="row">
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
@@ -179,6 +229,7 @@
 															<input type="submit" class="btn btn-primary btn-block" value="Confirm">
 														</div>
 													</div>
+													</fieldset>
 													</form>
 												</div>
 
@@ -232,6 +283,11 @@
 		<!-- jQuery -->
 
 		<script src="js/jquery.min.js"></script>
+		<!-- 验证器引入 -->
+	<script
+		src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+	<script
+		src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 		<!-- jQuery Easing -->
 		<script src="js/jquery.easing.1.3.js"></script>
 		<!-- Bootstrap -->

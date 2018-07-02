@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -114,8 +115,15 @@
 									</li>
 									<li>
 										<!--写遮罩-->
+										<c:choose>
+										<c:when test="${user!=null}">
+										<a href="mySelf.html" class="myself">MySelf</a>
+										</c:when>
+										<c:otherwise>
 										<a href="#" class="login">Login</a>
-										<a href="mySelf.html" class="myself" style="display: none;">MySelf</a>
+										</c:otherwise>
+										</c:choose>
+<!-- 										<a href="mySelf.html" class="myself" style="display: none;">MySelf</a> -->
 									</li>
 								</ul>
 							</nav>
@@ -181,35 +189,37 @@
 									<div class="col-sm-5 col-md-5">
 										<div id="loginBody" class="tabulation animate-box" style="display: none;" >
 
-											<!-- Tab panes -->
+											<!-- 用户账号密码登录 -->
 											<div class="tab-content">
+										
 												<fieldset id="body">
 													<fieldset>
 														<div class="col-xxs-12 col-xs-4 mt">
-															<label for="email">Username</label>
+															<label for="userName">账号:</label>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
-															<input type="text" name="email" id="email">
+															<input type="text" name="userName" id="userName">
 														</div>
 													</fieldset>
 													<fieldset>
 														<div class="col-xxs-12 col-xs-4 mt">
-															<label for="password">Password</label>
+															<label for="userPassword">密码:</label>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
-															<input type="password" name="password" id="password">
+															<input type="password" name="userPassword" id="userPassword">
 														</div>
 													</fieldset>
-													<label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>
+													<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住密码</i></label>
 													<div class="col-xxs-12 col-xs-12 mt">
 														<div style="visibility: hidden;"></div>
 													</div>
-													<input type="submit" class="btn btn-primary btn-block signin" value="Sign in">
+													<input type="button" class="btn btn-primary  btn-block signin" id="login" value="登 录">
 												</fieldset>
-												<span><a href="#">Forgot your password?</a></span>
+												
+												<span><a href="#">忘记密码?</a></span>
 												<div class="button-bottom">
-													<span><label>New account?</label>
-														<a href="#" class="signup">Signup</a>
+													<span><label>还未有账号?</label>
+														<a href="#" class="signup">注册</a>
 													</span>
 												</div>
 											</div>
@@ -440,6 +450,43 @@
 
 		<!-- Main JS -->
 		<script src="js/main.js"></script>
+		
+		<script type="text/javascript">
+		
+		$(function(){
+			$("#login").click(function(){
+				$.ajax({
+					type:"post",
+					url:"http://192.168.13.57:8080/CBIS/login",
+					contentType:"application/json",
+					//用json传数据
+					data:JSON.stringify({
+						"userName":$("#userName").val(),
+						"userPassword":$("#userPassword").val(),						
+					}),
+					//如果存在该账号
+					success:function(flag){
+						//跳转到购票界面
+						if (flag) {
+							alert("登录成功");
+						}else{
+							alert("登录失败");
+						}					
+						//location.href="${pageContext.request.contextPath}";
+						//${pageContext.request.contextPath}/login
+					},
+					eerror:function(flag){
+						alert("登录失败");
+						console.log("登录失败")
+					}
+				});
+			})
+		})
+		
+		
+		
+		
+	</script>
 
 	</body>
 

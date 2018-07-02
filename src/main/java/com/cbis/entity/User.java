@@ -1,5 +1,6 @@
 package com.cbis.entity;
 
+import java.io.Serializable;
 
 /**
  * 用户注册的实体类
@@ -7,8 +8,12 @@ package com.cbis.entity;
  * date:2018.06.30-16:08
  *
  */
-public class User {
+public class User implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3130272948610399076L;
 	private int userId;
 	private String userName;
 	private String userPassword;

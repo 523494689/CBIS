@@ -29,6 +29,10 @@
 		select * from users where userName = #{userName} and userPassword = #{userPassword} 
 	</select>
 	
+	<!-- 用户绑定用户信息表的方法 -->
+	<insert id="addUserInfo" parameterType="com.cbis.entity.UserInfo">
+	     insert into userinfo values (#{userId},#{userName},#{pName},#{pIDCard},#{pTelphone})
+	</insert>
 
 
 	

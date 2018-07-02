@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -27,16 +29,6 @@ public class UserController {
 	// 实例化用户的service类
 	@Resource
 	private UserService us;
-	
-	/**
-	 * 首页
-	 */
-	@RequestMapping(value = "/index")
-	public String index(User user) {
-
-		
-		return "index";
-	}
 
 	/**
 	 * 用户注册的方法
@@ -61,7 +53,6 @@ public class UserController {
 		return null;
 	}
 
-
 	/**
 	 * 用户登录的方法/Json
 	 * 
@@ -69,18 +60,39 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean userLogin(@RequestBody User user,HttpSession session) {
-		
-		//判断用户账号密码是否正确
-		boolean flag = us.userLogin(user)!=null;
-		
-		//如果登录成功,把数据存在session里面
+	public boolean userLogin(@RequestBody User user, HttpSession session) {
+
+		// 判断用户账号密码是否正确
+		boolean flag = us.userLogin(user) != null;
+
+		// 如果登录成功,把数据存在session里面
 		if (flag) {
 			session.setAttribute("user", user);
 		}
-		
-		return flag;
 
+		return flag;
 	}
 
+	/**
+	 * 验证用户名是否存在的方法
+	 */
+	@RequestMapping(value = "/queryUserName")
+	@ResponseBody
+	public String queryUserName(HttpServletRequest request,HttpServletResponse response) {
+		
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=GBK");
+		
+		
+		String userName=request.getParameter("userName");
+		System.out.println(userName);
+		boolean flag = us.queryUserName(userName);
+		
+		if (flag) {
+			return "userName is registered";
+		}
+
+		return "userName can be registered";
+	}
+	
 }

@@ -254,7 +254,7 @@
 															<label for="userName">账号:</label>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
-															<input type="text" name="userName" id="userName">
+															<input type="text" name="userName" id="userName1">
 														</div>
 													</fieldset>
 													<fieldset>
@@ -293,37 +293,48 @@
 												<form id="formcheck"  action="${pageContext.request.contextPath}/register" method="post">
 												<fieldset>
 														<div class="col-xxs-12 col-xs-4 mt">
-															<label for="userName">Username</label>
+															<label for="userName">账号:</label>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
-															<input type="text" name="userName" id="username">
-															<div id="check"></div>
-							                        	<!-- 用户名验证的script -->
+															<input type="text" name="userName" id="userName" >
+															<!-- 需要修改,判断用户名是否存在的显示框  -->
+															<input type="text" id="check" value="1111"> 	
+															
+															<!-- 用户名验证的script -->
 							                          	<script>
 							             	$(document).ready (function (){
-								        	$("#userName").blur (function (){
-										    $.get ("/CBIS//?userName="+$("#userName").attr("value"),function (data,status){
-											$("#check").html(data);
-										         })
+							             		
+								        	$("#userName").blur(function (){
+										    $.get ("/CBIS/queryUserName?userName="+$("#userName").val(),function (data,status){
+										    console.log(data);
+											$("#check").val(data);	         
+									         })
 									       })
 								        })
+								        
 								           </script>
-															
+																								
 														</div>
+														
+														
+													 
+															
+							                        	
+								           
 														<div class="col-xxs-12 col-xs-4 mt">
-															<label for="userPassword">Password</label>
+															<label for="userPassword">密码:</label>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
 															<input type="password" name="userPassword" id="password">
 														</div>
 														<div class="col-xxs-12 col-xs-4 mt">
-															<label for="userEmail">Email</label>
+															<label for="userEmail">邮箱:</label>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
 															<input type="text" name="userEmail" id="email">
 														</div>
 													
-													<input type="submit" class="btn btn-primary btn-block register" value="Register">
+													<input type="submit" class="btn btn-primary btn-block register" value="注册">
 													</fieldset>
 										</form>
 											</div>

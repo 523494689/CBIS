@@ -15,6 +15,9 @@ public interface UserService {
 	//用户登录的方法
 	public User userLogin(User user);
 	
+	//验证用户名是否存在的方法
+	public boolean queryUserName(String userName);
+	
 	
 
 }

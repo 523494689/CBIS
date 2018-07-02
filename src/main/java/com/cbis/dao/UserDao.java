@@ -22,5 +22,8 @@ public interface UserDao {
 	
 	//用户绑定用户详情信息表
 	public boolean addUserInfo(UserInfo userInfo);
+	
+	//验证用户名是否已存在
+	public User queryUserName(String userName);
 
 }

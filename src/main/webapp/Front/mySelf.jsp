@@ -142,42 +142,44 @@
 											<!-- Tab panes -->
 											<div class="tab-content">
 												<div role="tabpanel" class="tab-pane active" id="mySelfBody">
+												<form action="register" method="post">
 													<div class="row">
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
-																<label for="username">UserName:</label>
-																<input type="text" class="form-control" id="from-place" placeholder="username" />
+																<label for="UserName">UserName:</label>
+																<input type="text" class="form-control" name="userName" id="from-place" placeholder="username" />
 															</div>
 														</div>
 
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
-																<label for="name">Name:</label>
-																<input type="text" class="form-control" id="from-place" placeholder="臭臭泥" />
+																<label for="pName">Name:</label>
+																<input type="text" class="form-control" name="pName" id="from-place" placeholder="香香泥" />
 															</div>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
-																<label for="email">Email:</label>
-																<input type="text" class="form-control" id="to-place" placeholder="admin@qq.com" />
+																<label for="userEmail">Email:</label>
+																<input type="text" class="form-control" name="userEmail" id="to-place" placeholder="admin@qq.com" />
 															</div>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
-																<label for="phone">Phone:</label>
-																<input type="text" class="form-control" id="from-place" placeholder="12345678912" />
+																<label for="pTelphone">Phone:</label>
+																<input type="text" class="form-control" id="from-place" name="pTelphone" placeholder="12345678912" />
 															</div>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
-																<label for="identityCard">Identity Card:</label>
-																<input type="text" class="form-control" id="to-place" placeholder="350***********1234" />
+																<label for="pIDCard">Identity Card:</label>
+																<input type="text" class="form-control" id="to-place" name="pIDCard" placeholder="350***********1234" />
 															</div>
 														</div>
 														<div class="col-xs-12">
 															<input type="submit" class="btn btn-primary btn-block" value="Confirm">
 														</div>
 													</div>
+													</form>
 												</div>
 
 												<div role="tabpanel" class="tab-pane" id="history">

@@ -10,6 +10,7 @@ public class UserInfo {
 	private int userId;
 	private String userName;
 	private String pName;
+	private String userEmail;
 	private String pIDCard;
 	private String pTelphone;
 	
@@ -20,11 +21,12 @@ public class UserInfo {
 	}
 
 
-	public UserInfo(int userId, String userName, String pName, String pIDCard, String pTelphone) {
+	public UserInfo(int userId, String userName, String pName, String userEmail, String pIDCard, String pTelphone) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.pName = pName;
+		this.userEmail = userEmail;
 		this.pIDCard = pIDCard;
 		this.pTelphone = pTelphone;
 	}
@@ -60,6 +62,16 @@ public class UserInfo {
 	}
 
 
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
+
 	public String getpIDCard() {
 		return pIDCard;
 	}
@@ -82,9 +94,12 @@ public class UserInfo {
 
 	@Override
 	public String toString() {
-		return "UserInfo [userId=" + userId + ", userName=" + userName + ", pName=" + pName + ", pIDCard=" + pIDCard
-				+ ", pTelphone=" + pTelphone + "]";
+		return "UserInfo [userId=" + userId + ", userName=" + userName + ", pName=" + pName + ", userEmail=" + userEmail
+				+ ", pIDCard=" + pIDCard + ", pTelphone=" + pTelphone + "]";
 	}
+	
+	
+	
 	
 	
 

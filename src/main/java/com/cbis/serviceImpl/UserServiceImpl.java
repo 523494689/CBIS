@@ -40,6 +40,9 @@ public class UserServiceImpl implements UserService{
 		userInfo.setUserId(user.getUserId());
 		//设置用户账号
 		userInfo.setUserName(user.getUserName());
+		//设置用户的邮箱
+		userInfo.setUserEmail(user.getUserEmail());
+
 		//绑定用户详情信息表
 		boolean flag2 = ud.addUserInfo(userInfo);		
 		//使用事务判断是否同时满足

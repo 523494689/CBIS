@@ -27,7 +27,7 @@ public class UserTest {
 	private UserService us;
 	@Test
 	/**
-	 * 用户登录测试的问题
+	 * 用户登录测试
 	 */
 	public void login() {
 		
@@ -51,6 +51,9 @@ public class UserTest {
 	 
 
 	}
+	/**
+	 * 用户注册测试
+	 */
 	@Test
 	public void register() {
 

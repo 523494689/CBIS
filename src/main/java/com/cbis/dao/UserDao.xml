@@ -17,7 +17,7 @@
 
 	<!-- 用户注册的方法  -->
 	<insert id="userRegister" parameterType="com.cbis.entity.User" >
-		insert into users values (null,#{userName},#{userPassword},#{userType},#{userRegTime},#{userEmail})
+		insert into users values (null,#{userName},#{userPassword},#{userType},#{userRegTime})
 	   <!-- 获得用户的自增长id  -->
 	    <selectKey resultType="Integer" keyProperty="userId" order="AFTER">
 	       select  last_insert_id() as userId
@@ -31,7 +31,7 @@
 	
 	<!-- 用户绑定用户信息表的方法 -->
 	<insert id="addUserInfo" parameterType="com.cbis.entity.UserInfo">
-	     insert into userinfo values (#{userId},#{userName},#{pName},#{pIDCard},#{pTelphone})
+	     insert into userinfo values (#{userId},#{userName},#{pName},#{userEmail},#{pIDCard},#{pTelphone})
 	</insert>
 
 

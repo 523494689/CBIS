@@ -25,5 +25,11 @@ public interface UserDao {
 	
 	//验证用户名是否已存在
 	public User queryUserName(String userName);
+	
+	//更新用户详情表信息
+	public boolean updateUserInfo(UserInfo userInfo);
+	
+	//查询对应uerId用户详情表的信息
+	public UserInfo queryUserInfoById(int userId);
 
 }

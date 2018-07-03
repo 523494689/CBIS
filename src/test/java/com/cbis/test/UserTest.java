@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cbis.entity.User;
+import com.cbis.entity.UserInfo;
 import com.cbis.service.UserService;
 
 /**
@@ -62,16 +63,40 @@ public class UserTest {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String logDate = df.format(date);
 		//获取用户注册的信息
-		User user = new User("admin7", "admin7", 1, logDate, "123@qq.com");
+		User user = new User("admin2000", "admin7", 1, logDate, "123@qq.com");
         //判断用户注册是否成功
 		boolean flag = us.userRegister(user);
-		
+		System.out.println(flag);
 		if (flag) {
 			System.out.println("两张表都成功了");
 		}
 		 
 
 	}
+	/**
+	 * 更新用户详情表
+	 */
+	@Test
+	public void updateUserInfo() {
+		UserInfo userInfo = new UserInfo();
+		//userInfo.setUserName("abc");
+		userInfo.setpIDCard("11122223333344");
+		userInfo.setpName("王运强2号");
+		userInfo.setpTelphone("12342");
+		userInfo.setUserId(42);
+		//userInfo.setUserEmail("321@qq.com");
+		
+		us.updateUserInfo(userInfo);
+		
 
+	}
+	/**
+	 * 根据userId查询用户详情表信息
+	 */
+	@Test
+	public void queryUserInfoByUserId() {
+		UserInfo userInfo = us.queryUserInfoById(27);
+		System.out.println(userInfo.toString());
+	}
 
 }

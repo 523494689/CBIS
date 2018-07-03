@@ -76,25 +76,22 @@
 				
 				$(".login").click(function () {
 					$("#loginBody").show();
+					$("#registerBody").hide();
 				})
 				$(".signin").click(function () {
-					
-					
-					
 					$("#loginBody").hide();
 					$(".login").hide();
-					$(".myself").show();
+					//$(".myself").show();
 				})
 				$(".signup").click(function () {
 					$("#registerBody").show();
 					$("#loginBody").hide();
 				})
 				$(".register").click(function () {
-					//$("#registerBody").hide();
-					//$("#loginBody").show();
+
+
 				})
-// 				验证器
-				
+
 				$("#formcheck").validate({
 				    rules: {
 				    	userName: {
@@ -169,7 +166,7 @@
 										<!--写遮罩-->
 										<c:choose>
 										<c:when test="${user!=null}">
-										<a href="mySelf.jsp" class="myself">MySelf</a>
+										<a href="/CBIS/Front/mySelf.jsp" class="myself">MySelf</a>
 										</c:when>
 										<c:otherwise>
 										<a href="#" class="login">Login</a>
@@ -294,8 +291,10 @@
 														<div class="col-xxs-12 col-xs-6 mt">
 															<input type="text" name="userName" id="userName" >
 															<!-- 需要修改,判断用户名是否存在的显示框  -->
-															<input type="text" id="check" value="1111"> 	
-															
+															<!-- <input type="text" id="check" value="">  -->	
+															<div id="checkBody" style="display: none;">
+																<input type="text" id="check" value="">
+															</div>
 															<!-- 用户名验证的script -->
 							                          	<script>
 							             	$(document).ready (function (){
@@ -303,6 +302,7 @@
 								        	$("#userName").blur(function (){
 										    $.get ("/CBIS/queryUserName?userName="+$("#userName").val(),function (data,status){
 										    console.log(data);
+										    $("#checkBody").show();
 											$("#check").val(data);	         
 									         })
 									       })
@@ -330,7 +330,7 @@
 															<input type="text" name="userEmail" id="email">
 														</div>
 													
-													<input type="submit" class="btn btn-primary btn-block register" value="注册">
+													<input type="submit" class="btn btn-primary btn-block" value="注册">
 													</fieldset>
 										</form>
 											</div>
@@ -366,9 +366,9 @@
 														<thead>
 															<tr>
 																<th>车次编号</th>
-																<th>始发站</th>
+																<th>出发站</th>
 																<th></th>
-																<th>终点站</th>
+																<th>到达站</th>
 																<th>价格</th>
 																<th>操作</th>
 															</tr>

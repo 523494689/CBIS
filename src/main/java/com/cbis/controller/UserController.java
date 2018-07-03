@@ -34,9 +34,12 @@ public class UserController {
 	 * 用户注册的方法
 	 */
 	@RequestMapping(value = "/register")
-	public String userRegister(User user) {
+
 		
 
+
+
+	public String userRegister(User user,HttpSession session) {
 
 		// 获取系统的时间
 		Date date = new Date();
@@ -53,7 +56,7 @@ public class UserController {
 		
 		if (flag) {
 			// 注册成功,跳转登录界面
-			return "index";
+			return "redirect:Front/index.jsp";
 		}
 		// 注册失败
 		return null;

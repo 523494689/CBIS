@@ -36,11 +36,6 @@ public class UserController {
 	 * 用户注册的方法
 	 */
 	@RequestMapping(value = "/register")
-
-		
-
-
-
 	public String userRegister(User user,HttpSession session) {
 
 		// 获取系统的时间
@@ -78,9 +73,6 @@ public class UserController {
 		User user2 = us.userLogin(user) ;
 
 		boolean flag = us.userLogin(user) != null;
-		
-		System.out.println(flag);
-
 
 		// 如果登录成功,把数据存在session里面
 		if (user2!=null) {
@@ -91,6 +83,18 @@ public class UserController {
 		else {
 			return false;
 		}
+	}
+	
+	/**
+	 * 用户登出的方法/Json
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/logout")
+	public String userLogout(HttpSession session) {
+		
+		session.removeAttribute("user");
+		return "redirect:Front/index.jsp";
 	}
 
 	/**

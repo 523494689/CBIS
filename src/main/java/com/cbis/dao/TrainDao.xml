@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 绑定dao -->
+<mapper namespace="com.cbis.dao.TrainDao">
+
+	<select id="queryTrains" resultType="com.cbis.entity.Train">
+		<!-- select * from trainSearch where stations regexp #{pattern} -->
+		select ts.*, t.trainNo from trainSearch ts, train t where stations regexp #{pattern} and ts.trainId=t.trainId
+	</select>
+
+</mapper>

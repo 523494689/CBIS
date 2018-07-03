@@ -173,7 +173,7 @@
 										<!--写遮罩-->
 										<c:choose>
 										<c:when test="${user!=null}">
-										<a href="mySelf.jsp" class="myself">MySelf</a>
+										<a href="${pageContext.request.contextPath}/queryUserInfo" class="myself">MySelf</a>
 										</c:when>
 										<c:otherwise>
 										<a href="#" class="login">Login</a>
@@ -549,7 +549,7 @@
 					contentType:"application/json",
 					//用json传数据
 					data:JSON.stringify({
-						"userName":$("#userName").val(),
+						"userName":$("#userName1").val(),
 						"userPassword":$("#userPassword").val(),						
 					}),
 					//如果存在该账号

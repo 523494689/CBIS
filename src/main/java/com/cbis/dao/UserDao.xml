@@ -38,7 +38,23 @@
 	<select id="queryUserName" parameterType="com.cbis.entity.User" resultType="com.cbis.entity.User" >
 	     select * from users where userName = #{userName} 
 	</select>
-
-
+    
+    
+    <update id="updateUserInfo" parameterType="com.cbis.entity.UserInfo" >
+         update userinfo set userName=#{userName},pName=#{pName},userEmail=#{userEmail},
+         pIDCard=#{pIDCard},pTelphone=#{pTelphone} 
+         <!-- <set>
+         <if test="userName!=null">userName=#{userName}</if>
+         <if test="pName!=null">pName=#{pName}</if>
+         <if test="userEmail!=null">userEmail=#{userEmail}</if>
+         <if test="pIDCard!=null">pIDCard=#{pIDCard}</if>
+         <if test="pTelphone!=null">pTelphone=#{pTelphone}</if>
+         </set>  -->
+         where userId=#{userId}
+    </update>
+     <!-- 查询对应uerId用户详情表的信息-->
+	<select id="queryUserInfoById" parameterType="com.cbis.entity.UserInfo" resultType="com.cbis.entity.UserInfo" >
+	     select * from userinfo where userId = #{userId} 
+	</select>
 	
 </mapper>

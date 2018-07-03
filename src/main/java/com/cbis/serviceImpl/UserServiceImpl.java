@@ -76,4 +76,16 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
+	@Override
+	public boolean updateUserInfo(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		return ud.updateUserInfo(userInfo);
+	}
+
+	@Override
+	public UserInfo queryUserInfoById(int userId) {
+		// TODO Auto-generated method stub
+		return ud.queryUserInfoById(userId);
+	}
+
 }

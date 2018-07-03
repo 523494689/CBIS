@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cbis.entity.User;
+import com.cbis.entity.UserInfo;
 import com.cbis.service.UserService;
 
 /**
@@ -72,6 +73,30 @@ public class UserTest {
 		 
 
 	}
+	/**
+	 * 更新用户详情表
+	 */
+	@Test
+	public void updateUserInfo() {
+		UserInfo userInfo = new UserInfo();
+		//userInfo.setUserName("abc");
+		userInfo.setpIDCard("11122223333344");
+		userInfo.setpName("王运强2号");
+		userInfo.setpTelphone("12342");
+		userInfo.setUserId(42);
+		//userInfo.setUserEmail("321@qq.com");
+		
+		us.updateUserInfo(userInfo);
+		
 
+	}
+	/**
+	 * 根据userId查询用户详情表信息
+	 */
+	@Test
+	public void queryUserInfoByUserId() {
+		UserInfo userInfo = us.queryUserInfoById(27);
+		System.out.println(userInfo.toString());
+	}
 
 }

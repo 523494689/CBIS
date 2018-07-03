@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cbis.entity.User;
+import com.cbis.entity.UserInfo;
 import com.cbis.service.UserService;
 
 /**
@@ -63,14 +65,16 @@ public class UserController {
 	public boolean userLogin(@RequestBody User user, HttpSession session) {
 
 		// 判断用户账号密码是否正确
-		boolean flag = us.userLogin(user) != null;
-
+		User user2 = us.userLogin(user) ;
 		// 如果登录成功,把数据存在session里面
-		if (flag) {
-			session.setAttribute("user", user);
+		if (user2!=null) {
+			session.setAttribute("user", user2);
+			return true;
 		}
 
-		return flag;
+		else {
+			return false;
+		}
 	}
 
 	/**
@@ -85,7 +89,7 @@ public class UserController {
 		
 		
 		String userName=request.getParameter("userName");
-		System.out.println(userName);
+		
 		boolean flag = us.queryUserName(userName);
 		
 		if (flag) {
@@ -94,5 +98,32 @@ public class UserController {
 
 		return "userName can be registered";
 	}
-	
+	/**
+	 * 查询对应uerId用户详情表的信息
+	 */
+	@RequestMapping(value = "/queryUserInfo")
+	public String queryUserInfoById(HttpSession session,Model model) {
+		User u = (User)session.getAttribute("user");
+		int userId = u.getUserId();
+		UserInfo userInfo = us.queryUserInfoById(userId);
+		model.addAttribute("userInfo", userInfo);
+		return "mySelf";	
+	}
+	/**
+	 * 改
+	 * @param userName
+	 * @param userEmail
+	 * @param pName
+	 * @param userId
+	 * @param pIDCard
+	 * @param pTelphone
+	 * @return
+	 */
+	@RequestMapping(value = "/updateUserInfo")
+	public String updateUserInfo(String userName,String userEmail,String pName,String userId,String pIDCard,String pTelphone ) {
+		int userId1 = Integer.parseInt(userId);
+		UserInfo userInfo = new UserInfo(userId1, userName, pName, userEmail, pIDCard, pTelphone);
+		us.updateUserInfo(userInfo);
+		return "index";
+	}
 }

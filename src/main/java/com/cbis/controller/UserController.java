@@ -35,6 +35,8 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/register")
 	public String userRegister(User user) {
+		
+
 
 		// 获取系统的时间
 		Date date = new Date();
@@ -42,9 +44,13 @@ public class UserController {
 		String logDate = df.format(date);
 		// 获取用户注册的数据
 		User user2 = new User(user.getUserName(), user.getUserPassword(), 1, logDate, user.getUserEmail());
+		System.out.println("之前");
+		
 		// 注册用户
 		boolean flag = us.userRegister(user2);
 		// 判断用户是否注册成功以及用户详细信息表是否创建
+		System.out.println("之后");
+		
 		if (flag) {
 			// 注册成功,跳转登录界面
 			return "index";
@@ -64,6 +70,8 @@ public class UserController {
 
 		// 判断用户账号密码是否正确
 		boolean flag = us.userLogin(user) != null;
+		
+		System.out.println(flag);
 
 		// 如果登录成功,把数据存在session里面
 		if (flag) {

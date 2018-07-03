@@ -90,15 +90,11 @@
 					$("#loginBody").hide();
 				})
 				$(".register").click(function () {
-					$("#registerBody").hide();
-					$("#loginBody").show();
+					//$("#registerBody").hide();
+					//$("#loginBody").show();
 				})
 // 				验证器
-				$.validator.setDefaults({
-    submitHandler: function() {
-      alert("请按照条件注册，逗比");
-    }
-});
+				
 				$("#formcheck").validate({
 				    rules: {
 				    	userName: {
@@ -549,7 +545,7 @@
 					contentType:"application/json",
 					//用json传数据
 					data:JSON.stringify({
-						"userName":$("#userName").val(),
+						"userName":$("#userName1").val(),
 						"userPassword":$("#userPassword").val(),						
 					}),
 					//如果存在该账号

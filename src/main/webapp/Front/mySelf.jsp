@@ -161,6 +161,14 @@ $("#formcheck").validate({
 										<!-- <a href="#" class="login">Login</a> -->
 										<a href="#" class="myself">MySelf</a>
 									</li>
+									<li>
+										<c:choose>
+										<c:when test="${user!=null}">
+										<a href="${pageContext.request.contextPath}/logout" class="logout">Logout</a>
+										</c:when>
+										</c:choose>
+<!-- 										<a href="mySelf.html" class="myself" style="display: none;">MySelf</a> -->
+									</li>
 								</ul>
 							</nav>
 						</div>
@@ -206,25 +214,25 @@ $("#formcheck").validate({
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
 																<label for="pName">Name:</label>
-																<input type="text" class="form-control" name="pName" id="from-place" placeholder="请填写真实姓名" value="${userInfo.pName}" />
+																<input type="text" class="form-control" name="pName" id="pName" placeholder="请填写真实姓名" value="${userInfo.pName}" />
 															</div>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
 																<label for="userEmail">Email:</label>
-																<input type="text" class="form-control" name="userEmail" id="to-place" placeholder="admin@qq.com" value="${userInfo.userEmail}" />
+																<input type="text" class="form-control" name="userEmail" id="userEmail" placeholder="admin@qq.com" value="${userInfo.userEmail}" />
 															</div>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
 																<label for="pTelphone">Phone:</label>
-																<input type="text" class="form-control" id="from-place" name="pTelphone" value="${userInfo.pTelphone}" placeholder="请填写手机号码" />
+																<input type="text" class="form-control" name="pTelphone" id="pTelphone" value="${userInfo.pTelphone}" placeholder="请填写手机号码" />
 															</div>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
 																<label for="pIDCard">Identity Card:</label>
-																<input type="text" class="form-control" id="to-place" name="pIDCard" value="${userInfo.pIDCard}" placeholder="请填写身份证" />
+																<input type="text" class="form-control" name="pIDCard" id="pIDCard" value="${userInfo.pIDCard}" placeholder="请填写身份证" />
 															</div>
 														</div>
 														<div class="col-xs-12">

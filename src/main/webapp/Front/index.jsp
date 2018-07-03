@@ -497,6 +497,8 @@
 		<script src="${pageContext.request.contextPath}/Front/js/jquery.easing.1.3.js"></script>
 		<!-- Bootstrap -->
 		<script src="${pageContext.request.contextPath}/Front/js/bootstrap.min.js"></script>
+		<!-- 弹出框的样式,layer -->
+		<script src="${pageContext.request.contextPath}/Front/layer/layer.js"></script>
 		<!-- Waypoints -->
 		<script src="${pageContext.request.contextPath}/Front/js/jquery.waypoints.min.js"></script>
 		<script src="${pageContext.request.contextPath}/Front/js/sticky.js"></script>
@@ -555,10 +557,10 @@
 					success:function(flag){
 						//跳转到购票界面
 						if (flag) {
-							console.log("avc");
-							alert("登录成功");
-							window.location.reload();
-							
+							layer.msg("登录成功",{time:2000,btn:['好的']});
+							//window.location.reload();
+							setTimeout("location.reload()",2000);
+
 						}else{
 							$("#yanzhen").html("<span style='color:red'>账号或密码错误</span>")
 						}					
@@ -566,8 +568,7 @@
 						//${pageContext.request.contextPath}/login
 					},
 					eerror:function(flag){
-						alert("登录失败");
-						console.log("登录失败")
+						
 					}
 				});
 			})

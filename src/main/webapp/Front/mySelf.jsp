@@ -87,7 +87,7 @@
 // 				验证器
 $("#formcheck").validate({
 			rules : {
-				userName : {
+				pName : {
 					required : true,
 					minlength : 2,
 					maxlength : 10
@@ -112,7 +112,7 @@ $("#formcheck").validate({
 				agree : "required"
 			},
 			messages : {
-				userName : {
+				pName : {
 					required : "*请输入真实姓名",
 					minlength : "*姓名不能少于两个字或英文",
 					maxlength : "*姓名长度过长"
@@ -158,8 +158,8 @@ $("#formcheck").validate({
 									</li>
 									<li>
 										<!--写遮罩-->
-										<a href="#" class="login">Login</a>
-										<a href="#" class="myself" style="display: none;">MySelf</a>
+										<!-- <a href="#" class="login">Login</a> -->
+										<a href="#" class="myself">MySelf</a>
 									</li>
 								</ul>
 							</nav>

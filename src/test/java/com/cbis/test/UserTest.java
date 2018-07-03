@@ -63,10 +63,10 @@ public class UserTest {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String logDate = df.format(date);
 		//获取用户注册的信息
-		User user = new User("admin7", "admin7", 1, logDate, "123@qq.com");
+		User user = new User("admin2000", "admin7", 1, logDate, "123@qq.com");
         //判断用户注册是否成功
 		boolean flag = us.userRegister(user);
-		
+		System.out.println(flag);
 		if (flag) {
 			System.out.println("两张表都成功了");
 		}

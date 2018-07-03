@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 绑定dao -->
+<mapper namespace="com.cbis.dao.ScheduleDao">
+
+	<select id="querySchedule" resultType="com.cbis.entity.Schedule">
+		<!-- select * from sch where trainId = #{trainId} and station regexp #{station} -->
+		select * from sch where trainId = #{trainId} and station=#{station}
+	</select>
+
+</mapper>

@@ -166,14 +166,19 @@
 										<!--写遮罩-->
 										<c:choose>
 										<c:when test="${user!=null}">
-
 										<a href="${pageContext.request.contextPath}/queryUserInfo" class="myself">MySelf</a>
-
-
 										</c:when>
 										<c:otherwise>
 										<a href="#" class="login">Login</a>
 										</c:otherwise>
+										</c:choose>
+<!-- 										<a href="mySelf.html" class="myself" style="display: none;">MySelf</a> -->
+									</li>
+									<li>
+										<c:choose>
+										<c:when test="${user!=null}">
+										<a href="${pageContext.request.contextPath}/logout" class="logout">Logout</a>
+										</c:when>
 										</c:choose>
 <!-- 										<a href="mySelf.html" class="myself" style="display: none;">MySelf</a> -->
 									</li>
@@ -303,7 +308,7 @@
 							             	$(document).ready (function (){
 							             		
 								        	$("#userName").blur(function (){
-										    $.get ("/CBIS/queryUserName?userName="+$("#userName").val(),function (data,status){
+										   	$.get ("/CBIS/queryUserName?userName="+$("#userName").val(),function (data,status){
 										    console.log(data);
 										    $("#checkBody").show();
 											$("#check").val(data);	         

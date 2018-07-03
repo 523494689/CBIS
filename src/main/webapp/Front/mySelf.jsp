@@ -13,7 +13,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assetss/img/favicon.png" />
-		<title>Travel &mdash; 100% Free Fully Responsive HTML5 Template by FREEHTML5.co</title>
+		<title>Travel</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 		<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -145,7 +145,7 @@ $("#formcheck").validate({
 					<div class="container">
 						<div class="nav-header">
 							<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-							<h1 id="fh5co-logo"><a href="index.html">Travel</a></h1>
+							<h1 id="fh5co-logo"><a href="Front/index.jsp">Travel</a></h1>
 							<!-- START #fh5co-menu-wrap -->
 							<nav id="fh5co-menu-wrap" role="navigation">
 								<ul class="sf-menu" id="fh5co-primary-menu">
@@ -192,21 +192,21 @@ $("#formcheck").validate({
 											<!-- Tab panes -->
 											<div class="tab-content">
 												<div role="tabpanel" class="tab-pane active" id="mySelfBody">
-												<form action="register" id="formcheck" method="post">
+												<form action="updateUserInfo" id="formcheck" method="post">
 												<fieldset>
 													<div class="row">
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
 																<label for="UserName">UserName:</label>
 																<input type="text" style="display:none" name="userId" value="${userInfo.userId}"  id="userId">
-																<input type="text" class="form-control" name="userName" id="from-place" placeholder="真实姓名" />
+																<input type="text" class="form-control" name="userName"  value="${userInfo.userName}" id="from-place" readonly="readonly" />
 															</div>
 														</div>
 
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
 																<label for="pName">Name:</label>
-																<input type="text" class="form-control" name="pName" id="from-place" placeholder="香香泥" value="${userInfo.userName}" readonly="readonly"/>
+																<input type="text" class="form-control" name="pName" id="from-place" placeholder="请填写真实姓名" value="${userInfo.pName}" />
 															</div>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
@@ -218,13 +218,13 @@ $("#formcheck").validate({
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
 																<label for="pTelphone">Phone:</label>
-																<input type="text" class="form-control" id="from-place" name="pTelphone" placeholder="12345678912" />
+																<input type="text" class="form-control" id="from-place" name="pTelphone" value="${userInfo.pTelphone}" placeholder="请填写手机号码" />
 															</div>
 														</div>
 														<div class="col-xxs-12 col-xs-6 mt">
 															<div class="input-field">
 																<label for="pIDCard">Identity Card:</label>
-																<input type="text" class="form-control" id="to-place" name="pIDCard" placeholder="350***********1234" />
+																<input type="text" class="form-control" id="to-place" name="pIDCard" value="${userInfo.pIDCard}" placeholder="请填写身份证" />
 															</div>
 														</div>
 														<div class="col-xs-12">

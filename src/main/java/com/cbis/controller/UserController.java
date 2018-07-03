@@ -115,12 +115,15 @@ public class UserController {
 		return "userName can be registered";
 	}
 	/**
-	 * 查询对应uerId用户详情表的信息
+	 * 查询登录用户的详情信息表
 	 */
 	@RequestMapping(value = "/queryUserInfo")
 	public String queryUserInfoById(HttpSession session,Model model) {
+		//获得session中的user
 		User u = (User)session.getAttribute("user");
+		//获得登录用户的id
 		int userId = u.getUserId();
+		//查询登录的用户详情信息表的信息
 		UserInfo userInfo = us.queryUserInfoById(userId);
 		model.addAttribute("userInfo", userInfo);
 		return "mySelf";	

@@ -88,9 +88,9 @@
 						scrollTop: $(this.hash).offset().top
 					}, 1000);
 				});*/
-				/* $(".search").click(function() {
+				 /* $(".search").click(function() {
 					$("#fh5co-tours").show();
-				}) */
+				})  */
 				$(".login").click(function () {
 					$("#loginBody").show();
 					$("#registerBody").hide();
@@ -246,8 +246,8 @@
 														</div>
 													</div>
 											       
-														<a href="/CBIS/search-api/trains2?start=厦门&stop=福州"><button class="btn btn-primary btn-block search" id="search">Search</button></a>
-
+														<a href="javascript:sendSS()"><button class="btn btn-primary btn-block search" id="search">Search</button></a>
+<!-- <a href="/CBIS/search-api/trains2?start=厦门&stop=福州"> -->
 													<!--  -->
 													<script type="text/javascript">
 		
@@ -263,8 +263,6 @@
 						}else{
 							$("#yanzhen").html("<span style='color:red'>账号或密码错误</span>")
 						}					
-						//location.href="${pageContext.request.contextPath}";
-						//${pageContext.request.contextPath}/login
 					},
 					eerror:function(flag){
 						alert("登录失败");
@@ -274,10 +272,6 @@
 			})
 		})
 			</script>
-
-
-
-
 
 												</div>
 											</div>
@@ -368,12 +362,6 @@
 								           </script>
 
 													</div>
-
-
-
-
-
-
 													<div class="col-xxs-12 col-xs-4 mt">
 														<label for="userPassword">密码:</label>
 													</div>
@@ -402,12 +390,12 @@
 
 			</div>
 
-			<div id="fh5co-tours" class="fh5co-section-gray">
+			<div id="fh5co-tours" class="fh5co-section-gray" ">
 				<div class="container">
 					<div class="row">
 						<div
 							class="col-md-8 col-md-offset-2 text-center heading-section animate-box"
-							id="Train List">
+							id="TrainList">
 							<h3>Train List</h3>
 						</div>
 					</div>
@@ -438,6 +426,7 @@
 													<tbody id="searchBody">
 															<!-- 接收控制器传过来的值 -->										
 															<c:if test="${requestScope.list!=null}">
+															<!-- 开始循环 -->
 															<c:forEach items="${list}" var="Train">
 															
 															<tr align="center">
@@ -538,8 +527,8 @@
 	<!-- Main JS -->
 	<script src="${pageContext.request.contextPath}/Front/js/main.js"></script>
 
-	<script type="text/javascript">
-		
+    <!-- 登录的时候判断是否有该用户 -->
+	<script type="text/javascript">	
 		$(function(){
 			$("#userLogin").click(function(){
 				$.ajax({
@@ -558,7 +547,6 @@
 							layer.msg("登录成功",{time:2000,btn:['好的']});
 							//window.location.reload();
 							setTimeout("location.reload()",2000);
-
 						}else{
 							$("#yanzhen").html("<span style='color:red'>账号或密码错误</span>")
 						}					
@@ -575,6 +563,27 @@
 				
 		})
 		
+	</script>
+	
+	<!-- 点击查询的按钮 -->
+	<script >
+	     function sendSS(){
+	    	 var flag= confirm("是否搜索");
+	    	//出发地
+	    	 var start = $("#from-place").val();
+	    	 var stop = $("#to-place").val();
+		   //提示框
+
+		   if(flag){
+			  // var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+			  var index = layer.load(1, {
+                shade: [0.1,'#fff'] //0.1透明度的白色背景
+                  });
+			   //确认提交,跳转页面
+			  location.href="/CBIS/search-api/trains2?start="+start+"&stop="+stop;
+			  //a href="/CBIS/search-api/trains2?start=厦门&stop=福州
+		   }
+	     }
 	</script>
 </body>
 

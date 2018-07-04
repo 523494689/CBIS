@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cbis.dao.ScheduleDao;
 import com.cbis.dao.TrainDao;
+import com.cbis.entity.Schedule;
 import com.cbis.entity.Train;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,9 +25,9 @@ public class TestTrainSearch {
 
 	@Test
 	public void show() {
-		String s1 = "厦门";
+		String s1 = "厦门北";
 		String s2 = "杭州";
-		String pattern = "厦门.*杭州";
+		String pattern = s1+".*"+s2;
 		List<Train> list = trainDao.queryTrains(pattern);
 
 		for (Train train : list) {
@@ -54,9 +55,18 @@ public class TestTrainSearch {
 			train.setStart(scheduleDao.querySchedule(train.getTrainId(), start));
 			train.setStop(scheduleDao.querySchedule(train.getTrainId(), stop));
 
-			System.out.println(train);
+			System.out.println("得到的结果是"+train);
 		}
 
 		// list.forEach(System.out::println);
 	}
+	/**
+	 * 对应trainId的sch表详情查询
+	 */
+	@Test
+	public void showTrain() {
+		List<Schedule> list = scheduleDao.querySchByTrainId(1);
+		System.out.println(list.toString());
+	}
+	
 }

@@ -31,6 +31,17 @@ public class UserController {
 	// 实例化用户的service类
 	@Resource
 	private UserService us;
+	
+	
+	/**
+	 * 跳转到车次列表的方法
+	 */
+	@RequestMapping(value = "/showTravel")
+	public String showTravel(User user,HttpSession session) {
+
+		
+		return "redirect:Front/index.jsp#TrainList";
+	}
 
 	/**
 	 * 用户注册的方法

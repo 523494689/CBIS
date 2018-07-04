@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 绑定dao -->
+<mapper namespace="com.cbis.dao.OrderFlowDao">
+
+    <select id="selectOrderFlow" resultType="com.cbis.entity.OrderFlow">
+        select * from orders where orderNum=#{orderNum}
+    </select>
+
+    <insert id="insertOrderFlow" parameterType="com.cbis.entity.OrderFlow">
+        insert into orderFlow(orderNum, op, operId, opTime) values(#{orderNum},#{op},#{operId},now())
+    </insert>
+
+</mapper>

@@ -141,4 +141,20 @@
 	</dependencies>
 
 
+	<!-- idea中，使mapper和dao接口关联起来的配置 -->
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+	</build>
+
+
 </project>

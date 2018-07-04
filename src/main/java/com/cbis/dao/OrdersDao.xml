@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 绑定dao -->
+<mapper namespace="com.cbis.dao.OrdersDao">
+
+    <select id="selectOrders" resultType="com.cbis.entity.Orders">
+        select * from orders where userId=#{userId}
+    </select>
+
+    <insert id="insertOrder" parameterType="com.cbis.entity.Orders">
+        insert into orders(orderNum, userId, trainId, startNo, stopNo, passId, state, oTime)
+        values(#{orderNum}, #{userId}, #{trainId}, #{startNo}, #{stopNo}, #{passId}, #{state}, now())
+    </insert>
+
+    <!-- 暂时只能修改车次 -->
+    <update id="updateOrder" parameterType="com.cbis.entity.Orders">
+        update orders
+        <trim prefix="set" suffixOverrides=",">
+            <if test="trainId != null">trainId=#{trainId}</if>
+        </trim>
+        state = state + #{state}
+        where orderNum=#{orderNum}
+    </update>
+
+</mapper>

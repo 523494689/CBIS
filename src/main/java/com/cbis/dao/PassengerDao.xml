@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 绑定dao -->
+<mapper namespace="com.cbis.dao.PassengerDao">
+
+    <insert id="insertPassenger" parameterType="com.cbis.entity.Passenger">
+        insert into passenger(userId,pName,pIDCard,pTelphone)
+        values(#{userId},#{pName},#{pIDCard},#{pTelphone})
+    </insert>
+
+    <select id="selectPassengers" resultType="com.cbis.entity.Passenger">
+        select * from passenger where userId=#{userId}
+    </select>
+
+</mapper>

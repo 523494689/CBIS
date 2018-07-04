@@ -132,7 +132,7 @@
 																					<td>${Schedule.station}</td>
 																					<td>${Schedule.arrive}</td>
 																					<td>${Schedule.start}</td>
-																					<td></td>
+																					<td>${Schedule.stopover}</td>
 																					</tr>
 																				</c:forEach>
 																				

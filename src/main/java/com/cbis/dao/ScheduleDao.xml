@@ -10,5 +10,10 @@
 		<!-- select * from sch where trainId = #{trainId} and station regexp #{station} -->
 		select * from sch where trainId = #{trainId} and station=#{station}
 	</select>
+	
+	<select id="querySchByTrainId" resultType="com.cbis.entity.Schedule">
+		<!-- select * from sch where trainId = #{trainId} and station regexp #{station} -->
+		select * from sch where trainId = #{trainId}
+	</select>
 
 </mapper>

@@ -1,41 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<link rel="apple-touch-icon" sizes="76x76" href="assetss/img/apple-icon.png" />
-		<link rel="icon" type="image/png" href="assetss/img/favicon.png" />
+		<link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/Front/assetss/img/apple-icon.png" />
+		<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Front/assetss/img/favicon.png" />
 		<title>Travel</title>
 
 		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 		<meta name="viewport" content="width=device-width" />
 
 		<!-- CSS Files -->
-		<link href="assetss/css/bootstrap.min.css" rel="stylesheet" />
-		<link href="assetss/css/paper-bootstrap-wizard.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/Front/assetss/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/Front/assetss/css/paper-bootstrap-wizard.css" rel="stylesheet" />
 
 		<!-- PAY WAY STYLES-->
 		<!--		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />-->
 
 		<!-- CSS Just for demo purpose, don't include it in your project -->
-		<link href="assetss/css/demo.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/Front/assetss/css/demo.css" rel="stylesheet" />
 
 		<!-- Fonts and Icons -->
 		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-		<link href="assetss/css/themify-icons.css" rel="stylesheet">
+		<link href="${pageContext.request.contextPath}/Front/assetss/css/themify-icons.css" rel="stylesheet">
 
 		<!-- TABLE STYLES-->
-		<link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/Front/assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 
 	</head>
 
 	<body>
-		<div class="image-container set-full-height" style="background-image: url('assetss/img/paper-2.jpeg')">
+		<div class="image-container set-full-height" style="background-image: url('${pageContext.request.contextPath}/Front/assetss/img/paper-2.jpeg')">
 
 			<!--  Made With Paper Kit  -->
 			<a href="index.html" class="made-with-pk">
@@ -117,62 +118,26 @@
 																				</tr>
 																			</thead>
 																			<tbody>
+<!-- 																				<tr align="center"> -->
+<!-- 																					<td>1</td> -->
+<!-- 																					<td>厦门</td> -->
+<!-- 																					<td>----</td> -->
+<!-- 																					<td>06:50</td> -->
+<!-- 																					<td>----</td> -->
+<!-- 																				</tr> -->
+																				<c:if test="${list2!=null}">
+																				<c:forEach items="${list2}" var="Schedule" >
 																				<tr align="center">
-																					<td>1</td>
-																					<td>厦门</td>
-																					<td>----</td>
-																					<td>06:50</td>
-																					<td>----</td>
-																				</tr>
-																				<tr align="center">
-																					<td>2</td>
-																					<td>泉州</td>
-																					<td>07:37</td>
-																					<td>07:41</td>
-																					<td>4分钟</td>
-																				</tr>
-																				<tr align="center">
-																					<td>3</td>
-																					<td>莆田</td>
-																					<td>08:06</td>
-																					<td>08:08</td>
-																					<td>2分钟</td>
-																				</tr>
-																				<tr align="center">
-																					<td>4</td>
-																					<td>福清</td>
-																					<td>08:27</td>
-																					<td>08:29</td>
-																					<td>2分钟</td>
-																				</tr>
-																				<tr align="center">
-																					<td>5</td>
-																					<td>福州南</td>
-																					<td>08:44</td>
-																					<td>08:49</td>
-																					<td>5分钟</td>
-																				</tr>
-																				<tr align="center">
-																					<td>6</td>
-																					<td>连江</td>
-																					<td>09:09</td>
-																					<td>09:11</td>
-																					<td>2分钟</td>
-																				</tr>
-																				<tr align="center">
-																					<td>7</td>
-																					<td>罗源</td>
-																					<td>09:26</td>
-																					<td>09:28</td>
-																					<td>2分钟</td>
-																				</tr>
-																				<tr align="center">
-																					<td>8</td>
-																					<td>宁德</td>
-																					<td>09:39</td>
-																					<td>09:41</td>
-																					<td>2分钟</td>
-																				</tr>
+																				<td>${Schedule.id}</td>
+																					<td>${Schedule.station}</td>
+																					<td>${Schedule.arrive}</td>
+																					<td>${Schedule.start}</td>
+																					<td></td>
+																					</tr>
+																				</c:forEach>
+																				
+																				
+																				</c:if>
 																			</tbody>
 																		</table>
 																	</div>
@@ -308,18 +273,18 @@
 	</body>
 
 	<!--   Core JS Files   -->
-	<script src="assetss/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-	<script src="assetss/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="assetss/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/Front/assetss/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/Front/assetss/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/Front/assetss/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 
 	<!--  Plugin for the Wizard -->
-	<script src="assetss/js/paper-bootstrap-wizard.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/Front/assetss/js/paper-bootstrap-wizard.js" type="text/javascript"></script>
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="assetss/js/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/Front/assetss/js/jquery.validate.min.js" type="text/javascript"></script>
 	<!-- DATA TABLE SCRIPTS -->
-	<script src="assets/js/dataTables/jquery.dataTables.js"></script>
-	<script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath}/Front/assets/js/dataTables/jquery.dataTables.js"></script>
+	<script src="${pageContext.request.contextPath}/Front/assets/js/dataTables/dataTables.bootstrap.js"></script>
 
 	<script>
 		$(document).ready(function() {

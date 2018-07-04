@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cbis.dao.ScheduleDao;
 import com.cbis.dao.TrainDao;
+import com.cbis.entity.Schedule;
 import com.cbis.entity.Train;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -59,4 +60,13 @@ public class TestTrainSearch {
 
 		// list.forEach(System.out::println);
 	}
+	/**
+	 * 对应trainId的sch表详情查询
+	 */
+	@Test
+	public void showTrain() {
+		List<Schedule> list = scheduleDao.querySchByTrainId(1);
+		System.out.println(list.toString());
+	}
+	
 }

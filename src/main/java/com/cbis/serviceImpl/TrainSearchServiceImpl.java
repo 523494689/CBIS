@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cbis.dao.ScheduleDao;
 import com.cbis.dao.TrainDao;
+import com.cbis.entity.Schedule;
 import com.cbis.entity.Train;
 import com.cbis.service.TrainSearchService;
 
@@ -50,6 +51,12 @@ public class TrainSearchServiceImpl implements TrainSearchService {
 			train.setStop(scheduleDao.querySchedule(train.getTrainId(), stop));
 		}
 		return trains;
+	}
+
+	@Override
+	public List<Schedule> querySchByTrainId(int trainId) {
+		// TODO Auto-generated method stub
+		return scheduleDao.querySchByTrainId(trainId);
 	}
 
 }

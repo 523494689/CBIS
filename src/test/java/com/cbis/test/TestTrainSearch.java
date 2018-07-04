@@ -24,9 +24,9 @@ public class TestTrainSearch {
 
 	@Test
 	public void show() {
-		String s1 = "厦门";
+		String s1 = "厦门北";
 		String s2 = "杭州";
-		String pattern = "厦门.*杭州";
+		String pattern = s1+".*"+s2;
 		List<Train> list = trainDao.queryTrains(pattern);
 
 		for (Train train : list) {
@@ -54,7 +54,7 @@ public class TestTrainSearch {
 			train.setStart(scheduleDao.querySchedule(train.getTrainId(), start));
 			train.setStop(scheduleDao.querySchedule(train.getTrainId(), stop));
 
-			System.out.println(train);
+			System.out.println("得到的结果是"+train);
 		}
 
 		// list.forEach(System.out::println);

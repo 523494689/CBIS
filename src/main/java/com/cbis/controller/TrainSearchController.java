@@ -21,7 +21,7 @@ public class TrainSearchController {
 
 	@RequestMapping(value = "/trains", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Train> search(@RequestParam(name = "start") String start, @RequestParam(name = "stop") String stop) {
+	public List<Train> search(String start, String stop) {
 		return trainSearchService.getTrains(start, stop);
 	}
 }

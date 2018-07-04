@@ -435,7 +435,7 @@
 																<td>${Train.start.start}</td>
 																<td>${stop}</td>
 																<td>${Train.stop.arrive}</td>
-																<td><button id="btn" name="btn" class="btn btn-success bjs">详情</button></td>
+																<td><button id="btn" name="btn" class="btn btn-success bjs xiangqing" value="${Train.trainId}@${Train.start.stationNo}@${Train.stop.stationNo}">详情</button></td>
 															</tr> 
 
 
@@ -558,7 +558,11 @@
 					}
 				});
 			})
-			
+			//详情传值
+			$(".xiangqing").click(function(){
+				console.log($(this).val());
+				window.location.href="/CBIS/search-api/trainList?trainAll="+$(this).val();
+			})
 			
 				
 		})

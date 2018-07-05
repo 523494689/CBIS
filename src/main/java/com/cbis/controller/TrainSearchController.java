@@ -95,4 +95,32 @@ public class TrainSearchController {
 		return "info";
 
 	}
+	
+	
+	/**
+	 * 添加乘客
+	 * @param trainAll
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/addPassenger", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean addPassenger(String pName,String pIDCard,HttpSession session) {
+		
+		Passenger passenger = new Passenger();
+		//获取登录用户的id
+		User u = (User)session.getAttribute("user");
+		int userId = u.getUserId();
+		//新增乘客的信息
+		passenger.setUserId(userId);
+		passenger.setpName(pName);
+		passenger.setpIDCard(pIDCard);
+		
+		boolean flag = orderService.addPassenger(passenger);
+		
+		return flag;
+		
+
+	}
+	
 }

@@ -5,6 +5,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <link rel="apple-touch-icon" sizes="76x76"
@@ -171,147 +172,190 @@
 												<input class="btn btn-primary btn-block" type="button"
 													id="third" value="无座 ￥${(stop-start)*15}" />
 											</div>
-											<div class="col-sm-12">
+											<div class="col-sm-12"></div>
 
-										</div>
-										
-										<c:if test="${sessionScope.user!=null}">
-											<div class="col-sm-12">
-												<!--用forEach从数据库中读取购票用户名下绑定的所有用户姓名-->
-												<c:if test="${requestScope.pasList!=null}">
-												<c:forEach items="${pasList}" var="pasList">
+											<c:if test="${sessionScope.user!=null}">
 												<div class="col-sm-12">
-													<div class="col-sm-3">
-														<input type="checkbox" name="cb1" id="cb1" value="${pasList.pName}" />
-														<label>${pasList.pName}</label>
+													<div class="col-sm-12">
+														<!--用forEach从数据库中读取购票用户名下绑定的所有用户姓名-->
+														<c:if test="${requestScope.pasList!=null}">
+															<c:forEach items="${pasList}" var="pasList">
+                                                                <!-- 乘客名字 -->
+																<div class="col-sm-3">
+																	<input type="checkbox" name="cb1" id="cb1"
+																		value="${pasList.pName}" /> <label>${pasList.pName}</label>
+																</div>
+
+															</c:forEach>
+														</c:if>
 													</div>
-												</div>
-												</c:forEach>
-												</c:if>											
-												<!--用forEach从数据库中读取购票用户名下绑定的所有用户姓名-- 结束>
-												
+													<!--用forEach从数据库中读取购票用户名下绑定的所有用户姓名-- 结束>												
 												<!--CheckBox End-->
-												<!--添加新乘客 初始为隐藏域 点击添加后展示 添加成功后在passenger表中添加一条记录-->
-												<div class="col-sm-12">
-													<div id="passengerBody" class="col-sm-12"
-														style="display: none;">
-														<div class="col-sm-5">
-															<div class="form-group">
-																<label>Name</label> <input type="text"
-																	class="form-control" id="name" placeholder="臭臭泥">
+													<!--添加新乘客 初始为隐藏域 点击添加后展示 添加成功后在passenger表中添加一条记录-->
+													<div class="col-sm-12">
+														<div id="passengerBody" class="col-sm-12"
+															style="display: none;">
+															<div class="col-sm-5">
+																<div class="form-group">
+																	<label>Name</label> <input type="text"
+																		class="form-control" id="pName" placeholder="请输入真实姓名">
+																</div>
 															</div>
-														</div>
-														<div class="col-sm-5">
-															<div class="form-group">
-																<label>Identity Card</label> <input type="text"
-																	class="form-control" id="name"
-																	placeholder="350***********1234">
+															<div class="col-sm-5">
+																<div class="form-group">
+																	<label>Identity Card</label> <input type="text"
+																		class="form-control" id="pIDCard"
+																		placeholder="请输入身份证">
+																</div>
 															</div>
-														</div>
 
-														<div class="pull-right">
-															<label></label> <input
-																class="btn btn-primary btn-block addPassenger"
-																type="button" id="save" value="保存" />
-														</div>
+															<div class="pull-right">
+																<label></label> <input
+																	class="btn btn-primary btn-block addPassenger"
+																	type="button" id="save" value="保存" />
+															</div>
 
+														</div>
+													</div>
+													<div class="pull-right">
+														<input class="btn btn-primary btn-block addPassenger"
+															type="button" id="addPassenger" value="添加乘客" />
 													</div>
 												</div>
-												<div class="pull-right">
-													<input class="btn btn-primary btn-block addPassenger"
-														type="button" id="addPassenger" value="添加乘客" />
+											</c:if>
+										</div>
+									</div>
+									<div class="tab-pane" id="check">
+										<div class="col-sm-12" align="center">
+											<!--<h5 class="info-text">Please check again your information. </h5>-->
+											<p>Please check again your information.</p>
+										</div>
+										<div class="row">
+											<div class="col-sm-12 col-md-12">
+												<div class="tabulation animate-box">
+													<div id="page-wrapper">
+														<!-- Advanced Tables -->
+														<div class="panel panel-default">
+															<div class="panel-body">
+																<div class="table-responsive">
+																	<table
+																		class="table table-striped table-bordered table-hover"
+																		id="dataTables-example">
+																		<thead>
+																			<tr>
+																				<th>序号</th>
+																				<th>车次信息</th>
+																				<th>用户信息</th>
+																				<th>席位信息</th>
+																				<th>票款金额</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>1</td>
+																				<td>T1234 厦门-福州 28/06/2018-28/06/20118</td>
+																				<td>臭臭泥 350*******1234</td>
+																				<td>05车厢 03F 二等座</td>
+																				<td>成人票 ￥80</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</div>
+														<!--End Advanced Tables -->
+													</div>
 												</div>
 											</div>
-										</c:if>
-									</div>
-								</div>
-								<div class="tab-pane" id="check">
-									<div class="col-sm-12" align="center">
-										<!--<h5 class="info-text">Please check again your information. </h5>-->
-										<p>Please check again your information.</p>
-									</div>
-									<div class="row">
-										<div class="col-sm-12 col-md-12">
-											<div class="tabulation animate-box">
-												<div id="page-wrapper">
-													<!-- Advanced Tables -->
-													<div class="panel panel-default">
-														<div class="panel-body">
-															<div class="table-responsive">
-																<table
-																	class="table table-striped table-bordered table-hover"
-																	id="dataTables-example">
-																	<thead>
-																		<tr>
-																			<th>序号</th>
-																			<th>车次信息</th>
-																			<th>用户信息</th>
-																			<th>席位信息</th>
-																			<th>票款金额</th>
-																		</tr>
-																	</thead>
-																	<tbody>
-																		<tr>
-																			<td>1</td>
-																			<td>T1234 厦门-福州 28/06/2018-28/06/20118</td>
-																			<td>臭臭泥 350*******1234</td>
-																			<td>05车厢 03F 二等座</td>
-																			<td>成人票 ￥80</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
-														</div>
-													</div>
-													<!--End Advanced Tables -->
-												</div>
+											<div class="col-sm-12">
+												<span>付款方式：</span> <label> <input type="radio"
+													name="rd1" id="rd1" value="" /> <img
+													src="images/wechatpay.png">
+												</label> <label> <input type="radio" name="rd1" id="rd1"
+													value="" /> <img src="images/zfbpay.png">
+												</label>
 											</div>
 										</div>
+									</div>
+									<div class="tab-pane" id="submit">
+										<h5 class="info-text">付款信息</h5>
 										<div class="col-sm-12">
-											<span>付款方式：</span> <label> <input type="radio"
-												name="rd1" id="rd1" value="" /> <img
-												src="images/wechatpay.png">
-											</label> <label> <input type="radio" name="rd1" id="rd1"
-												value="" /> <img src="images/zfbpay.png">
-											</label>
+											<div class="col-sm-3"></div>
+											<div class="col-sm-9">
+												<form name=alipayment action=alipay.trade.page.pay.jsp
+													method=post target="_blank">
+													<div id="body1" class="show" name="divcontent">
+														<dl class="content">
+															<dd>
+																<div class="col-sm-6 col-sm-offset-1">
+																	<div class="form-group">
+																		<label>商户订单号 ：</label> <input type="text"
+																			class="form-control" id="WIDout_trade_no"
+																			name="WIDout_trade_no">
+																	</div>
+																</div>
+															</dd>
+															<dd>
+																<div class="col-sm-6 col-sm-offset-1">
+																	<div class="form-group">
+																		<label>订单名称 ：</label> <input type="text"
+																			class="form-control" id="WIDsubject"
+																			name="WIDsubject">
+																	</div>
+																</div>
+															</dd>
+															<dd>
+																<div class="col-sm-6 col-sm-offset-1">
+																	<div class="form-group">
+																		<label>付款金额 ：</label> <input type="text"
+																			class="form-control" id="WIDtotal_amount"
+																			name="WIDtotal_amount" readonly="readonly">
+																	</div>
+																</div>
+															</dd>
+															<dd id="btn-dd">
+																<div class="col-sm-6 col-sm-offset-1">
+																	<span class="new-btn-login-sp">
+																		<button class="btn btn-success btn-block"
+																			type="submit" style="text-align: center;">付
+																			款</button>
+																	</span>
+																	<!-- <span class="note-help">如果您点击“付款”按钮，即表示您同意该次的执行操作。</span> -->
+																</div>
+															</dd>
+														</dl>
+													</div>
+												</form>
+											</div>
 										</div>
 									</div>
 								</div>
-								<div class="tab-pane" id="submit">
-									<h3 class="info-text">Successful payment</h3>
-									<div class="row">
-										<div class="col-sm-4 col-md-4"></div>
-										<div class="col-sm-4 col-md-4">
-											<img src="images/shoukuanma.jpg">
-										</div>
+								<div class="wizard-footer">
+									<div class="pull-right">
+										<input type='button'
+											class='btn btn-next btn-fill btn-success btn-wd' name='next'
+											value='Next' />
+										<!--做付钱的遮罩窗体-->
+										<input type='button'
+											class='btn btn-finish btn-fill btn-success btn-wd'
+											name='finish' value='Confirm' />
 									</div>
+									<div class="pull-left">
+										<input type='button'
+											class='btn btn-previous btn-default btn-wd' name='previous'
+											value='Previous' />
+									</div>
+									<div class="clearfix"></div>
 								</div>
+							</form>
 						</div>
-						<div class="wizard-footer">
-							<div class="pull-right">
-								<input type='button'
-									class='btn btn-next btn-fill btn-success btn-wd' name='next'
-									value='Next' />
-								<!--做付钱的遮罩窗体-->
-								<input type='button'
-									class='btn btn-finish btn-fill btn-success btn-wd'
-									name='finish' value='Confirm' />
-							</div>
-							<div class="pull-left">
-								<input type='button' class='btn btn-previous btn-default btn-wd'
-									name='previous' value='Previous' />
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						</form>
 					</div>
+					<!-- wizard container -->
 				</div>
-				<!-- wizard container -->
 			</div>
+			<!-- row -->
 		</div>
-		<!-- row -->
-	</div>
-	<!--  big container -->
+		<!--  big container -->
 
 	</div>
 
@@ -346,11 +390,28 @@
 <script>
 	$(document).ready(function() {
 		$('#dataTables-example').dataTable();
-		
+
 		$(".addPassenger").click(function() {
 			$("#passengerBody").show();
 		});
 	});
 </script>
+
+
+<!-- 保存新增的用户 -->
+	<script type="text/javascript">	
+		$(function(){
+			$("#save").click(function(){
+					$.post("/search-api/addPassenger",{pName:$('#pName').val(),pIDCard:$("#pIDCard").val()},function (data,status){
+						console.log(data);
+						if (date) {							
+						}
+					
+					})
+			})
+			
+		})
+		
+	</script>
 
 </html>

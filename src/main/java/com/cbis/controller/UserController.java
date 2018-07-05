@@ -144,7 +144,7 @@ public class UserController {
 		return "mySelf";	
 	}
 	/**
-	 * 改
+	 * 修改用户信息详情表
 	 * @param userName
 	 * @param userEmail
 	 * @param pName

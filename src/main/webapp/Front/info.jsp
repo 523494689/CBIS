@@ -155,11 +155,16 @@
 												<h5 class="info-text"> Let's start with the basic details</h5>
 											</div>
 											<div class="col-sm-12">
+											<%-- <!-- 接收数据 -->
+											 <c:if test="${requestScope.list!=null}">
+												<!-- 开始循环 -->
+											 <c:forEach items="${list}" var="Train"> --%>
+											
 												<div class="col-sm-4">
-													<input class="btn btn-primary btn-block" type="button" id="first" value="一等 ￥100" />
+													<input class="btn btn-primary btn-block" type="button" id="first" value="一等 ￥${stop-start}" />
 												</div>
 												<div class="col-sm-4">
-													<input class="btn btn-primary btn-block" type="button" id="second" value="二等 ￥80" />
+													<input class="btn btn-primary btn-block" type="button" id="second" value="二等 ￥${stop*30}" />
 												</div>
 												<div class="col-sm-4">
 													<input class="btn btn-primary btn-block" type="button" id="third" value="无座 ￥80" />
@@ -167,21 +172,28 @@
 												<div class="col-sm-12">
 													<label></label>
 												</div>
+												<!-- 获取用户登录的信息 -->
+												<c:if test="${sessionScope.user!=null}">
 												<div class="col-sm-4 col-sm-offset-1">
 													<div class="form-group">
 														<label>Name</label>
-														<input type="text" class="form-control" id="name" placeholder="臭臭泥">
+														<input type="text" class="form-control" id="name"  value="${user.userName}">
 													</div>
 												</div>
 												<div class="col-sm-5 col-sm-offset-1">
 													<div class="form-group">
 														<label>Identity Card</label>
-														<input type="text" class="form-control" id="name" placeholder="350***********1234">
+														<input type="text" class="form-control" id="name" value="身份证号">
 													</div>
 												</div>
+												</c:if>
+												<!-- 获取用户登录的信息结束 -->
 												<div class="pull-right">
 													<input class="btn btn-primary btn-block" type="button" id="addPassenger" value="添加乘客" />
 												</div>
+												<%-- </c:forEach>
+                                                  </c:if> --%>
+												<!-- 接收数据结束 -->
 											</div>
 										</div>
 										<div class="tab-pane" id="check">

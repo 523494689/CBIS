@@ -560,6 +560,7 @@
 			})
 			//详情传值
 			$(".xiangqing").click(function(){
+				console.log("dijing");
 				console.log($(this).val());
 				window.location.href="/CBIS/search-api/trainList?trainAll="+$(this).val();
 			})

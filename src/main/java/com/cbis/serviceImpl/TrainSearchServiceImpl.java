@@ -2,6 +2,8 @@ package com.cbis.serviceImpl;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 
@@ -22,33 +24,19 @@ public class TrainSearchServiceImpl implements TrainSearchService {
 
 	@Override
 	public List<Train> getTrains(String startStation, String stopStation) {
-		String pattern = startStation + ".*" + stopStation;
-		List<Train> trains = trainDao.queryTrains(pattern);
+		String sqlPattern = startStation + ".*" + stopStation;
+		List<Train> trains = trainDao.queryTrains(sqlPattern);
+
+		String str = String.format("(%s.*%s.*?\\b)", startStation, stopStation);
+		Pattern pat = Pattern.compile(str);
 
 		for (Train train : trains) {
-			String start = startStation;
-			String stop = stopStation;
-
-			List<String> stationList = Arrays.asList(train.getStations().split("-"));
-
-			// 得到第一个包含start字符串的子项
-			for (String string : stationList) {
-				if (string.matches(start + ".*?")) {
-					start = string;
-					break;
-				}
+			Matcher matcher = pat.matcher(train.getStations());
+			if (matcher.find()) {
+				String[] stations = matcher.group(0).split("-");
+				train.setStart(scheduleDao.querySchedule(train.getTrainId(), stations[0]));
+				train.setStop(scheduleDao.querySchedule(train.getTrainId(), stations[stations.length-1]));
 			}
-
-			// 得到最后一个包含stop字符串的子项
-			for (int i = stationList.size() - 1; i > -1; i--) {
-				if (stationList.get(i).matches(stop + ".*?")) {
-					stop = stationList.get(i);
-					break;
-				}
-			}
-
-			train.setStart(scheduleDao.querySchedule(train.getTrainId(), start));
-			train.setStop(scheduleDao.querySchedule(train.getTrainId(), stop));
 		}
 		return trains;
 	}

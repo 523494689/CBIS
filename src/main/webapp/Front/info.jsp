@@ -154,7 +154,7 @@
 										</div>
 
 									</div>
-									<div class="tab-pane" id="information">
+									<div class="tab-pane information" id="information">
 										<div class="col-sm-12">
 											<h5 class="info-text">Let's start with the basic details</h5>
 										</div>
@@ -176,7 +176,7 @@
 
 											<c:if test="${sessionScope.user!=null}">
 												<div class="col-sm-12">
-													<div class="col-sm-12">
+													<div class="col-sm-12" id="reloadPas" >
 														<!--用forEach从数据库中读取购票用户名下绑定的所有用户姓名-->
 														<c:if test="${requestScope.pasList!=null}">
 															<c:forEach items="${pasList}" var="pasList">
@@ -424,17 +424,27 @@
 <!-- 保存新增的用户 -->
 	<script type="text/javascript">	
 		$(function(){
+			//$('#wizard li:eq(1) a').tab('show');
 			$("#save").click(function(){
-					$.post("/search-api/addPassenger",{pName:$('#pName').val(),pIDCard:$("#pIDCard").val()},function (data,status){
+				
+					$.post("/CBIS/search-api/addPassenger",{pName:$('#pName').val(),pIDCard:$("#pIDCard").val()},function (data,status){
 						console.log(data);
-						if (date) {							
+						if (data) {	
+							//layer.msg("添加成功!");
+							window.location.reload();
+							//$("#information").load(location.href+"#information");
+							//parent.location.reload();
+						
 						}
-					
+						else alert("添加失败");
 					})
 			})
 			
-		})
-		
+		});
+		/* <!-- 阿瓜的 --> */
+		/* function jiaZai(){
+			$('#wizard li:eq(1) a').tab('show');
+		} */
 	</script>
 
 </html>

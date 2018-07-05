@@ -172,46 +172,24 @@
 													id="third" value="无座 ￥${(stop-start)*15}" />
 											</div>
 											<div class="col-sm-12">
-												<label></label>
-											</div>
+
 										</div>
-										<!-- 获取用户登录的信息 -->
-										<%-- <c:if test="${sessionScope.user!=null}">
-											<div class="col-sm-4 col-sm-offset-1">
-												<div class="form-group">
-													<label>Name</label> <input type="text" class="form-control"
-														id="name" value="${user.userName}">
-												</div>
-											</div>
-											<div class="col-sm-5 col-sm-offset-1">
-												<div class="form-group">
-													<label>Identity Card</label> <input type="text"
-														class="form-control" id="name" value="身份证号">
-												</div>
-											</div>
-										</c:if> --%>
-										<!-- 获取用户登录的信息结束 -->
+										
 										<c:if test="${sessionScope.user!=null}">
 											<div class="col-sm-12">
 												<!--用forEach从数据库中读取购票用户名下绑定的所有用户姓名-->
+												<c:if test="${requestScope.pasList!=null}">
+												<c:forEach items="${pasList}" var="pasList">
 												<div class="col-sm-12">
 													<div class="col-sm-3">
-														<input type="checkbox" name="cb1" id="cb1" value="臭臭泥1" />
-														<label>臭臭泥</label>
-													</div>
-													<div class="col-sm-3">
-														<input type="checkbox" name="cb1" id="cb1" value="臭臭泥2" />
-														<label>臭臭泥</label>
-													</div>
-													<div class="col-sm-3">
-														<input type="checkbox" name="cb1" id="cb1" value="臭臭泥3" />
-														<label>臭臭泥</label>
-													</div>
-													<div class="col-sm-3">
-														<input type="checkbox" name="cb1" id="cb1" value="臭臭泥4" />
-														<label>臭臭泥</label>
+														<input type="checkbox" name="cb1" id="cb1" value="${pasList.pName}" />
+														<label>${pasList.pName}</label>
 													</div>
 												</div>
+												</c:forEach>
+												</c:if>											
+												<!--用forEach从数据库中读取购票用户名下绑定的所有用户姓名-- 结束>
+												
 												<!--CheckBox End-->
 												<!--添加新乘客 初始为隐藏域 点击添加后展示 添加成功后在passenger表中添加一条记录-->
 												<div class="col-sm-12">
@@ -245,7 +223,6 @@
 												</div>
 											</div>
 										</c:if>
-										<!-- 接收数据结束 -->
 									</div>
 								</div>
 								<div class="tab-pane" id="check">

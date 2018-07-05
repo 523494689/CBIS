@@ -3,6 +3,7 @@ package com.cbis.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,15 +12,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cbis.entity.Passenger;
 import com.cbis.entity.Schedule;
 import com.cbis.entity.Train;
+import com.cbis.entity.User;
+import com.cbis.service.OrderService;
 import com.cbis.service.TrainSearchService;
 
 @Controller
 @RequestMapping("/search-api")
 public class TrainSearchController {
+	
 	@Resource(name = "trainSearchService")
 	private TrainSearchService trainSearchService;
+	//实例化orderService
+	@Resource
+	private OrderService orderService;
     
 	/**
 	 * 搜索车次的方法,返回json对象(暂时不能放在tbody里面)
@@ -56,13 +64,13 @@ public class TrainSearchController {
 	}
 	
 	/**
-	 * 搜索车次后,点击详情后显示的详情页
+	 * 搜索车次后,点击详情后显示的订单详情页
 	 * @param trainAll
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/trainList", method = RequestMethod.GET)
-	public String search2(String trainAll ,Model model) {
+	public String search2(String trainAll ,Model model,HttpSession session) {
 		System.out.println(trainAll);
 		String []array = trainAll.split("@");
 		int trainId = Integer.parseInt(array[0]);
@@ -74,6 +82,16 @@ public class TrainSearchController {
 		model.addAttribute("list2", list);
 		model.addAttribute("start", start);
 		model.addAttribute("stop", stop);
+		
+		//传递乘客表的信息
+		//获取登录乘客的id
+		User u = (User)session.getAttribute("user");
+		//获得各个信息
+		int userId = u.getUserId();
+		//查询乘客表的信息
+		List<Passenger> pasList = orderService.queryPassengers(userId);
+		model.addAttribute("pasList",pasList);
+		
 		return "info";
 
 	}

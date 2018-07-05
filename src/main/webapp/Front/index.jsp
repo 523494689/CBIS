@@ -559,10 +559,11 @@
 				});
 			})
 			//详情传值
-			$(".xiangqing").click(function(){
-				console.log($(this).val());
-				window.location.href="/CBIS/search-api/trainList?trainAll="+$(this).val();
-			})
+			$('#searchBody').on('click','.xiangqing',function (){
+		        console.log($(this).val());
+		        window.location.href="/CBIS/search-api/trainList?trainAll="+$(this).val();
+		        
+		    });
 			
 				
 		})

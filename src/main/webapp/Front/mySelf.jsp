@@ -150,7 +150,7 @@ $("#formcheck").validate({
 							<nav id="fh5co-menu-wrap" role="navigation">
 								<ul class="sf-menu" id="fh5co-primary-menu">
 									<li class="active">
-										<a href="index.html">Home</a>
+										<a href="Front/index.jsp">Home</a>
 									</li>
 
 									<li>

@@ -350,12 +350,35 @@
 							</form>
 						</div>
 					</div>
+
 					<!-- wizard container -->
+
+					<div class="wizard-footer">
+						<div class="pull-right">
+							<input type='button'
+								class='btn btn-next btn-fill btn-success btn-wd' name='next'
+								value='Next' />
+							<!--做付钱的遮罩窗体-->
+							<input type='button'
+								class='btn btn-finish btn-fill btn-success btn-wd' name='finish'
+								value='Confirm' />
+						</div>
+						<div class="pull-left">
+							<input type='button' class='btn btn-previous btn-default btn-wd'
+								name='previous' value='Previous' />
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					</form>
 				</div>
 			</div>
-			<!-- row -->
+			<!-- wizard container -->
 		</div>
-		<!--  big container -->
+	</div>
+	<!-- row -->
+	</div>
+	<!--  big container -->
+
 
 	</div>
 

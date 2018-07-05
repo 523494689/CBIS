@@ -39,7 +39,7 @@
 	     select * from users where userName = #{userName} 
 	</select>
     
-    
+    <!-- 修改用户详情信息表 -->
     <update id="updateUserInfo" parameterType="com.cbis.entity.UserInfo" >
          update userinfo set userName=#{userName},pName=#{pName},userEmail=#{userEmail},
          pIDCard=#{pIDCard},pTelphone=#{pTelphone} 

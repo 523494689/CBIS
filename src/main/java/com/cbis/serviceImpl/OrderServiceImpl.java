@@ -38,6 +38,16 @@ public class OrderServiceImpl implements OrderService {
         return passengerDao.insertPassenger(passenger);
     }
 
+    /**
+     * 修改乘客表的信息
+     */
+    @Override
+	public boolean updatePassenger(Passenger passenger) {
+		// TODO Auto-generated method stub
+		return passengerDao.updatePassengers(passenger);
+	}
+    
+    
     @Override
     public boolean addOrder(Orders order) {
         return ordersDao.insertOrder(order);
@@ -47,4 +57,6 @@ public class OrderServiceImpl implements OrderService {
     public List<Orders> queryOrders(int userId) {
         return ordersDao.selectOrders(userId);
     }
+
+	
 }

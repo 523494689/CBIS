@@ -59,13 +59,9 @@ public class UserController {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String logDate = df.format(date);
 		// 获取用户注册的数据
-		User user2 = new User(user.getUserName(), user.getUserPassword(), 1, logDate, user.getUserEmail());
-		System.out.println("之前");
-		
+		User user2 = new User(user.getUserName(), user.getUserPassword(), 1, logDate, user.getUserEmail());	
 		// 注册用户
 		boolean flag = us.userRegister(user2);
-		// 判断用户是否注册成功以及用户详细信息表是否创建
-		System.out.println("之后");
 		
 		if (flag) {
 			// 注册成功,跳转登录界面
@@ -180,7 +176,7 @@ public class UserController {
 		passenger.setpIDCard(pIDCardPas);
 		passenger.setpTelphone(pTelphonePas);
 		//把信息存在乘客信息表中
-		orderService.addPassenger(passenger);
+		orderService.updatePassenger(passenger);
 		
 		return "index";
 	}

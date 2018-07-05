@@ -5,14 +5,22 @@
 
 <!-- 绑定dao -->
 <mapper namespace="com.cbis.dao.PassengerDao">
-
+     
+     <!-- 添加乘客表的信息 -->
     <insert id="insertPassenger" >
         insert into passenger(userId,pName,pIDCard,pTelphone)
         values(#{userId},#{pName},#{pIDCard},#{pTelphone})
     </insert>
-
+    
+    <!-- 查询乘客表的信息 -->
     <select id="selectPassengers" resultType="com.cbis.entity.Passenger">
         select * from passenger where userId=#{userId}
     </select>
+    
+    <!-- 修改乘客表的信息 -->
+    <update id="updatePassengers" parameterType="com.cbis.entity.Passenger" >
+         update passenger set pName=#{pName},pIDCard=#{pIDCard},pTelphone=#{pTelphone} 
+         where userId=#{userId}
+    </update>
 
 </mapper>

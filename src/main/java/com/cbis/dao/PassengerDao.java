@@ -31,5 +31,12 @@ public interface PassengerDao {
      */
     public List<Passenger> selectPassengers(@Param("userId") int userId);
     
+    /**
+     * 修改乘客表的信息
+     * @param userId
+     * @return
+     */
+    public boolean updatePassengers(Passenger passenger);
+    
 
 }

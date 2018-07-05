@@ -7,7 +7,9 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cbis.dao.PassengerDao;
 import com.cbis.dao.UserDao;
+import com.cbis.entity.Passenger;
 import com.cbis.entity.User;
 import com.cbis.entity.UserInfo;
 import com.cbis.service.UserService;
@@ -22,12 +24,15 @@ public class UserServiceImpl implements UserService {
 	// 实例化userDao
 	@Resource
 	private UserDao ud;
+	//实例化ordersDao
+	@Resource
+	private PassengerDao passengerDao;
 
 	/**
 	 * 用户注册的方法
 	 */
 	@Override
-	// 事务的隔离级别的设置和传播特性的设置
+	// 事务的传播特性的设置和隔离级别的设置,事务(持久,原子,隔离,一致)
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
 	public boolean userRegister(User user) {
 		// TODO Auto-generated method stub
@@ -45,8 +50,14 @@ public class UserServiceImpl implements UserService {
 
 		// 绑定用户详情信息表
 		boolean flag2 = ud.addUserInfo(userInfo);
+		
+		//绑定乘客信息表
+		Passenger passenger = new Passenger();
+		passenger.setUserId(user.getUserId());
+		boolean flag3 = passengerDao.insertPassenger(passenger);
+		
 		// 使用事务判断是否同时满足
-		if (flag2 && flag) {
+		if (flag2 && flag && flag3) {
 			return true;
 		}
 

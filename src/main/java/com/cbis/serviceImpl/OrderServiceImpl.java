@@ -1,15 +1,17 @@
 package com.cbis.serviceImpl;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.cbis.dao.OrderFlowDao;
 import com.cbis.dao.OrdersDao;
 import com.cbis.dao.PassengerDao;
 import com.cbis.entity.Orders;
 import com.cbis.entity.Passenger;
 import com.cbis.service.OrderService;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 @Service("orderService")
 public class OrderServiceImpl implements OrderService {
@@ -20,12 +22,17 @@ public class OrderServiceImpl implements OrderService {
     @Resource(name = "orderFlowDao")
     private OrderFlowDao orderFlowDao;
 
-
+    /**
+     * 查询乘客信息表
+     */
     @Override
     public List<Passenger> queryPassengers(int userId) {
         return passengerDao.selectPassengers(userId);
     }
-
+    
+    /**
+     * 添加乘客信息表
+     */
     @Override
     public boolean addPassenger(Passenger passenger) {
         return passengerDao.insertPassenger(passenger);

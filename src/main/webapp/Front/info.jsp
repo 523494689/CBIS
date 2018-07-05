@@ -161,13 +161,13 @@
 											 <c:forEach items="${list}" var="Train"> --%>
 											
 												<div class="col-sm-4">
-													<input class="btn btn-primary btn-block" type="button" id="first" value="一等 ￥${stop-start}" />
+													<input class="btn btn-primary btn-block" type="button" id="first" value="一等 ￥${(stop-start)*20}" />
 												</div>
 												<div class="col-sm-4">
-													<input class="btn btn-primary btn-block" type="button" id="second" value="二等 ￥${stop*30}" />
+													<input class="btn btn-primary btn-block" type="button" id="second" value="二等 ￥${(stop-start)*15}" />
 												</div>
 												<div class="col-sm-4">
-													<input class="btn btn-primary btn-block" type="button" id="third" value="无座 ￥80" />
+													<input class="btn btn-primary btn-block" type="button" id="third" value="无座 ￥${(stop-start)*15}" />
 												</div>
 												<div class="col-sm-12">
 													<label></label>

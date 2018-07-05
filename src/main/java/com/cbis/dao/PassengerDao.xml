@@ -6,7 +6,7 @@
 <!-- 绑定dao -->
 <mapper namespace="com.cbis.dao.PassengerDao">
 
-    <insert id="insertPassenger" parameterType="com.cbis.entity.Passenger">
+    <insert id="insertPassenger" >
         insert into passenger(userId,pName,pIDCard,pTelphone)
         values(#{userId},#{pName},#{pIDCard},#{pTelphone})
     </insert>

@@ -310,29 +310,30 @@
 									</div>
 								</div>
 						</div>
-						<div class="wizard-footer">
-							<div class="pull-right">
-								<input type='button'
-									class='btn btn-next btn-fill btn-success btn-wd' name='next'
-									value='Next' />
-								<!--做付钱的遮罩窗体-->
-								<input type='button'
-									class='btn btn-finish btn-fill btn-success btn-wd'
-									name='finish' value='Confirm' />
-							</div>
-							<div class="pull-left">
-								<input type='button' class='btn btn-previous btn-default btn-wd'
-									name='previous' value='Previous' />
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						</form>
 					</div>
+					<div class="wizard-footer">
+						<div class="pull-right">
+							<input type='button'
+								class='btn btn-next btn-fill btn-success btn-wd' name='next'
+								value='Next' />
+							<!--做付钱的遮罩窗体-->
+							<input type='button'
+								class='btn btn-finish btn-fill btn-success btn-wd' name='finish'
+								value='Confirm' />
+						</div>
+						<div class="pull-left">
+							<input type='button' class='btn btn-previous btn-default btn-wd'
+								name='previous' value='Previous' />
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					</form>
 				</div>
-				<!-- wizard container -->
 			</div>
+			<!-- wizard container -->
 		</div>
-		<!-- row -->
+	</div>
+	<!-- row -->
 	</div>
 	<!--  big container -->
 
@@ -369,7 +370,7 @@
 <script>
 	$(document).ready(function() {
 		$('#dataTables-example').dataTable();
-		
+
 		$(".addPassenger").click(function() {
 			$("#passengerBody").show();
 		});

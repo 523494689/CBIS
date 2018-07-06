@@ -103,9 +103,10 @@ public class TrainSearchController {
 	 * @param model
 	 * @return
 	 */
+
 	@RequestMapping(value = "/addPassenger", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean addPassenger(String pName,String pIDCard,HttpSession session) {
+	public String[] addPassenger(String pName,String pIDCard,HttpSession session) {
 		
 		Passenger passenger = new Passenger();
 		//获取登录用户的id
@@ -115,10 +116,18 @@ public class TrainSearchController {
 		passenger.setUserId(userId);
 		passenger.setpName(pName);
 		passenger.setpIDCard(pIDCard);
-		
+		//添加数据到表中
 		boolean flag = orderService.addPassenger(passenger);
+		//获取乘客的信息
+		List<Passenger> pasList = orderService.queryPassengers(userId);
+		String name[] = new String[8] ;
+		//定义list接收乘客的名字
+		for (int i = 0; i < pasList.size(); i++) {
+			name[i]=pasList.get(i).getpName();			
+		}
 		
-		return flag;
+		return name;
+		
 		
 
 	}

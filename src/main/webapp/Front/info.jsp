@@ -58,7 +58,7 @@
 		style="background-image: url('${pageContext.request.contextPath}/Front/assetss/img/paper-2.jpeg')">
 
 		<!--  Made With Paper Kit  -->
-		<a href="index.html" class="made-with-pk">
+		<a href="${pageContext.request.contextPath}/Front/index.jsp" class="made-with-pk">
 			<div class="brand">BK</div>
 			<div class="made-with">
 				Back to <strong>Home</strong>
@@ -182,12 +182,13 @@
 															<c:forEach items="${pasList}" var="pasList">
                                                                 <!-- 乘客名字 -->
 																<div class="col-sm-3">
-																	<input type="checkbox" name="cb1" id="cb1"
-																		value="${pasList.pName}" /> <label>${pasList.pName}</label>
+																	<input type="checkbox" name="cb1" id="${pasList.id}"
+																		value="${pasList.pName}" /> <label for="${pasList.id}">${pasList.pName}</label>
 																</div>
 
 															</c:forEach>
 														</c:if>
+														<div id="test"></div>
 													</div>
 													<!--用forEach从数据库中读取购票用户名下绑定的所有用户姓名-- 结束>												
 												<!--CheckBox End-->
@@ -270,9 +271,9 @@
 											<div class="col-sm-12">
 												<span>付款方式：</span> <label> <input type="radio"
 													name="rd1" id="rd1" value="" /> <img
-													src="images/wechatpay.png">
+													src="${pageContext.request.contextPath}/Front/images/wechatpay.png">
 												</label> <label> <input type="radio" name="rd1" id="rd1"
-													value="" /> <img src="images/zfbpay.png">
+													value="" /> <img src="${pageContext.request.contextPath}/Front/images/zfbpay.png">
 												</label>
 											</div>
 										</div>
@@ -394,7 +395,8 @@
 <script
 	src="${pageContext.request.contextPath}/Front/assetss/js/jquery.bootstrap.wizard.js"
 	type="text/javascript"></script>
-
+<!-- 弹出框的样式,layer -->
+	<script src="${pageContext.request.contextPath}/Front/layer/layer.js"></script>
 <!--  Plugin for the Wizard -->
 <script
 	src="${pageContext.request.contextPath}/Front/assetss/js/paper-bootstrap-wizard.js"
@@ -429,14 +431,25 @@
 				
 					$.post("/CBIS/search-api/addPassenger",{pName:$('#pName').val(),pIDCard:$("#pIDCard").val()},function (data,status){
 						console.log(data);
-						if (data) {	
-							//layer.msg("添加成功!");
-							window.location.reload();
-							//$("#information").load(location.href+"#information");
-							//parent.location.reload();
 						
-						}
-						else alert("添加失败");
+							layer.msg("添加成功!");
+		                    //判断传过来的值不为空
+                            if (data!=null) {
+							//遍历	
+							for (var i = 0; i < data.length; i++) {
+								if (i==0) {
+									$("#reloadPas").html("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[i]+"</label></div>");
+								}else if(data[i] != null){
+									$("#reloadPas").append("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[i]+"</label></div>");
+								}						
+							} 
+                            }
+							
+							//替换当前的div
+							/* $("#reloadPas").html("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[0]+"</label></div>"+
+									"<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[1]+"</label></div>"); */
+						
+					
 					})
 			})
 			

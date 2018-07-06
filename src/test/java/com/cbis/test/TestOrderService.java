@@ -52,4 +52,25 @@ public class TestOrderService {
 		}
 		
 	}
+	
+	/**
+	 * 测试乘客姓名
+	 */
+
+	@Test
+	public void queryPasName(){
+		
+		//获取乘客的信息
+		List<Passenger> pasList = orderService.queryPassengers(1);
+		String name[] = {"","","","","","","",""};
+		//定义list接收乘客的名字
+		for (int i = 0; i < pasList.size(); i++) {
+			System.out.println(pasList.get(i).getpName());			
+		}
+		
+		System.out.println(name.toString());
+				
+		
+		
+	}
 }

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.cbis.entity.Passenger;
+import com.cbis.entity.UserInfo;
 
 /**
  * 用户乘客表的dao
@@ -38,5 +39,7 @@ public interface PassengerDao {
      */
     public boolean updatePassengers(Passenger passenger);
     
-
+    
+    //查询对应姓名的用户详情表信息
+  	public Passenger queryPassengerBypName(String pName);
 }

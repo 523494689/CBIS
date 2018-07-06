@@ -9,8 +9,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.cbis.dao.PassengerDao;
 import com.cbis.dao.ScheduleDao;
 import com.cbis.dao.TrainDao;
+import com.cbis.entity.Passenger;
 import com.cbis.entity.Schedule;
 import com.cbis.entity.Train;
 import com.cbis.service.TrainSearchService;
@@ -21,7 +23,8 @@ public class TrainSearchServiceImpl implements TrainSearchService {
 	private ScheduleDao scheduleDao;
 	@Resource(name = "trainDao")
 	private TrainDao trainDao;
-
+    @Resource(name = "passengerDao")
+    private PassengerDao passengerDao;
 	@Override
 	public List<Train> getTrains(String startStation, String stopStation) {
 		String sqlPattern = startStation + ".*" + stopStation;
@@ -45,6 +48,12 @@ public class TrainSearchServiceImpl implements TrainSearchService {
 	public List<Schedule> querySchByTrainId(int trainId) {
 		// TODO Auto-generated method stub
 		return scheduleDao.querySchByTrainId(trainId);
+	}
+
+	@Override
+	public Passenger queryPassengerBypName(String pName) {
+		// TODO Auto-generated method stub
+		return passengerDao.queryPassengerBypName(pName);
 	}
 
 }

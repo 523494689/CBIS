@@ -72,7 +72,7 @@
 					<!--      Wizard container        -->
 					<div class="wizard-container">
 						<div class="card wizard-card" data-color="green" id="wizard">
-							<form action="" method="">
+<!-- 							<form action="" method=""> -->
 								<!--        You can switch " data-color="green" "  with one of the next bright colors: "blue", "azure", "orange", "red"       -->
 
 								<div class="wizard-header">
@@ -152,28 +152,32 @@
 												</div>
 											</div>
 										</div>
-
 									</div>
 									<div class="tab-pane information" id="information">
+									<form action="/CBIS/search-api/handleProduct" method="post">
 										<div class="col-sm-12">
 											<h5 class="info-text">Let's start with the basic details</h5>
 										</div>
 										<div class="col-sm-12">
-
 											<div class="col-sm-4">
-												<input class="btn btn-primary btn-block" type="button"
-													id="first" value="一等 ￥${(stop-start)*20}" />
+												<input class="btn btn-primary btn-block zuo" type="button"
+													id="first"  value="一等 ￥${(stop-start)*20}" />
 											</div>
 											<div class="col-sm-4">
-												<input class="btn btn-primary btn-block" type="button"
+												<input class="btn btn-primary btn-block zuo" type="button"
 													id="second" value="二等 ￥${(stop-start)*15}" />
 											</div>
 											<div class="col-sm-4">
-												<input class="btn btn-primary btn-block" type="button"
+												<input class="btn btn-primary btn-block zuo" type="button"
 													id="third" value="无座 ￥${(stop-start)*15}" />
 											</div>
+											<div class="col-sm-4">
+												<input type="text" value="" id="zuowei" name="zuowei" style="display:none"/>
+											</div>
+											<div class="col-sm-4">
+												<input type="text" value="" id="daice" name="daice" style="display:none"/>
+											</div>
 											<div class="col-sm-12"></div>
-
 											<c:if test="${sessionScope.user!=null}">
 												<div class="col-sm-12">
 													<div class="col-sm-12" id="reloadPas" >
@@ -185,7 +189,6 @@
 																	<input type="checkbox" name="cb1" id="${pasList.id}"
 																		value="${pasList.pName}" /> <label for="${pasList.id}">${pasList.pName}</label>
 																</div>
-
 															</c:forEach>
 														</c:if>
 														<div id="test"></div>
@@ -225,6 +228,8 @@
 												</div>
 											</c:if>
 										</div>
+										<input type="submit">
+										</form>
 									</div>
 									<div class="tab-pane" id="check">
 										<div class="col-sm-12" align="center">
@@ -252,13 +257,24 @@
 																			</tr>
 																		</thead>
 																		<tbody>
-																			<tr>
+																			<!-- <tr>
 																				<td>1</td>
 																				<td>T1234 厦门-福州 28/06/2018-28/06/20118</td>
 																				<td>臭臭泥 350*******1234</td>
 																				<td>05车厢 03F 二等座</td>
 																				<td>成人票 ￥80</td>
+																			</tr> -->
+																			<c:if test="${requestScope.handle1!=null}">
+																			<c:forEach items="${requestScope.handle1}" var="passenger">
+																			<tr>
+																				<td>1</td>
+																				<td>${trainId}厦门-福州 28/06/2018-28/06/20118</td>
+																				<td>${passenger.pName},身份证 ${passenger.pIDCard} </td>
+																				<td>${zuowei}座</td>
+																				<td>成人票 ${fee}元</td>
 																			</tr>
+																			</c:forEach>
+																			</c:if>
 																		</tbody>
 																	</table>
 																</div>
@@ -326,7 +342,7 @@
 															</dd>
 														</dl>
 													</div>
-												</form>
+<!-- 												</form> -->
 											</div>
 										</div>
 									</div>
@@ -444,13 +460,19 @@
 								}						
 							} 
                             }
-							
+						}
 							//替换当前的div
 							/* $("#reloadPas").html("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[0]+"</label></div>"+
 									"<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[1]+"</label></div>"); */
 				
 					})
 		})
+		<!-- 											将一等座二等座等按钮的值赋值给一个文本框 -->
+				$(".zuo").click(function (){
+					console.log($(this).val());
+					var content = $(this).val();
+					$("#zuowei").val(content);
+				})
 		
 			
 		});

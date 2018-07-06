@@ -448,6 +448,7 @@
 						console.log(data);
 						if (data) {	
 							
+						}
 							layer.msg("添加成功!");
 		                    //判断传过来的值不为空
                             if (data!=null) {
@@ -475,7 +476,7 @@
 				})
 		
 			
-		});
+		})
 		/* <!-- 阿瓜的 --> */
 		/* function jiaZai(){
 			$('#wizard li:eq(1) a').tab('show');

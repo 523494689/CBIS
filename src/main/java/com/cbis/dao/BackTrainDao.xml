@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  
+  *后台车次信息的dao-xml
+  *fyh
+  *2018年7月6日14:04:28
+-->
+<!-- 绑定的dao -->
+<mapper namespace="com.cbis.dao.BackTrainDao">
+    
+    <!-- 后台显示所有的车次信息 -->
+    <select id="showTrain" resultType="com.cbis.entity.BackTrain">
+        select * from train 
+    </select>
+    
+    <!-- 后台显示所有的车次信息 -->
+    <select id="showStation" resultType="com.cbis.entity.BackStation">
+        <!-- select * from trainsearch  -->
+        select a.*,b.trainNo from trainsearch AS a,train AS b where a.trainId = b.trainId
+    </select>
+    
+
+
+</mapper>

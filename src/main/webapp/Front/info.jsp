@@ -428,19 +428,19 @@
 		$(function(){
 			//$('#wizard li:eq(1) a').tab('show');
 			$("#save").click(function(){
-				
 					$.post("/CBIS/search-api/addPassenger",{pName:$('#pName').val(),pIDCard:$("#pIDCard").val()},function (data,status){
 						console.log(data);
-						
+						if (data) {	
+							
 							layer.msg("添加成功!");
 		                    //判断传过来的值不为空
                             if (data!=null) {
 							//遍历	
 							for (var i = 0; i < data.length; i++) {
 								if (i==0) {
-									$("#reloadPas").html("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[i]+"</label></div>");
+									$("#reloadPas").html("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value="+data[i]+"/><label>"+data[i]+"</label></div>");
 								}else if(data[i] != null){
-									$("#reloadPas").append("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[i]+"</label></div>");
+									$("#reloadPas").append("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value="+data[i]+"/><label>"+data[i]+"</label></div>");
 								}						
 							} 
                             }
@@ -448,10 +448,10 @@
 							//替换当前的div
 							/* $("#reloadPas").html("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[0]+"</label></div>"+
 									"<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[1]+"</label></div>"); */
-						
-					
+				
 					})
-			})
+		})
+		
 			
 		});
 		/* <!-- 阿瓜的 --> */

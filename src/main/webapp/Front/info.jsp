@@ -424,15 +424,20 @@
 <!-- 保存新增的用户 -->
 	<script type="text/javascript">	
 		$(function(){
+			//$('#wizard li:eq(1) a').tab('show');
 			$("#save").click(function(){
-					$.post("/search-api/addPassenger",{pName:$('#pName').val(),pIDCard:$("#pIDCard").val()},function (data,status){
+					$.post("/CBIS/search-api/addPassenger",{pName:$('#pName').val(),pIDCard:$("#pIDCard").val()},function (data,status){
 						console.log(data);
-						if (date) {							
+						if (data) {	
+							window.location.reload();
+							$('#wizard li:eq(1) a').tab('show');
 						}
 					
 					})
 			})
-			
+			function  show(){
+				$('#wizard li:eq(1) a').tab('show');
+			}
 		})
 		
 	</script>

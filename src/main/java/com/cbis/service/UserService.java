@@ -24,4 +24,5 @@ public interface UserService {
 
 	// 查询对应uerId用户详情表的信息
 	public UserInfo queryUserInfoById(int userId);
+
 }

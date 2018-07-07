@@ -1,5 +1,6 @@
 package com.cbis.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,8 +17,10 @@ import com.cbis.entity.Passenger;
 import com.cbis.entity.Schedule;
 import com.cbis.entity.Train;
 import com.cbis.entity.User;
+import com.cbis.entity.UserInfo;
 import com.cbis.service.OrderService;
 import com.cbis.service.TrainSearchService;
+import com.cbis.service.UserService;
 
 @Controller
 @RequestMapping("/search-api")
@@ -25,6 +28,8 @@ public class TrainSearchController {
 	
 	@Resource(name = "trainSearchService")
 	private TrainSearchService trainSearchService;
+	@Resource(name = "userService")
+	private UserService userService;
 	//实例化orderService
 	@Resource
 	private OrderService orderService;
@@ -71,18 +76,20 @@ public class TrainSearchController {
 	 */
 	@RequestMapping(value = "/trainList", method = RequestMethod.GET)
 	public String search2(String trainAll ,Model model,HttpSession session) {
-		System.out.println(trainAll);
 		String []array = trainAll.split("@");
 		int trainId = Integer.parseInt(array[0]);
 		int start = Integer.parseInt(array[1]);
 		int stop = Integer.parseInt(array[2]);
 		//传递该车次的信息
 		List<Schedule> list = trainSearchService.querySchByTrainId(trainId);
-		
-		model.addAttribute("list2", list);
-		model.addAttribute("start", start);
-		model.addAttribute("stop", stop);
-		
+		session.setAttribute("list2", list);
+		session.setAttribute("start", start);
+		session.setAttribute("stop", stop);
+		session.setAttribute("trainId", trainId);
+//		model.addAttribute("list2", list);
+//		model.addAttribute("start", start);
+//		model.addAttribute("stop", stop);
+//		model.addAttribute("trainId", trainId);
 		//传递乘客表的信息
 		//获取登录乘客的id
 		User u = (User)session.getAttribute("user");
@@ -90,8 +97,8 @@ public class TrainSearchController {
 		int userId = u.getUserId();
 		//查询乘客表的信息
 		List<Passenger> pasList = orderService.queryPassengers(userId);
-		model.addAttribute("pasList",pasList);
-		
+		//model.addAttribute("pasList",pasList);
+		session.setAttribute("pasList",pasList);
 		return "info";
 
 	}
@@ -130,6 +137,25 @@ public class TrainSearchController {
 		
 		
 
+	}
+	/**
+	 * 生成订单表
+	 */
+	@RequestMapping(value="/handleProduct")
+	public String handleProduct(String []cb1,String zuowei,Model model) {
+		List<Passenger> list = new ArrayList<Passenger>();
+		for (String string : cb1) {
+			Passenger passenger = trainSearchService.queryPassengerBypName(string);
+			list.add(passenger);
+		}
+		model.addAttribute("handle1", list);
+		//分隔二等座与价格字段
+		String []zuofee = zuowei.split("￥");
+		//添加座位字段到zuowei
+		model.addAttribute("zuowei", zuofee[0]);
+		//添加价格字段到fee
+		model.addAttribute("fee", "￥"+zuofee[1]);
+		return "info";
 	}
 	
 }

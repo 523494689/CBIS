@@ -174,7 +174,8 @@
 						<!-- START #fh5co-menu-wrap -->
 						<nav id="fh5co-menu-wrap" role="navigation">
 							<ul class="sf-menu" id="fh5co-primary-menu">
-								<li class="active"><a href="ront/index.jsp">Home</a></li>
+
+								<li class="active"><a href="Front/index.jsp">Home</a></li>
 
 								<li><a href="#Train List">Train</a></li>
 								<li>
@@ -269,7 +270,7 @@
 						console.log("登录失败")
 					}
 				});
-			})
+				})
 		})
 			</script>
 

@@ -154,7 +154,7 @@
 										</div>
 									</div>
 									<div class="tab-pane information" id="information">
-									<form action="/CBIS/search-api/handleProduct" method="post">
+									<form action="/CBIS/search-api/handleProduct" method="post" id="formcheck" />
 										<div class="col-sm-12">
 											<h5 class="info-text">Let's start with the basic details</h5>
 										</div>
@@ -231,7 +231,7 @@
 										</div>
 										           <div class="pull-right">
 													<input class="btn btn-primary btn-block"
-														type="submit" id="" value="提交订单" />
+														type="button" id="check2" value="提交订单" />
 													</div>
 										</form>
 									</div>
@@ -478,9 +478,16 @@
 					$("#zuowei").val(content);
 					layer.msg("选择票位成功，为"+content);
 				})
-		
-			
+				$("#check2").click(function (){
+					if($("#zuowei").val()==""){
+						layer.msg("请选择票座，点下那个按钮嗯嗯");
+					}
+					else {
+						   $("#formcheck").submit();
+					}
+				})
 		})
+
 		/* <!-- 阿瓜的 --> */
 		/* function jiaZai(){
 			$('#wizard li:eq(1) a').tab('show');

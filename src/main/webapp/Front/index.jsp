@@ -436,7 +436,7 @@
 																<td>${Train.start.start}</td>
 																<td>${stop}</td>
 																<td>${Train.stop.arrive}</td>
-																<td><button id="btn" name="btn" class="btn btn-success bjs xiangqing" value="${Train.trainId}@${Train.start.stationNo}@${Train.stop.stationNo}">详情</button></td>
+																<td><button id="btn" name="btn" class="btn btn-success bjs xiangqing" value="${Train.trainId}@${Train.trainNo}@${Train.start.stationNo}@${Train.stop.stationNo}">详情</button></td>
 															</tr> 
 
 

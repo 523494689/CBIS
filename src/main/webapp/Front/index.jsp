@@ -430,20 +430,16 @@
 														<c:if test="${requestScope.list!=null}">
 															<!-- 开始循环 -->
 															<c:forEach items="${list}" var="Train">
-
-																<tr align="center">
-																	<td>${Train.trainNo}</td>
-																	<td>${start}</td>
-																	<td>${Train.start.start}</td>
-																	<td>${stop}</td>
-																	<td>${Train.stop.arrive}</td>
-																	<td><button id="btn" name="btn"
-																			class="btn btn-success bjs xiangqing"
-																			value="${Train.trainId}@${Train.start.stationNo}@${Train.stop.stationNo}">详情</button></td>
-																</tr>
-
-
-
+<<<<<<< HEAD
+															
+															<tr align="center">
+																<td>${Train.trainNo}</td>
+																<td>${start}</td>
+																<td>${Train.start.start}</td>
+																<td>${stop}</td>
+																<td>${Train.stop.arrive}</td>
+																<td><button id="btn" name="btn" class="btn btn-success bjs xiangqing" value="${Train.trainId}@${Train.trainNo}@${Train.start.stationNo}@${Train.stop.stationNo}">详情</button></td>
+															</tr> 
 															</c:forEach>
 														</c:if>
 													</tbody>

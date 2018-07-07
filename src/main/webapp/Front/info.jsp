@@ -154,22 +154,22 @@
 										</div>
 									</div>
 									<div class="tab-pane information" id="information">
-									<form action="/CBIS/search-api/handleProduct" method="post">
+									<form action="/CBIS/search-api/handleProduct" method="post" id="formcheck" />
 										<div class="col-sm-12">
 											<h5 class="info-text">Let's start with the basic details</h5>
 										</div>
 										<div class="col-sm-12">
 											<div class="col-sm-4">
 												<input class="btn btn-primary btn-block zuo" type="button"
-													id="first"  value="一等 ￥${(stop-start)*20}" />
+													id="first"  value="一等 ￥${(stopNo-startNo)*20}" />
 											</div>
 											<div class="col-sm-4">
 												<input class="btn btn-primary btn-block zuo" type="button"
-													id="second" value="二等 ￥${(stop-start)*15}" />
+													id="second" value="二等 ￥${(stopNo-startNo)*15}" />
 											</div>
 											<div class="col-sm-4">
 												<input class="btn btn-primary btn-block zuo" type="button"
-													id="third" value="无座 ￥${(stop-start)*15}" />
+													id="third" value="无座 ￥${(stopNo-startNo)*15}" />
 											</div>
 											<div class="col-sm-4">
 												<input type="text" value="" id="zuowei" name="zuowei" style="display:none" />
@@ -231,7 +231,7 @@
 										</div>
 										           <div class="pull-right">
 													<input class="btn btn-primary btn-block"
-														type="submit" id="" value="提交订单" />
+														type="button" id="check2" value="提交订单" />
 													</div>
 										</form>
 									</div>
@@ -240,6 +240,7 @@
 											<!--<h5 class="info-text">Please check again your information. </h5>-->
 											<p>Please check again your information.</p>
 										</div>
+										
 										<div class="row">
 											<div class="col-sm-12 col-md-12">
 												<div class="tabulation animate-box">
@@ -272,13 +273,15 @@
 																			<c:forEach items="${requestScope.handle1}" var="passenger" varStatus="vs">
 																			<tr>
 																				<td>${vs.index+1}</td>
-																				<td>车次${trainId}厦门-福州 28/06/2018-28/06/20118</td>
+																				<td>${trainNo} ${start}-${stop} 28/06/2018-28/06/20118</td>
 																				<td>${passenger.pName},身份证 ${passenger.pIDCard} </td>
 																				<td>${zuowei}</td>
 																				<td>成人票 ${fee}元</td>
 																			</tr>
 																			</c:forEach>
+																			
 																			</c:if>
+																			<div>总计${fees}</div>
 																		</tbody>
 																	</table>
 																</div>
@@ -303,8 +306,9 @@
 										<div class="col-sm-12">
 											<div class="col-sm-3"></div>
 											<div class="col-sm-9">
-												<form name=alipayment action=alipay.trade.page.pay.jsp
-													method=post target="_blank">
+												<form name="alipayment" action="${pageContext.request.contextPath}/Front/alipay.trade.page.pay.jsp"
+													method="post" target="_blank">
+													<input type="hidden" id="orderNum" name="orderNum" value="${order.orderNum}">
 													<div id="body1" class="show" name="divcontent">
 														<dl class="content">
 															<dd>
@@ -312,7 +316,7 @@
 																	<div class="form-group">
 																		<label>商户订单号 ：</label> <input type="text"
 																			class="form-control" id="WIDout_trade_no"
-																			name="WIDout_trade_no">
+																			name="WIDout_trade_no" readonly="readonly">
 																	</div>
 																</div>
 															</dd>
@@ -334,6 +338,16 @@
 																	</div>
 																</div>
 															</dd>
+															<dd>
+																<div class="col-sm-6 col-sm-offset-1">
+																	<div class="form-group">
+																		<label>描述 ：</label> <input type="text"
+																			class="form-control" id="WIDbody"
+																			name="WIDbody" >
+																	</div>
+																</div>
+															</dd>
+															
 															<dd id="btn-dd">
 																<div class="col-sm-6 col-sm-offset-1">
 																	<span class="new-btn-login-sp">
@@ -346,7 +360,7 @@
 															</dd>
 														</dl>
 													</div>
-<!-- 												</form> -->
+												</form>
 											</div>
 										</div>
 									</div>
@@ -476,13 +490,29 @@
 					$("#zuowei").val(content);
 					layer.msg("选择票位成功，为"+content);
 				})
-		
-			
+				$("#check2").click(function (){
+					if($("#zuowei").val()==""){
+						layer.msg("请选择票座，点下那个按钮嗯嗯");
+					}
+					else {
+						   $("#formcheck").submit();
+					}
+				})
 		})
+
 		/* <!-- 阿瓜的 --> */
 		/* function jiaZai(){
 			$('#wizard li:eq(1) a').tab('show');
 		} */
+	</script>
+	
+	<script type="text/javascript">
+	function GetDateNow() {
+		document.getElementById("WIDout_trade_no").value =  ${order.orderNum};
+		document.getElementById("WIDsubject").value = "测试";
+		document.getElementById("WIDtotal_amount").value = ${order.price};
+	}
+	GetDateNow();
 	</script>
 
 </html>

@@ -1,12 +1,18 @@
 package com.cbis.entity;
 
+import java.io.Serializable;
+
 /**
  * 后台显示车站路线实体类
  * @author fyh
  * 2018年7月6日15:44:07
  */
-public class BackStation {
+public class BackStation implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private int trainId;
 	private String stations;

@@ -161,18 +161,18 @@
 										<div class="col-sm-12">
 											<div class="col-sm-4">
 												<input class="btn btn-primary btn-block zuo" type="button"
-													id="first"  value="一等 ￥${(stop-start)*20}" />
+													id="first"  value="一等 ￥${(stopNo-startNo)*20}" />
 											</div>
 											<div class="col-sm-4">
 												<input class="btn btn-primary btn-block zuo" type="button"
-													id="second" value="二等 ￥${(stop-start)*15}" />
+													id="second" value="二等 ￥${(stopNo-startNo)*15}" />
 											</div>
 											<div class="col-sm-4">
 												<input class="btn btn-primary btn-block zuo" type="button"
-													id="third" value="无座 ￥${(stop-start)*15}" />
+													id="third" value="无座 ￥${(stopNo-startNo)*15}" />
 											</div>
 											<div class="col-sm-4">
-												<input type="text" value="" id="zuowei" name="zuowei" style="display:none"/>
+												<input type="text" value="" id="zuowei" name="zuowei" style="display:none" />
 											</div>
 											<div class="col-sm-4">
 												<input type="text" value="" id="daice" name="daice" style="display:none"/>
@@ -182,7 +182,7 @@
 												<div class="col-sm-12">
 													<div class="col-sm-12" id="reloadPas" >
 														<!--用forEach从数据库中读取购票用户名下绑定的所有用户姓名-->
-														<c:if test="${requestScope.pasList!=null}">
+														<c:if test="${pasList!=null}">
 															<c:forEach items="${pasList}" var="pasList">
                                                                 <!-- 乘客名字 -->
 																<div class="col-sm-3">
@@ -225,10 +225,14 @@
 														<input class="btn btn-primary btn-block addPassenger"
 															type="button" id="addPassenger" value="添加乘客" />
 													</div>
+													
 												</div>
 											</c:if>
 										</div>
-										<input type="submit">
+										           <div class="pull-right">
+													<input class="btn btn-primary btn-block"
+														type="submit" id="" value="提交订单" />
+													</div>
 										</form>
 									</div>
 									<div class="tab-pane" id="check">
@@ -265,16 +269,18 @@
 																				<td>成人票 ￥80</td>
 																			</tr> -->
 																			<c:if test="${requestScope.handle1!=null}">
-																			<c:forEach items="${requestScope.handle1}" var="passenger">
+																			<c:forEach items="${requestScope.handle1}" var="passenger" varStatus="vs">
 																			<tr>
-																				<td>1</td>
-																				<td>${trainId}厦门-福州 28/06/2018-28/06/20118</td>
+																				<td>${vs.index+1}</td>
+																				<td>${trainNo} ${start}-${stop} 28/06/2018-28/06/20118</td>
 																				<td>${passenger.pName},身份证 ${passenger.pIDCard} </td>
-																				<td>${zuowei}座</td>
+																				<td>${zuowei}</td>
 																				<td>成人票 ${fee}元</td>
 																			</tr>
 																			</c:forEach>
+																			
 																			</c:if>
+																			<div>总计${fees}</div>
 																		</tbody>
 																	</table>
 																</div>
@@ -447,7 +453,6 @@
 					$.post("/CBIS/search-api/addPassenger",{pName:$('#pName').val(),pIDCard:$("#pIDCard").val()},function (data,status){
 						console.log(data);
 						if (data) {	
-							
 						}
 							layer.msg("添加成功!");
 		                    //判断传过来的值不为空
@@ -461,18 +466,17 @@
 								}						
 							} 
                             }
-						}
+						
 							//替换当前的div
 							/* $("#reloadPas").html("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[0]+"</label></div>"+
 									"<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[1]+"</label></div>"); */
-				
 					})
-		})
+					})
 		<!-- 											将一等座二等座等按钮的值赋值给一个文本框 -->
 				$(".zuo").click(function (){
-					console.log($(this).val());
 					var content = $(this).val();
 					$("#zuowei").val(content);
+					layer.msg("选择票位成功，为"+content);
 				})
 		
 			

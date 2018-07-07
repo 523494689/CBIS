@@ -112,17 +112,17 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a href="train.html"><i class="fa fa-desktop"></i> 车次信息</a>
+                        <a href="${pageContext.request.contextPath}/back/showTrain"><i class="fa fa-desktop"></i> 车次信息</a>
                     </li>
           					<li>
-                        <a href="station.html"><i class="fa fa-bar-chart-o"></i> 车站信息</a>
+                        <a href="${pageContext.request.contextPath}/back/showStation"><i class="fa fa-bar-chart-o"></i> 车站信息</a>
                     </li>
                     <li>
                         <a href="passengerinfo.html"><i class="fa fa-qrcode"></i> 乘客信息</a>
                     </li>
                     
                     <li>
-                        <a href="userinfo.html" class="active-menu"><i class="fa fa-table"></i> 用户信息</a>
+                        <a href="${pageContext.request.contextPath}/Front/Back/userinfo.jsp" class="active-menu"><i class="fa fa-table"></i> 用户信息</a>
                     </li>
                      <li>
                         <a href="order.html"><i class="fa fa-table"></i> 订单信息</a>

@@ -239,16 +239,17 @@
 																placeholder="出发日" />
 														</div>
 													</div>
-													<div class="col-xxs-12 col-xs-6 mt alternate">
+													<!-- <div class="col-xxs-12 col-xs-6 mt alternate">
 														<div class="input-field">
 															<label for="date-end">Check Out</label> <input
 																type="text" class="form-control" id="date-end"
 																placeholder="返程日" />
 														</div>
-													</div>
-											       
-														<a href="javascript:sendSS()"><button class="btn btn-primary btn-block search" id="search">Search</button></a>
-<!-- <a href="/CBIS/search-api/trains2?start=厦门&stop=福州"> -->
+													</div> -->
+
+													<a href="javascript:sendSS()"><button
+															class="btn btn-primary btn-block search" id="search">Search</button></a>
+													<!-- <a href="/CBIS/search-api/trains2?start=厦门&stop=福州"> -->
 													<!--  -->
 													<script type="text/javascript">
 		
@@ -391,7 +392,7 @@
 
 			</div>
 
-			<div id="fh5co-tours" class="fh5co-section-gray" ">
+			<div id="fh5co-tours" class="fh5co-section-gray"">
 				<div class="container">
 					<div class="row">
 						<div
@@ -425,10 +426,11 @@
 														</tr>
 													</thead>
 													<tbody id="searchBody">
-															<!-- 接收控制器传过来的值 -->										
-															<c:if test="${requestScope.list!=null}">
+														<!-- 接收控制器传过来的值 -->
+														<c:if test="${requestScope.list!=null}">
 															<!-- 开始循环 -->
 															<c:forEach items="${list}" var="Train">
+<<<<<<< HEAD
 															
 															<tr align="center">
 																<td>${Train.trainNo}</td>
@@ -438,11 +440,8 @@
 																<td>${Train.stop.arrive}</td>
 																<td><button id="btn" name="btn" class="btn btn-success bjs xiangqing" value="${Train.trainId}@${Train.trainNo}@${Train.start.stationNo}@${Train.stop.stationNo}">详情</button></td>
 															</tr> 
-
-
-
-                                                        </c:forEach>
-                                                        </c:if>
+															</c:forEach>
+														</c:if>
 													</tbody>
 												</table>
 											</div>
@@ -528,7 +527,7 @@
 	<!-- Main JS -->
 	<script src="${pageContext.request.contextPath}/Front/js/main.js"></script>
 
-    <!-- 登录的时候判断是否有该用户 -->
+	<!-- 登录的时候判断是否有该用户 -->
 	<script type="text/javascript">	
 		$(function(){
 			$("#userLogin").click(function(){
@@ -570,14 +569,15 @@
 		})
 		
 	</script>
-	
+
 	<!-- 点击查询的按钮 -->
-	<script >
+	<script>
 	     function sendSS(){
 	    	 var flag= confirm("是否搜索");
 	    	//出发地
 	    	 var start = $("#from-place").val();
 	    	 var stop = $("#to-place").val();
+	    	 var date = $("#date-start").val();
 		   //提示框
 
 		   if(flag){
@@ -586,7 +586,7 @@
                 shade: [0.1,'#fff'] //0.1透明度的白色背景
                   });
 			   //确认提交,跳转页面
-			  location.href="/CBIS/search-api/trains2?start="+start+"&stop="+stop;
+			  location.href="/CBIS/search-api/trains2?start="+start+"&stop="+stop+"&date"+date;
 			  //a href="/CBIS/search-api/trains2?start=厦门&stop=福州
 		   }
 	     }

@@ -240,6 +240,7 @@
 											<!--<h5 class="info-text">Please check again your information. </h5>-->
 											<p>Please check again your information.</p>
 										</div>
+										
 										<div class="row">
 											<div class="col-sm-12 col-md-12">
 												<div class="tabulation animate-box">
@@ -305,8 +306,9 @@
 										<div class="col-sm-12">
 											<div class="col-sm-3"></div>
 											<div class="col-sm-9">
-												<form name=alipayment action=alipay.trade.page.pay.jsp
-													method=post target="_blank">
+												<form name="alipayment" action="${pageContext.request.contextPath}/Front/alipay.trade.page.pay.jsp"
+													method="post" target="_blank">
+													<input type="hidden" id="orderNum" name="orderNum" value="${order.orderNum}">
 													<div id="body1" class="show" name="divcontent">
 														<dl class="content">
 															<dd>
@@ -314,7 +316,7 @@
 																	<div class="form-group">
 																		<label>商户订单号 ：</label> <input type="text"
 																			class="form-control" id="WIDout_trade_no"
-																			name="WIDout_trade_no">
+																			name="WIDout_trade_no" readonly="readonly">
 																	</div>
 																</div>
 															</dd>
@@ -336,6 +338,16 @@
 																	</div>
 																</div>
 															</dd>
+															<dd>
+																<div class="col-sm-6 col-sm-offset-1">
+																	<div class="form-group">
+																		<label>描述 ：</label> <input type="text"
+																			class="form-control" id="WIDbody"
+																			name="WIDbody" >
+																	</div>
+																</div>
+															</dd>
+															
 															<dd id="btn-dd">
 																<div class="col-sm-6 col-sm-offset-1">
 																	<span class="new-btn-login-sp">
@@ -348,7 +360,7 @@
 															</dd>
 														</dl>
 													</div>
-<!-- 												</form> -->
+												</form>
 											</div>
 										</div>
 									</div>
@@ -485,6 +497,15 @@
 		/* function jiaZai(){
 			$('#wizard li:eq(1) a').tab('show');
 		} */
+	</script>
+	
+	<script type="text/javascript">
+	function GetDateNow() {
+		document.getElementById("WIDout_trade_no").value =  ${order.orderNum};
+		document.getElementById("WIDsubject").value = "测试";
+		document.getElementById("WIDtotal_amount").value = ${order.price};
+	}
+	GetDateNow();
 	</script>
 
 </html>

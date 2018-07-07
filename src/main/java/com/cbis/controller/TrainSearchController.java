@@ -1,18 +1,34 @@
 package com.cbis.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import com.alipay.config.AlipayConfig;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.internal.util.AlipaySignature;
+import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.cbis.entity.OrderFlow;
+import com.cbis.entity.Orders;
 import com.cbis.entity.Passenger;
 import com.cbis.entity.Schedule;
 import com.cbis.entity.Train;
@@ -21,6 +37,7 @@ import com.cbis.entity.UserInfo;
 import com.cbis.service.OrderService;
 import com.cbis.service.TrainSearchService;
 import com.cbis.service.UserService;
+
 
 @Controller
 @RequestMapping("/search-api")
@@ -33,6 +50,8 @@ public class TrainSearchController {
 	//实例化orderService
 	@Resource
 	private OrderService orderService;
+	
+	
     
 	/**
 	 * 搜索车次的方法,返回json对象(暂时不能放在tbody里面)
@@ -146,19 +165,48 @@ public class TrainSearchController {
 	 * 生成订单表
 	 */
 	@RequestMapping(value="/handleProduct")
-	public String handleProduct(String []cb1,String zuowei,Model model) {
+	public String handleProduct(String []cb1,String zuowei,HttpSession session, Model model) {
 		List<Passenger> list = new ArrayList<Passenger>();
 		//分隔二等座与价格字段
 		String []zuofee = zuowei.split("￥");
 		int fee = Integer.parseInt(zuofee[1]);
 		int fees=0;
+		int passId=0;
 		for (String string : cb1) {
 			Passenger passenger = trainSearchService.queryPassengerBypName(string);
+			passId=passenger.getId();
 			list.add(passenger);
 			fees+=fee;
 		}
-		model.addAttribute("handle1", list);
 		
+		//当前时间作为订单编号
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+		SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String orderNum = formatter.format(date);
+		String oTime = formatter1.format(date);
+		//创建订单对象并赋值
+		Orders order=new Orders();
+		order.setOrderNum(orderNum);
+		User u=(User)session.getAttribute("user");
+		order.setUserId(u.getUserId());
+		session.getAttribute("trainId");
+		String trainNo=(String) session.getAttribute("trainNo");
+		order.setTrainNo(trainNo);
+		order.setStart((String) session.getAttribute("start"));
+		order.setStop((String) session.getAttribute("stop"));
+		order.setSeatType(zuofee[0]);
+		System.out.println(passId);
+		order.setPassId(passId);
+		order.setPrice(fees);
+		order.setoTime(oTime);
+		order.setState(1);
+		orderService.addOrder(order);
+		
+		model.addAttribute("order", order);
+		
+		
+		model.addAttribute("handle1", list);
 		//添加座位字段到zuowei
 		model.addAttribute("zuowei", zuofee[0]);
 		//添加价格字段到fee
@@ -166,6 +214,69 @@ public class TrainSearchController {
 		//添加总价格到fees
 		model.addAttribute("fees", "￥"+fees);
 		return "info";
+	}
+	
+	@RequestMapping(value = "/alipayReturnNotice")
+	public ModelAndView alipayReturnNotice(HttpServletRequest request, HttpServletRequest response,HttpSession session) throws Exception {
+
+		//获取支付宝GET过来反馈信息
+		Map<String,String> params = new HashMap<String,String>();
+		Map<String,String[]> requestParams = request.getParameterMap();
+		for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
+			String name = (String) iter.next();
+			String[] values = (String[]) requestParams.get(name);
+			String valueStr = "";
+			for (int i = 0; i < values.length; i++) {
+				valueStr = (i == values.length - 1) ? valueStr + values[i]
+						: valueStr + values[i] + ",";
+			}
+			//乱码解决，这段代码在出现乱码时使用
+			valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+			params.put(name, valueStr);
+		}
+
+		boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
+
+		ModelAndView mv = new ModelAndView("index");
+		//——请在这里编写您的程序（以下代码仅作参考）——
+		if(signVerified) {
+			//商户订单号 
+			String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+
+			//支付宝交易号
+			String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
+
+			//付款金额
+			String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");
+
+			// 修改叮当状态，改为 支付成功，已付款; 同时新增支付流水
+			String orderNum=out_trade_no;
+			boolean flag1=orderService.updateOrderByOrderNum(orderNum);
+			
+			//实例化一个orderFlow
+			OrderFlow orderFlow=new OrderFlow();
+			orderFlow.setOrderNum(out_trade_no);
+			orderFlow.setOp("付款成功");
+			
+			User u=(User) session.getAttribute("user");
+			int userId=u.getUserId();
+			orderFlow.setOperId(userId);
+			
+			//创建orderFlow记录
+			boolean flag2=orderService.addOrderFlow(orderFlow);
+			
+			//Orders order = orderService.getOrderById(out_trade_no);
+			//Product product = productService.getProductById(order.getProductId());
+    		mv.addObject("out_trade_no", out_trade_no);
+    		mv.addObject("trade_no", trade_no);
+    		mv.addObject("total_amount", total_amount);
+    		
+
+		}else {
+			System.out.println("支付, 验签失败...");
+		}
+
+		return mv;
 	}
 	
 }

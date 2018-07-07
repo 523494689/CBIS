@@ -269,10 +269,9 @@
 																				<td>成人票 ￥80</td>
 																			</tr> -->
 																			<c:if test="${requestScope.handle1!=null}">
-																			<c:set var="index" value="1" />
-																			<c:forEach items="${requestScope.handle1}" var="passenger">
+																			<c:forEach items="${requestScope.handle1}" var="passenger" varStatus="vs">
 																			<tr>
-																				<td><c:set var="index" value="${index+1}" /></td>
+																				<td>${vs.index+1}</td>
 																				<td>车次${trainId}厦门-福州 28/06/2018-28/06/20118</td>
 																				<td>${passenger.pName},身份证 ${passenger.pIDCard} </td>
 																				<td>${zuowei}</td>

@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 
+import com.cbis.entity.SearchInfo;
 import org.springframework.stereotype.Service;
 
 import com.cbis.dao.PassengerDao;
@@ -19,41 +20,46 @@ import com.cbis.service.TrainSearchService;
 
 @Service("trainSearchService")
 public class TrainSearchServiceImpl implements TrainSearchService {
-	@Resource(name = "scheduleDao")
-	private ScheduleDao scheduleDao;
-	@Resource(name = "trainDao")
-	private TrainDao trainDao;
+    @Resource(name = "scheduleDao")
+    private ScheduleDao scheduleDao;
+    @Resource(name = "trainDao")
+    private TrainDao trainDao;
     @Resource(name = "passengerDao")
     private PassengerDao passengerDao;
-	@Override
-	public List<Train> getTrains(String startStation, String stopStation) {
-		String sqlPattern = startStation + ".*" + stopStation;
-		List<Train> trains = trainDao.queryTrains(sqlPattern);
 
-		String str = String.format("(%s.*%s.*?\\b)", startStation, stopStation);
-		Pattern pat = Pattern.compile(str);
+    @Override
+    public List<Train> getTrains(SearchInfo searchInfo) {
+        List<Train> trains = trainDao.queryTodayTrains(searchInfo);
+//		List<Train> trains = trainDao.queryTrains(searchInfo.getSqlPattern());
 
-		for (Train train : trains) {
-			Matcher matcher = pat.matcher(train.getStations());
-			if (matcher.find()) {
-				String[] stations = matcher.group(0).split("-");
-				train.setStart(scheduleDao.querySchedule(train.getTrainId(), stations[0]));
-				train.setStop(scheduleDao.querySchedule(train.getTrainId(), stations[stations.length-1]));
-			}
-		}
-		return trains;
-	}
+        Pattern pat = Pattern.compile(searchInfo.getRePattern());
 
-	@Override
-	public List<Schedule> querySchByTrainId(int trainId) {
-		// TODO Auto-generated method stub
-		return scheduleDao.querySchByTrainId(trainId);
-	}
+        for (Train train : trains) {
+            Matcher matcher = pat.matcher(train.getStations());
+            if (matcher.find()) {
+                String[] stations = matcher.group(0).split("-");
+                train.setStart(scheduleDao.querySchedule(train.getTrainId(), stations[0]));
+                train.setStop(scheduleDao.querySchedule(train.getTrainId(), stations[stations.length - 1]));
+            }
+        }
+        return trains;
+    }
 
-	@Override
-	public Passenger queryPassengerBypName(String pName) {
-		// TODO Auto-generated method stub
-		return passengerDao.queryPassengerBypName(pName);
-	}
+    @Override
+    public List<Train> getTrains(String start, String stop) {
+        return null;
+    }
+
+    @Override
+    public List<Schedule> querySchByTrainId(int trainId) {
+        // TODO Auto-generated method stub
+        return scheduleDao.querySchByTrainId(trainId);
+    }
+
+    @Override
+    public Passenger queryPassengerBypName(String pName) {
+        // TODO Auto-generated method stub
+        return passengerDao.queryPassengerBypName(pName);
+    }
 
 }

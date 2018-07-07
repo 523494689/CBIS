@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.cbis.entity.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.web.bind.annotation.*;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
@@ -53,18 +54,10 @@ public class TrainSearchController {
 	
 	
     
-	/**
-	 * 搜索车次的方法,返回json对象(暂时不能放在tbody里面)
-	 * @param start
-	 * @param stop
-	 * @return
-	 */
 	@RequestMapping(value = "/trains", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Train> search(@RequestParam(name = "start") String start, @RequestParam(name = "stop") String stop) {
-		
-		List<Train> list = trainSearchService.getTrains(start, stop);
-		
+	public List<Train> search(@RequestBody()SearchInfo searchInfo) {
+		List<Train> list = trainSearchService.getTrains(searchInfo);
 		return list;
 	}
 	
@@ -127,13 +120,6 @@ public class TrainSearchController {
 	}
 	
 	
-	/**
-	 * 添加乘客
-	 * @param trainAll
-	 * @param model
-	 * @return
-	 */
-
 	@RequestMapping(value = "/addPassenger", method = RequestMethod.POST)
 	@ResponseBody
 	public String[] addPassenger(String pName,String pIDCard,HttpSession session) {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cbis.entity.Passenger;
 import com.cbis.entity.Schedule;
+import com.cbis.entity.SearchInfo;
 import com.cbis.entity.Train;
 
 public interface TrainSearchService {
@@ -15,4 +16,7 @@ public interface TrainSearchService {
 	
 	 //查询对应姓名的用户详情表信息
   	public Passenger queryPassengerBypName(String pName);
+
+	// 新的车次查询方法,将查询信息打包成一个类进行传递 -- 2018年7月7日
+	public List<Train> getTrains(SearchInfo searchInfo);
 }

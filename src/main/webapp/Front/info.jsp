@@ -470,7 +470,7 @@
 									"<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[1]+"</label></div>"); */
 					})
 					})
-		<!-- 											将一等座二等座等按钮的值赋值给一个文本框 -->
+		<!-- 将一等座二等座等按钮的值赋值给一个文本框 -->
 				$(".zuo").click(function (){
 					var content = $(this).val();
 					$("#zuowei").val(content);

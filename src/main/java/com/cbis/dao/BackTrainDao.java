@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.cbis.entity.BackPas;
 import com.cbis.entity.BackStation;
 import com.cbis.entity.BackTrain;
+import com.cbis.entity.BackUser;
 
 /**
  * 后台管理的dao
@@ -15,10 +17,16 @@ import com.cbis.entity.BackTrain;
 @Repository
 public interface BackTrainDao {
 	
-	//显示车次信息表的信息
+	//显示后台车次信息表的信息
 	public List<BackTrain> showTrain();
 	
-	//显示车站路线信息表的信息
+	//显示后台车站路线信息表的信息
 	public List<BackStation> showStation();
+	
+	//显示后台用户的信息
+	public List<BackUser> showUser();
+	
+	//显示后台绑定乘客表的方法
+	public List<BackPas> showPas(int userId);
 
 }

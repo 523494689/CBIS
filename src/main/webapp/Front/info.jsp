@@ -161,15 +161,15 @@
 										<div class="col-sm-12">
 											<div class="col-sm-4">
 												<input class="btn btn-primary btn-block zuo" type="button"
-													id="first"  value="一等 ￥${(stop-start)*20}" />
+													id="first"  value="一等 ￥${(stopNo-startNo)*20}" />
 											</div>
 											<div class="col-sm-4">
 												<input class="btn btn-primary btn-block zuo" type="button"
-													id="second" value="二等 ￥${(stop-start)*15}" />
+													id="second" value="二等 ￥${(stopNo-startNo)*15}" />
 											</div>
 											<div class="col-sm-4">
 												<input class="btn btn-primary btn-block zuo" type="button"
-													id="third" value="无座 ￥${(stop-start)*15}" />
+													id="third" value="无座 ￥${(stopNo-startNo)*15}" />
 											</div>
 											<div class="col-sm-4">
 												<input type="text" value="" id="zuowei" name="zuowei" style="display:none" />
@@ -272,13 +272,15 @@
 																			<c:forEach items="${requestScope.handle1}" var="passenger" varStatus="vs">
 																			<tr>
 																				<td>${vs.index+1}</td>
-																				<td>车次${trainId}厦门-福州 28/06/2018-28/06/20118</td>
+																				<td>${trainNo} ${start}-${stop} 28/06/2018-28/06/20118</td>
 																				<td>${passenger.pName},身份证 ${passenger.pIDCard} </td>
 																				<td>${zuowei}</td>
 																				<td>成人票 ${fee}元</td>
 																			</tr>
 																			</c:forEach>
+																			
 																			</c:if>
+																			<div>总计${fees}</div>
 																		</tbody>
 																	</table>
 																</div>

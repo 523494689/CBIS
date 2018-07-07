@@ -82,11 +82,14 @@ public class TrainSearchController {
 		int stop = Integer.parseInt(array[2]);
 		//传递该车次的信息
 		List<Schedule> list = trainSearchService.querySchByTrainId(trainId);
-		
-		model.addAttribute("list2", list);
-		model.addAttribute("start", start);
-		model.addAttribute("stop", stop);
-		model.addAttribute("trainId", trainId);
+		session.setAttribute("list2", list);
+		session.setAttribute("start", start);
+		session.setAttribute("stop", stop);
+		session.setAttribute("trainId", trainId);
+//		model.addAttribute("list2", list);
+//		model.addAttribute("start", start);
+//		model.addAttribute("stop", stop);
+//		model.addAttribute("trainId", trainId);
 		//传递乘客表的信息
 		//获取登录乘客的id
 		User u = (User)session.getAttribute("user");
@@ -94,8 +97,8 @@ public class TrainSearchController {
 		int userId = u.getUserId();
 		//查询乘客表的信息
 		List<Passenger> pasList = orderService.queryPassengers(userId);
-		model.addAttribute("pasList",pasList);
-		
+		//model.addAttribute("pasList",pasList);
+		session.setAttribute("pasList",pasList);
 		return "info";
 
 	}

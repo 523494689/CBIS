@@ -42,39 +42,39 @@
 
 <!-- Animate.css -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/mvc/Front/css/animate.css">
+	href="${pageContext.request.contextPath}/Front/css/animate.css">
 <!-- Icomoon Icon Fonts-->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/mvc/Front/css/icomoon.css">
+	href="${pageContext.request.contextPath}/Front/css/icomoon.css">
 <!-- Bootstrap  -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/mvc/Front/css/bootstrap.css">
+	href="${pageContext.request.contextPath}/Front/css/bootstrap.css">
 <!-- Superfish -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/mvc/Front/css/superfish.css">
+	href="${pageContext.request.contextPath}/Front/css/superfish.css">
 <!-- Magnific Popup -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/mvc/Front/css/magnific-popup.css">
+	href="${pageContext.request.contextPath}/Front/css/magnific-popup.css">
 <!-- Date Picker -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/mvc/Front/css/bootstrap-datepicker.min.css">
+	href="${pageContext.request.contextPath}/Front/css/bootstrap-datepicker.min.css">
 <!-- CS Select -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/mvc/Front/css/cs-select.css">
+	href="${pageContext.request.contextPath}/Front/css/cs-select.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/mvc/Front/css/cs-skin-border.css">
+	href="${pageContext.request.contextPath}/Front/css/cs-skin-border.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/mvc/Front/css/style.css">
+	href="${pageContext.request.contextPath}/Front/css/style.css">
 
 <!-- TABLE STYLES-->
 <link
-	href="${pageContext.request.contextPath}/mvc/Front/assets/js/dataTables/dataTables.bootstrap.css"
+	href="${pageContext.request.contextPath}/Front/assets/js/dataTables/dataTables.bootstrap.css"
 	rel="stylesheet" />
 
 <!-- Modernizr JS -->
 <script
-	src="${pageContext.request.contextPath}/mvc/Front/js/modernizr-2.6.2.min.js"></script>
+	src="${pageContext.request.contextPath}/Front/js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -169,12 +169,12 @@
 					<div class="nav-header">
 						<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
 						<h1 id="fh5co-logo">
-							<a href="mvc/Front/index.jsp">Travel</a>
+							<a href="Front/index.jsp">Travel</a>
 						</h1>
 						<!-- START #fh5co-menu-wrap -->
 						<nav id="fh5co-menu-wrap" role="navigation">
 							<ul class="sf-menu" id="fh5co-primary-menu">
-								<li class="active"><a href="mvc/Front/index.jsp">Home</a></li>
+								<li class="active"><a href="Front/index.jsp">Home</a></li>
 
 								<li><a href="#Train List">Train</a></li>
 								<li>
@@ -206,7 +206,7 @@
 			<div class="fh5co-hero">
 				<div class="fh5co-overlay"></div>
 				<div class="fh5co-cover" data-stellar-background-ratio="0.5"
-					style="background-image: url(${pageContext.request.contextPath}/mvc/Front/images/cover_bg_1.jpg);">
+					style="background-image: url(${pageContext.request.contextPath}/Front/images/cover_bg_1.jpg);">
 					<div class="desc">
 						<div class="container" align="center">
 							<div class="row">
@@ -472,40 +472,40 @@
 	<script
 		src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/mvc/Front/js/jquery.easing.1.3.js"></script>
+		src="${pageContext.request.contextPath}/Front/js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->
 	<script
-		src="${pageContext.request.contextPath}/mvc/Front/js/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath}/Front/js/bootstrap.min.js"></script>
 	<!-- 弹出框的样式,layer -->
-	<script src="${pageContext.request.contextPath}/mvc/Front/layer/layer.js"></script>
+	<script src="${pageContext.request.contextPath}/Front/layer/layer.js"></script>
 	<!-- Waypoints -->
 	<script
-		src="${pageContext.request.contextPath}/mvc/Front/js/jquery.waypoints.min.js"></script>
-	<script src="${pageContext.request.contextPath}/mvc/Front/js/sticky.js"></script>
+		src="${pageContext.request.contextPath}/Front/js/jquery.waypoints.min.js"></script>
+	<script src="${pageContext.request.contextPath}/Front/js/sticky.js"></script>
 
 	<!-- Stellar -->
 	<script
-		src="${pageContext.request.contextPath}/mvc/Front/js/jquery.stellar.min.js"></script>
+		src="${pageContext.request.contextPath}/Front/js/jquery.stellar.min.js"></script>
 	<!-- Superfish -->
 	<script
-		src="${pageContext.request.contextPath}/mvc/Front/js/hoverIntent.js"></script>
-	<script src="${pageContext.request.contextPath}/mvc/Front/js/superfish.js"></script>
+		src="${pageContext.request.contextPath}/Front/js/hoverIntent.js"></script>
+	<script src="${pageContext.request.contextPath}/Front/js/superfish.js"></script>
 	<!-- Magnific Popup -->
 	<script
-		src="${pageContext.request.contextPath}/mvc/Front/js/jquery.magnific-popup.min.js"></script>
+		src="${pageContext.request.contextPath}/Front/js/jquery.magnific-popup.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/mvc/Front/js/magnific-popup-options.js"></script>
+		src="${pageContext.request.contextPath}/Front/js/magnific-popup-options.js"></script>
 	<!-- Date Picker -->
 	<script
-		src="${pageContext.request.contextPath}/mvc/Front/js/bootstrap-datepicker.min.js"></script>
+		src="${pageContext.request.contextPath}/Front/js/bootstrap-datepicker.min.js"></script>
 	<!-- CS Select -->
-	<script src="${pageContext.request.contextPath}/mvc/Front/js/classie.js"></script>
-	<script src="${pageContext.request.contextPath}/mvc/Front/js/selectFx.js"></script>
+	<script src="${pageContext.request.contextPath}/Front/js/classie.js"></script>
+	<script src="${pageContext.request.contextPath}/Front/js/selectFx.js"></script>
 	<!-- DATA TABLE SCRIPTS -->
 	<script
-		src="${pageContext.request.contextPath}/mvc/Front/assets/js/dataTables/jquery.dataTables.js"></script>
+		src="${pageContext.request.contextPath}/Front/assets/js/dataTables/jquery.dataTables.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/mvc/Front/assets/js/dataTables/dataTables.bootstrap.js"></script>
+		src="${pageContext.request.contextPath}/Front/assets/js/dataTables/dataTables.bootstrap.js"></script>
 
 
 	<script>
@@ -525,7 +525,7 @@
 		</script>
 
 	<!-- Main JS -->
-	<script src="${pageContext.request.contextPath}/mvc/Front/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/Front/js/main.js"></script>
 
     <!-- 登录的时候判断是否有该用户 -->
 	<script type="text/javascript">	

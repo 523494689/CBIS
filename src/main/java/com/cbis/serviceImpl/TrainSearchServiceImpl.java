@@ -29,7 +29,14 @@ public class TrainSearchServiceImpl implements TrainSearchService {
 
     @Override
     public List<Train> getTrains(SearchInfo searchInfo) {
-        List<Train> trains = trainDao.queryTodayTrains(searchInfo);
+        List<Train> trains = null;
+
+        if (searchInfo.compareToday()>0){
+            trains = trainDao.queryTrains(searchInfo.getSqlPattern());
+        } else if (searchInfo.compareToday() ==0){
+            trains = trainDao.queryTodayTrains(searchInfo);
+        }
+//      List<Train> trains = trainDao.queryTodayTrains(searchInfo);
 //		List<Train> trains = trainDao.queryTrains(searchInfo.getSqlPattern());
 
         Pattern pat = Pattern.compile(searchInfo.getRePattern());
@@ -47,6 +54,19 @@ public class TrainSearchServiceImpl implements TrainSearchService {
 
     @Override
     public List<Train> getTrains(String start, String stop) {
+//		List<Train> trains = trainDao.queryTrains(start + ".+" + stop);
+//
+//        Pattern pat = Pattern.compile(String.format("(%s.*%s.*?\\b)", start, stop));
+//
+//        for (Train train : trains) {
+//            Matcher matcher = pat.matcher(train.getStations());
+//            if (matcher.find()) {
+//                String[] stations = matcher.group(0).split("-");
+//                train.setStart(scheduleDao.querySchedule(train.getTrainId(), stations[0]));
+//                train.setStop(scheduleDao.querySchedule(train.getTrainId(), stations[stations.length - 1]));
+//            }
+//        }
+//        return trains;
         return null;
     }
 

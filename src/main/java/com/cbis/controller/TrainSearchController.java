@@ -1,19 +1,19 @@
 package com.cbis.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-
 import com.cbis.entity.*;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
 import com.cbis.service.OrderService;
 import com.cbis.service.TrainSearchService;
 import com.cbis.service.UserService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/search-api")
@@ -29,31 +29,42 @@ public class TrainSearchController {
     
 	@RequestMapping(value = "/trains", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Train> search(@RequestBody()SearchInfo searchInfo) {
+	public List<Train> search(SearchInfo searchInfo) {
 		List<Train> list = trainSearchService.getTrains(searchInfo);
 		return list;
 	}
-	
-	/**
-	 * 搜索车次的方法,常规返回list
-	 * @param start
-	 * @param stop
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/trains2", method = RequestMethod.GET)
-	public String search2(String start, String stop ,Model model,HttpSession session) {
-		
-		List<Train> list = trainSearchService.getTrains(start, stop);
-		
-		model.addAttribute("list", list);
-		//model.addAttribute("start", start);
-		//model.addAttribute("stop", stop);
-		session.setAttribute("start", start);
-		session.setAttribute("stop", stop);
-		return "index";
 
+	@RequestMapping(value = "/trains2", method = RequestMethod.GET)
+	public String search2(SearchInfo searchInfo, Model model, HttpSession session){
+
+		System.out.println(searchInfo);
+
+
+		List<Train> list = trainSearchService.getTrains(searchInfo);
+		model.addAttribute("list", list);
+		// model.addAttribute("start", start);
+		// model.addAttribute("stop", stop);
+		session.setAttribute("start", searchInfo.getStart());
+		session.setAttribute("stop", searchInfo.getStop());
+
+		list.forEach(System.out::println);
+
+		return "index";
 	}
+	
+//	@RequestMapping(value = "/trains2", method = RequestMethod.GET)
+//	public String search2(String start, String stop ,Model model,HttpSession session) {
+//
+//		List<Train> list = trainSearchService.getTrains(start, stop);
+//
+//		model.addAttribute("list", list);
+//		//model.addAttribute("start", start);
+//		//model.addAttribute("stop", stop);
+//		session.setAttribute("start", start);
+//		session.setAttribute("stop", stop);
+//		return "index";
+//
+//	}
 	
 	/**
 	 * 搜索车次后,点击详情后显示的订单详情页

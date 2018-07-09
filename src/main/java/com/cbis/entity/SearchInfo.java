@@ -1,7 +1,9 @@
 package com.cbis.entity;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class SearchInfo implements Serializable {
@@ -10,6 +12,34 @@ public class SearchInfo implements Serializable {
     private String date;
 //    private String sqlPattern;
 //    private String rePattern;
+
+    // 判断查询日期,如果日期是当天返回0,日期大于当天返回1;日期小于当天返回-1
+    public int compareToday() {
+        if (date == null || date.equals("")) {
+            return 0;
+        }
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Date searchDate = null;
+        Date today = null;
+
+        Calendar c = Calendar.getInstance();
+
+        int year = c.get(Calendar.YEAR);
+        int mm = c.get(Calendar.MONTH) + 1;
+        int dd = c.get(Calendar.DAY_OF_MONTH);
+
+        String todayStr = String.format("%02d/%02d/%04d", mm, dd, year);
+
+        try {
+            searchDate = simpleDateFormat.parse(date);
+            today = simpleDateFormat.parse(todayStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return searchDate.compareTo(today);
+    }
 
     // 根据出发站\到达站生成车次查询,MySQL用的正则表达式
     public String getSqlPattern() {

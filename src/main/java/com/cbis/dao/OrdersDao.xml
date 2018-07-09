@@ -11,8 +11,8 @@
     </select>
 
     <insert id="insertOrder" parameterType="com.cbis.entity.Orders">
-        insert into orders(orderNum, userId, trainId, startNo, stopNo, passId, state, oTime)
-        values(#{orderNum}, #{userId}, #{trainId}, #{startNo}, #{stopNo}, #{passId}, #{state}, now())
+        insert into orders(orderNum, userId, trainNo, start, stop,seatType, passId, price, oTime, state)
+        values(#{orderNum}, #{userId}, #{trainNo}, #{start}, #{stop},#{seatType}, #{passId}, #{price}, #{oTime}, #{state})
     </insert>
 
     <!-- 暂时只能修改车次 -->
@@ -23,6 +23,14 @@
         </trim>
         state = state + #{state}
         where orderNum=#{orderNum}
+    </update>
+    <!-- 根据订单编号查询订单信息 -->
+    <select id="selectOrdersByOrderNum" resultType="com.cbis.entity.Orders">
+    	select * from orders where orderNum=#{orderNum}
+    </select>
+    
+    <update id="updateOrderByOrderNum" >
+    	update orders set state=3 where orderNum=#{orderNum}
     </update>
 
 </mapper>

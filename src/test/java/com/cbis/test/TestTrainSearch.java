@@ -12,8 +12,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cbis.dao.ScheduleDao;
 import com.cbis.dao.TrainDao;
+import com.cbis.entity.BackPas;
 import com.cbis.entity.Schedule;
 import com.cbis.entity.Train;
+import com.cbis.service.BackTrainService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:mybatis-spring.xml" })
@@ -22,6 +24,8 @@ public class TestTrainSearch {
 	private TrainDao trainDao;
 	@Resource(name = "scheduleDao")
 	private ScheduleDao scheduleDao;
+	@Resource
+	private BackTrainService backTrainService;
 
 	@Test
 	public void show() {
@@ -54,6 +58,8 @@ public class TestTrainSearch {
 
 			train.setStart(scheduleDao.querySchedule(train.getTrainId(), start));
 			train.setStop(scheduleDao.querySchedule(train.getTrainId(), stop));
+			
+			
 
 			System.out.println("得到的结果是"+train);
 		}
@@ -69,4 +75,22 @@ public class TestTrainSearch {
 		System.out.println(list.toString());
 	}
 	
+
+	
+	
+	@Test
+	public void showPas() {
+		    
+   
+        List<BackPas> userPasList = backTrainService.showPas(1);
+        
+        for (int i = 0; i < userPasList.size(); i++) {
+			System.out.println(userPasList.get(i));
+		}
+        
+       // System.out.println(userPasList);
+
+        
+		
+	}
 }

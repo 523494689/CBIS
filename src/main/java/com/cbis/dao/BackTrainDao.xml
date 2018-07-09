@@ -21,6 +21,17 @@
         select a.*,b.trainNo from trainsearch AS a,train AS b where a.trainId = b.trainId
     </select>
     
+    <!-- 后台显示所有的用户信息 -->
+    <select id="showUser" resultType="com.cbis.entity.BackUser">
+        <!-- select * from trainsearch  -->
+        select a.userId,a.userName,a.userPassword,a.userRegTime,b.pName,b.userEmail,b.pIDCard,b.pTelphone from users AS a,userinfo AS b where a.userId = b.userId
+    </select>
+    
+     <!-- 后台显示所有的乘客信息 -->
+    <select id="showPas" resultType="com.cbis.entity.BackPas">
+        <!-- select * from trainsearch  -->
+        select * from passenger where userId = #{userId}
+    </select>
 
 
 </mapper>

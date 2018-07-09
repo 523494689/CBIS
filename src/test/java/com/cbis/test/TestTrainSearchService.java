@@ -21,7 +21,7 @@ public class TestTrainSearchService {
     public void search(){
         SearchInfo searchInfo = new SearchInfo();
         searchInfo.setStart("œ√√≈");
-        searchInfo.setStop("∏£÷›");
+        searchInfo.setStop("∫º÷›");
 
         List<Train> list = trainSearchService.getTrains(searchInfo);
 

@@ -123,7 +123,7 @@
                     </li>
                     
                     <li>
-                        <a href="userinfo.html" ><i class="fa fa-table"></i> 用户信息</a>
+                        <a href="${pageContext.request.contextPath}/back/showUser" ><i class="fa fa-table"></i> 用户信息</a>
                     </li>
                     <li>
                         <a href="order.html"><i class="fa fa-table"></i> 订单信息</a>

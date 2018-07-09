@@ -1,21 +1,14 @@
 package com.cbis.entity;
 
-public class Train {
-	private int id;
+import java.io.Serializable;
+
+public class Train implements Serializable {
 	private int trainId;
 	private String trainNo;
 	private String stations;
 	private int size;
 	private Schedule start;
 	private Schedule stop;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public int getTrainId() {
 		return trainId;
@@ -67,7 +60,7 @@ public class Train {
 
 	@Override
 	public String toString() {
-		return "Train [id=" + id + ", trainId=" + trainId + ", trainNo=" + trainNo + ", stations=" + stations
+		return "Train [trainId=" + trainId + ", trainNo=" + trainNo + ", stations=" + stations
 				+ ", size=" + size + ", start=" + start + ", stop=" + stop + "]";
 	}
 

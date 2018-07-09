@@ -154,22 +154,22 @@
 										</div>
 									</div>
 									<div class="tab-pane information" id="information">
-									<form action="/CBIS/search-api/handleProduct" method="post">
+									<form action="/CBIS/search-api/handleProduct" method="post" id="formcheck" >
 										<div class="col-sm-12">
 											<h5 class="info-text">Let's start with the basic details</h5>
 										</div>
 										<div class="col-sm-12">
 											<div class="col-sm-4">
 												<input class="btn btn-primary btn-block zuo" type="button"
-													id="first"  value="一等 ￥${(stop-start)*20}" />
+													id="first"  value="一等 ￥${(stopNo-startNo)*20}" />
 											</div>
 											<div class="col-sm-4">
 												<input class="btn btn-primary btn-block zuo" type="button"
-													id="second" value="二等 ￥${(stop-start)*15}" />
+													id="second" value="二等 ￥${(stopNo-startNo)*15}" />
 											</div>
 											<div class="col-sm-4">
 												<input class="btn btn-primary btn-block zuo" type="button"
-													id="third" value="无座 ￥${(stop-start)*15}" />
+													id="third" value="无座 ￥${(stopNo-startNo)*15}" />
 											</div>
 											<div class="col-sm-4">
 												<input type="text" value="" id="zuowei" name="zuowei" style="display:none" />
@@ -202,7 +202,7 @@
 															<div class="col-sm-5">
 																<div class="form-group">
 																	<label>Name</label> <input type="text"
-																		class="form-control" id="pName" placeholder="请输入真实姓名">
+																		class="form-control" id="pName" placeholder="请输入真实姓名" >
 																</div>
 															</div>
 															<div class="col-sm-5">
@@ -216,7 +216,7 @@
 															<div class="pull-right">
 																<label></label> <input
 																	class="btn btn-primary btn-block addPassenger"
-																	type="button" id="save" value="保存" />
+																	type="button" id="save" value="保存"  />
 															</div>
 
 														</div>
@@ -224,15 +224,14 @@
 													<div class="pull-right">
 														<input class="btn btn-primary btn-block addPassenger"
 															type="button" id="addPassenger" value="添加乘客" />
+														<input class="btn btn-primary btn-block"
+														type="button" id="check2" value="提交订单" />
+														
 													</div>
 													
 												</div>
 											</c:if>
 										</div>
-										           <div class="pull-right">
-													<input class="btn btn-primary btn-block"
-														type="submit" id="" value="提交订单" />
-													</div>
 										</form>
 									</div>
 									<div class="tab-pane" id="check">
@@ -240,6 +239,7 @@
 											<!--<h5 class="info-text">Please check again your information. </h5>-->
 											<p>Please check again your information.</p>
 										</div>
+										
 										<div class="row">
 											<div class="col-sm-12 col-md-12">
 												<div class="tabulation animate-box">
@@ -272,13 +272,15 @@
 																			<c:forEach items="${requestScope.handle1}" var="passenger" varStatus="vs">
 																			<tr>
 																				<td>${vs.index+1}</td>
-																				<td>车次${trainId}厦门-福州 28/06/2018-28/06/20118</td>
+																				<td>${trainNo} ${start}-${stop} 28/06/2018-28/06/20118</td>
 																				<td>${passenger.pName},身份证 ${passenger.pIDCard} </td>
 																				<td>${zuowei}</td>
 																				<td>成人票 ${fee}元</td>
 																			</tr>
 																			</c:forEach>
+																			
 																			</c:if>
+																			<div>总计${fees}</div>
 																		</tbody>
 																	</table>
 																</div>
@@ -303,8 +305,9 @@
 										<div class="col-sm-12">
 											<div class="col-sm-3"></div>
 											<div class="col-sm-9">
-												<form name=alipayment action=alipay.trade.page.pay.jsp
-													method=post target="_blank">
+												<form name="alipayment" action="${pageContext.request.contextPath}/Front/alipay.trade.page.pay.jsp"
+													method="post" target="_blank">
+													<input type="hidden" id="orderNum" name="orderNum" value="${order.orderNum}">
 													<div id="body1" class="show" name="divcontent">
 														<dl class="content">
 															<dd>
@@ -312,7 +315,7 @@
 																	<div class="form-group">
 																		<label>商户订单号 ：</label> <input type="text"
 																			class="form-control" id="WIDout_trade_no"
-																			name="WIDout_trade_no">
+																			name="WIDout_trade_no" readonly="readonly">
 																	</div>
 																</div>
 															</dd>
@@ -321,7 +324,7 @@
 																	<div class="form-group">
 																		<label>订单名称 ：</label> <input type="text"
 																			class="form-control" id="WIDsubject"
-																			name="WIDsubject">
+																			name="WIDsubject" readonly="readonly">
 																	</div>
 																</div>
 															</dd>
@@ -334,6 +337,16 @@
 																	</div>
 																</div>
 															</dd>
+															<dd>
+																<div class="col-sm-6 col-sm-offset-1">
+																	<div class="form-group">
+																		<label>描述 ：</label> <input type="text"
+																			class="form-control" id="WIDbody"
+																			name="WIDbody" >
+																	</div>
+																</div>
+															</dd>
+															
 															<dd id="btn-dd">
 																<div class="col-sm-6 col-sm-offset-1">
 																	<span class="new-btn-login-sp">
@@ -346,51 +359,17 @@
 															</dd>
 														</dl>
 													</div>
-<!-- 												</form> -->
+												</form>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="wizard-footer">
-									<div class="pull-right">
-										<input type='button'
-											class='btn btn-next btn-fill btn-success btn-wd' name='next'
-											value='Next' />
-										<!--做付钱的遮罩窗体-->
-										<input type='button'
-											class='btn btn-finish btn-fill btn-success btn-wd'
-											name='finish' value='Confirm' />
-									</div>
-									<div class="pull-left">
-										<input type='button'
-											class='btn btn-previous btn-default btn-wd' name='previous'
-											value='Previous' />
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</form>
 						</div>
 					</div>
 
 					<!-- wizard container -->
 
-					<div class="wizard-footer">
-						<div class="pull-right">
-							<input type='button'
-								class='btn btn-next btn-fill btn-success btn-wd' name='next'
-								value='Next' />
-							<!--做付钱的遮罩窗体-->
-							<input type='button'
-								class='btn btn-finish btn-fill btn-success btn-wd' name='finish'
-								value='Confirm' />
-						</div>
-						<div class="pull-left">
-							<input type='button' class='btn btn-previous btn-default btn-wd'
-								name='previous' value='Previous' />
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					</form>
+					
 				</div>
 			</div>
 			<!-- wizard container -->
@@ -470,19 +449,36 @@
 									"<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value='哈哈哈'/><label>"+data[1]+"</label></div>"); */
 					})
 					})
-		<!-- 											将一等座二等座等按钮的值赋值给一个文本框 -->
+		<!-- 将一等座二等座等按钮的值赋值给一个文本框 -->
 				$(".zuo").click(function (){
 					var content = $(this).val();
 					$("#zuowei").val(content);
-					layer.msg("选择票位成功，为"+content);
+					layer.msg("选择座位成功，单价为"+content);
 				})
-		
-			
+				$("#check2").click(function (){
+					if($("#zuowei").val()==""){
+						layer.msg("请选择座位!");
+					}
+					else {
+						   $("#formcheck").submit();
+					}
+				})
+				
 		})
+
 		/* <!-- 阿瓜的 --> */
 		/* function jiaZai(){
 			$('#wizard li:eq(1) a').tab('show');
 		} */
+	</script>
+	
+	<script type="text/javascript">
+	function GetDateNow() {
+		document.getElementById("WIDout_trade_no").value =  ${order.orderNum};
+		document.getElementById("WIDsubject").value = ${order.orderNum * 3};
+		document.getElementById("WIDtotal_amount").value = ${order.price};
+	}
+	GetDateNow();
 	</script>
 
 </html>

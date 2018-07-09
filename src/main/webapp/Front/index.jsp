@@ -169,13 +169,13 @@
 					<div class="nav-header">
 						<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
 						<h1 id="fh5co-logo">
-							<a href="Front/index.jsp">Travel</a>
+							<a href="${pageContext.request.contextPath}/Front/index.jsp">Travel</a>
 						</h1>
 						<!-- START #fh5co-menu-wrap -->
 						<nav id="fh5co-menu-wrap" role="navigation">
 							<ul class="sf-menu" id="fh5co-primary-menu">
 
-								<li class="active"><a href="Front/index.jsp">Home</a></li>
+								<li class="active"><a href="${pageContext.request.contextPath}/Front/index.jsp">Home</a></li>
 
 								<li><a href="#Train List">Train</a></li>
 								<li>
@@ -430,20 +430,15 @@
 														<c:if test="${requestScope.list!=null}">
 															<!-- 开始循环 -->
 															<c:forEach items="${list}" var="Train">
-
-																<tr align="center">
-																	<td>${Train.trainNo}</td>
-																	<td>${start}</td>
-																	<td>${Train.start.start}</td>
-																	<td>${stop}</td>
-																	<td>${Train.stop.arrive}</td>
-																	<td><button id="btn" name="btn"
-																			class="btn btn-success bjs xiangqing"
-																			value="${Train.trainId}@${Train.start.stationNo}@${Train.stop.stationNo}">详情</button></td>
-																</tr>
-
-
-
+															
+															<tr align="center">
+																<td>${Train.trainNo}</td>
+																<td>${start}</td>
+																<td>${Train.start.start}</td>
+																<td>${stop}</td>
+																<td>${Train.stop.arrive}</td>
+																<td><button id="btn" name="btn" class="btn btn-success bjs xiangqing" value="${Train.trainId}@${Train.trainNo}@${Train.start.stationNo}@${Train.stop.stationNo}">详情</button></td>
+															</tr> 
 															</c:forEach>
 														</c:if>
 													</tbody>
@@ -577,22 +572,22 @@
 	<!-- 点击查询的按钮 -->
 	<script>
 	     function sendSS(){
-	    	 var flag= confirm("是否搜索");
+	    	 //var flag= confirm("是否搜索");
 	    	//出发地
 	    	 var start = $("#from-place").val();
 	    	 var stop = $("#to-place").val();
 	    	 var date = $("#date-start").val();
 		   //提示框
 
-		   if(flag){
+		  
 			  // var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
 			  var index = layer.load(1, {
                 shade: [0.1,'#fff'] //0.1透明度的白色背景
                   });
 			   //确认提交,跳转页面
-			  location.href="/CBIS/search-api/trains2?start="+start+"&stop="+stop+"&date"+date;
+			  location.href="/CBIS/search-api/trains2?start="+start+"&stop="+stop+"&date="+date;
 			  //a href="/CBIS/search-api/trains2?start=厦门&stop=福州
-		   }
+		   
 	     }
 	</script>
 </body>

@@ -8,7 +8,22 @@
 
 	<select id="queryTrains" resultType="com.cbis.entity.Train">
 		<!-- select * from trainSearch where stations regexp #{pattern} -->
-		select ts.*, t.trainNo from trainSearch ts, train t where stations regexp #{pattern} and ts.trainId=t.trainId
+		<!-- select t.trainId,t.trainNo, ts.stations, ts.size from trainSearch ts, train t -->
+		<!-- where stations regexp #{sqlPattern} and ts.trainId=t.trainId -->
+		select t.trainId,t.trainNo, ts.stations, ts.size from trainsearch ts, sch, train t
+		where ts.stations regexp #{sqlPattern} and ts.trainId=sch.trainId
+		and t.trainId=ts.trainId
+		and sch.station regexp #{start}
+		order by sch.start		
+	</select>
+
+	<select id="queryTodayTrains" resultType="com.cbis.entity.Train">
+		select t.trainId,t.trainNo, ts.stations, ts.size from trainsearch ts, sch, train t
+		where ts.stations regexp #{sqlPattern} and ts.trainId=sch.trainId
+		and t.trainId=ts.trainId
+		and sch.station regexp #{start}
+		and sch.start>date_add(now(), interval 30 minute)
+		order by sch.start
 	</select>
 
 </mapper>

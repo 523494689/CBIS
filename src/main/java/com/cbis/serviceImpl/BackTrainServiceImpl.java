@@ -7,8 +7,10 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.cbis.dao.BackTrainDao;
+import com.cbis.entity.BackPas;
 import com.cbis.entity.BackStation;
 import com.cbis.entity.BackTrain;
+import com.cbis.entity.BackUser;
 import com.cbis.service.BackTrainService;
 
 /**
@@ -44,6 +46,26 @@ public class BackTrainServiceImpl implements BackTrainService{
 		// TODO Auto-generated method stub
         List<BackStation> list = backTrainDao.showStation();
 		
+		return list;
+	}
+    
+	/**
+	 * 后台显示所有用户的信息
+	 */
+	@Override
+	public List<BackUser> showUser() {
+		// TODO Auto-generated method stub
+		List<BackUser> list = backTrainDao.showUser();
+		return list;
+	}
+    
+	/**
+	 * 后台显示用户绑定的所有乘客表
+	 */
+	@Override
+	public List<BackPas> showPas(int userId) {
+		// TODO Auto-generated method stub
+		List<BackPas> list = backTrainDao.showPas(userId);
 		return list;
 	}
 	

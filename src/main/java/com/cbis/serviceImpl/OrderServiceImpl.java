@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cbis.dao.OrderFlowDao;
 import com.cbis.dao.OrdersDao;
 import com.cbis.dao.PassengerDao;
+import com.cbis.entity.OrderFlow;
 import com.cbis.entity.Orders;
 import com.cbis.entity.Passenger;
 import com.cbis.service.OrderService;
@@ -57,6 +58,29 @@ public class OrderServiceImpl implements OrderService {
     public List<Orders> queryOrders(int userId) {
         return ordersDao.selectOrders(userId);
     }
+    
+    /**
+     * 根据订单编号查询订单信息
+     */
+	@Override
+	public Orders getOrdersByOrderNum(int orderNum) {
+		// TODO Auto-generated method stub
+		return ordersDao.selectOrdersByOrderNum(orderNum);
+	}
+	/**
+	 * 付款成功后修改订单状态
+	 */
+	@Override
+	public boolean updateOrderByOrderNum(String orderNum) {
+		// TODO Auto-generated method stub
+		return ordersDao.updateOrderByOrderNum(orderNum);
+	}
+
+	@Override
+	public boolean addOrderFlow(OrderFlow orderFlow) {
+		// TODO Auto-generated method stub
+		return orderFlowDao.insertOrderFlow(orderFlow);
+	}
 
 	@Override
 	public boolean updateOrderState(int id) {

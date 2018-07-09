@@ -6,23 +6,29 @@
 <!-- 绑定dao -->
 <mapper namespace="com.cbis.dao.OrdersDao">
 
-    <select id="selectOrders" resultType="com.cbis.entity.Orders">
-        select * from orders where userId=#{userId}
-    </select>
+	<select id="selectOrders" resultType="com.cbis.entity.Orders">
+		select * from orders where userId=#{userId} and state between 2 and 7
+	</select>
 
-    <insert id="insertOrder" parameterType="com.cbis.entity.Orders">
-        insert into orders(orderNum, userId, trainId, startNo, stopNo, passId, state, oTime)
-        values(#{orderNum}, #{userId}, #{trainId}, #{startNo}, #{stopNo}, #{passId}, #{state}, now())
-    </insert>
+	<update id="updateOrderState">
+		update orders set state=state + 8 where id = #{id}
+	</update>
 
-    <!-- 暂时只能修改车次 -->
-    <update id="updateOrder" parameterType="com.cbis.entity.Orders">
-        update orders
-        <trim prefix="set" suffixOverrides=",">
-            <if test="trainId != null">trainId=#{trainId}</if>
-        </trim>
-        state = state + #{state}
-        where orderNum=#{orderNum}
-    </update>
+	<insert id="insertOrder" parameterType="com.cbis.entity.Orders">
+		insert into orders(orderNum, userId, trainNo, startNo, stopNo, passId,
+		state, oTime)
+		values(#{orderNum}, #{userId}, #{trainNo}, #{startNo}, #{stopNo}, #{passId}, #{state},
+		now())
+	</insert>
+
+	<!-- 暂时只能修改车次 -->
+	<update id="updateOrder" parameterType="com.cbis.entity.Orders">
+		update orders
+		<trim prefix="set" suffixOverrides=",">
+			<if test="trainId != null">trainId=#{trainId}</if>
+		</trim>
+		state = state + #{state}
+		where orderNum=#{orderNum}
+	</update>
 
 </mapper>

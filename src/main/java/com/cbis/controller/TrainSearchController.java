@@ -139,7 +139,7 @@ public class TrainSearchController {
 
 	}
 	/**
-	 * 生成订单表
+	 * 生成假订单表
 	 */
 	@RequestMapping(value="/handleProduct")
 	public String handleProduct(String []cb1,String zuowei,Model model) {

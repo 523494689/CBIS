@@ -1,100 +1,136 @@
 package com.cbis.entity;
 
 public class Orders {
-    private int id;
-    private String orderNum;    // 单号
-    private int userId;         // 下单人id
-    private Integer trainId;    // 车次id
-    private Integer startNo;    // 出发站序号
-    private Integer stopNo;     // 到达站序号
-    private int passId;         // 乘客id
-    private String orderTime;   // 下单时间
-    private Integer state;      // 订单状态
+	private int id;
+	private String orderNum; // 閸楁洖褰 
+	private int userId; // 娑撳宕熸禍绡縟
+	private String trainNo; // 鏉烇附顐糹d
+	private String start; // 閸戝搫褰傜粩娆忕碍閸欙拷
+	private String stop; // 閸掓媽鎻粩娆忕碍閸欙拷
+	private String seatType;
+	private int passId; // 娑旀ê顓筰d
+	private double price;
+	private String oTime; // 娑撳宕熼弮鍫曟？
+	private Integer state; // 鐠併垹宕熼悩鑸碉拷锟 
 
-    public int getState() {
-        return state;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setState(int state) {
-        this.state = state;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public String getOrderNum() {
+		return orderNum;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setOrderNum(String orderNum) {
+		this.orderNum = orderNum;
+	}
 
-    public String getOrderNum() {
-        return orderNum;
-    }
+	public int getUserId() {
+		return userId;
+	}
 
-    public void setOrderNum(String orderNum) {
-        this.orderNum = orderNum;
-    }
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
-    public int getUserId() {
-        return userId;
-    }
+	public String getTrainNo() {
+		return trainNo;
+	}
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+	public void setTrainNo(String trainNo) {
+		this.trainNo = trainNo;
+	}
 
-    public int getTrainId() {
-        return trainId;
-    }
+	
 
-    public void setTrainId(int trainId) {
-        this.trainId = trainId;
-    }
+	public String getStart() {
+		return start;
+	}
 
-    public int getStartNo() {
-        return startNo;
-    }
+	public void setStart(String start) {
+		this.start = start;
+	}
 
-    public void setStartNo(int startNo) {
-        this.startNo = startNo;
-    }
+	public String getStop() {
+		return stop;
+	}
 
-    public int getStopNo() {
-        return stopNo;
-    }
+	public void setStop(String stop) {
+		this.stop = stop;
+	}
 
-    public void setStopNo(int stopNo) {
-        this.stopNo = stopNo;
-    }
+	public String getSeatType() {
+		return seatType;
+	}
 
-    public int getPassId() {
-        return passId;
-    }
+	public void setSeatType(String seatType) {
+		this.seatType = seatType;
+	}
 
-    public void setPassId(int passId) {
-        this.passId = passId;
-    }
+	public int getPassId() {
+		return passId;
+	}
 
-    public String getOrderTime() {
-        return orderTime;
-    }
+	public void setPassId(int passId) {
+		this.passId = passId;
+	}
 
-    public void setOrderTime(String orderTime) {
-        this.orderTime = orderTime;
-    }
+	public double getPrice() {
+		return price;
+	}
 
-    @Override
-    public String toString() {
-        return "Orders{" +
-                "id=" + id +
-                ", orderNum='" + orderNum + '\'' +
-                ", userId=" + userId +
-                ", trainId=" + trainId +
-                ", startNo=" + startNo +
-                ", stopNo=" + stopNo +
-                ", passId=" + passId +
-                ", orderTime='" + orderTime + '\'' +
-                ", state=" + state +
-                '}';
-    }
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getoTime() {
+		return oTime;
+	}
+
+	public void setoTime(String oTime) {
+		this.oTime = oTime;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+	
+	public Orders() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Orders [id=" + id + ", orderNum=" + orderNum + ", userId=" + userId + ", trainNo=" + trainNo
+				+ ", start=" + start + ", stop=" + stop + ", seatType=" + seatType + ", passId=" + passId
+				+ ", price=" + price + ", oTime=" + oTime + ", state=" + state + "]";
+	}
+
+	public Orders(String orderNum, int userId, String trainNo, String start, String stop, String seatType,
+			int passId, double price, String oTime, Integer state) {
+		super();
+		this.orderNum = orderNum;
+		this.userId = userId;
+		this.trainNo = trainNo;
+		this.start = start;
+		this.stop = stop;
+		this.seatType = seatType;
+		this.passId = passId;
+		this.price = price;
+		this.oTime = oTime;
+		this.state = state;
+	}
+	
+	
+	
 }

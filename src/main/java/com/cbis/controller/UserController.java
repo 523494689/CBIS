@@ -2,12 +2,14 @@ package com.cbis.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.jni.OS;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cbis.entity.Orders;
 import com.cbis.entity.Passenger;
 import com.cbis.entity.User;
 import com.cbis.entity.UserInfo;
@@ -36,7 +39,6 @@ public class UserController {
 	// 实例化orderService的service类
 	@Resource
 	private OrderService orderService;
-	
 	
 	/**
 	 * 跳转到车次列表的方法
@@ -132,6 +134,7 @@ public class UserController {
 	}
 	/**
 	 * 查询登录用户的详情信息表
+	 * 以及该用户的历史订单
 	 */
 	@RequestMapping(value = "/queryUserInfo")
 	public String queryUserInfoById(HttpSession session,Model model) {
@@ -141,7 +144,10 @@ public class UserController {
 		int userId = u.getUserId();
 		//查询登录的用户详情信息表的信息
 		UserInfo userInfo = us.queryUserInfoById(userId);
+		//查询该用户的历史订单
+		List<Orders> history = orderService.queryOrders(userId);
 		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("history", history);
 		return "mySelf";	
 	}
 	
@@ -179,5 +185,23 @@ public class UserController {
 		orderService.updatePassenger(passenger);
 		
 		return "index";
+	}
+	
+	/**
+	 * 退票
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/updOrderState")
+	@ResponseBody
+	public boolean updOrderState(int id) {
+		
+		boolean flag = orderService.updateOrderState(id);
+		
+		if(flag) {
+			return true;
+		}
+		return false;
 	}
 }

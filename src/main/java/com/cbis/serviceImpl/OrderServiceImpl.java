@@ -58,5 +58,11 @@ public class OrderServiceImpl implements OrderService {
         return ordersDao.selectOrders(userId);
     }
 
+	@Override
+	public boolean updateOrderState(int id) {
+		// TODO Auto-generated method stub
+		return ordersDao.updateOrderState(id);
+	}
+
 	
 }

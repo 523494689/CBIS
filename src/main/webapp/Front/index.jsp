@@ -430,7 +430,6 @@
 														<c:if test="${requestScope.list!=null}">
 															<!-- 开始循环 -->
 															<c:forEach items="${list}" var="Train">
-<<<<<<< HEAD
 															
 															<tr align="center">
 																<td>${Train.trainNo}</td>
@@ -586,7 +585,7 @@
                 shade: [0.1,'#fff'] //0.1透明度的白色背景
                   });
 			   //确认提交,跳转页面
-			  location.href="/CBIS/search-api/trains2?start="+start+"&stop="+stop+"&date"+date;
+			  location.href="/CBIS/search-api/trains2?start="+start+"&stop="+stop+"&date="+date;
 			  //a href="/CBIS/search-api/trains2?start=厦门&stop=福州
 		   }
 	     }

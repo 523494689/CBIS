@@ -997,9 +997,6 @@ figure {
 	padding: 30px;
 }
 
-.tab-content .btn {
-	border: 1px solid red !important;
-}
 
 .nav-tabs {
 	border: none;
@@ -2292,7 +2289,6 @@ div.cs-select span {
 	letter-spacing: 0;
 	text-transform: none;
 	font-weight: bold;
-	font-size: 18px;
 }
 
 .js .animate-box {

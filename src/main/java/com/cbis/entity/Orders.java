@@ -2,6 +2,7 @@ package com.cbis.entity;
 
 public class Orders {
 	private int id;
+
 	private String orderNum; // 鍗曞彿
 	private int userId; // 涓嬪崟浜篿d
 	private String trainNo; // 杞︽id
@@ -44,8 +45,6 @@ public class Orders {
 	public void setTrainNo(String trainNo) {
 		this.trainNo = trainNo;
 	}
-
-	
 
 	public String getStart() {
 		return start;
@@ -103,7 +102,6 @@ public class Orders {
 		this.state = state;
 	}
 
-	
 	public Orders() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -112,12 +110,12 @@ public class Orders {
 	@Override
 	public String toString() {
 		return "Orders [id=" + id + ", orderNum=" + orderNum + ", userId=" + userId + ", trainNo=" + trainNo
-				+ ", start=" + start + ", stop=" + stop + ", seatType=" + seatType + ", passId=" + passId
-				+ ", price=" + price + ", oTime=" + oTime + ", state=" + state + "]";
+				+ ", start=" + start + ", stop=" + stop + ", seatType=" + seatType + ", passId=" + passId + ", price="
+				+ price + ", oTime=" + oTime + ", state=" + state + "]";
 	}
 
-	public Orders(String orderNum, int userId, String trainNo, String start, String stop, String seatType,
-			int passId, double price, String oTime, Integer state) {
+	public Orders(String orderNum, int userId, String trainNo, String start, String stop, String seatType, int passId,
+			double price, String oTime, Integer state) {
 		super();
 		this.orderNum = orderNum;
 		this.userId = userId;
@@ -130,7 +128,5 @@ public class Orders {
 		this.oTime = oTime;
 		this.state = state;
 	}
-	
-	
-	
+
 }

@@ -12,7 +12,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="icon" type="image/png" href="assetss/img/favicon.png" />
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Front/assetss/img/favicon.png" />
 <title>Travel</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
@@ -572,14 +572,14 @@
 	<!-- 点击查询的按钮 -->
 	<script>
 	     function sendSS(){
-	    	 var flag= confirm("是否搜索");
+	    	 //var flag= confirm("是否搜索");
 	    	//出发地
 	    	 var start = $("#from-place").val();
 	    	 var stop = $("#to-place").val();
 	    	 var date = $("#date-start").val();
 		   //提示框
 
-		   if(flag){
+		  
 			  // var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
 			  var index = layer.load(1, {
                 shade: [0.1,'#fff'] //0.1透明度的白色背景
@@ -587,7 +587,7 @@
 			   //确认提交,跳转页面
 			  location.href="/CBIS/search-api/trains2?start="+start+"&stop="+stop+"&date="+date;
 			  //a href="/CBIS/search-api/trains2?start=厦门&stop=福州
-		   }
+		   
 	     }
 	</script>
 </body>

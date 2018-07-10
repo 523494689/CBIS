@@ -8,6 +8,7 @@ import com.cbis.entity.BackPas;
 import com.cbis.entity.BackStation;
 import com.cbis.entity.BackTrain;
 import com.cbis.entity.BackUser;
+import com.cbis.entity.Orders;
 
 /**
  * 后台管理的dao
@@ -28,5 +29,12 @@ public interface BackTrainDao {
 	
 	//显示后台绑定乘客表的方法
 	public List<BackPas> showPas(int userId);
+	
+	/**
+	 * 查询所有订单
+	 * @param userId
+	 * @return
+	 */
+	public List<Orders> selectAllOrders();
 
 }

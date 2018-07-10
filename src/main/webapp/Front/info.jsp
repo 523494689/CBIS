@@ -154,7 +154,7 @@
 										</div>
 									</div>
 									<div class="tab-pane information" id="information">
-									<form action="/CBIS/search-api/handleProduct" method="post" id="formcheck" />
+									<form action="/CBIS/search-api/handleProduct" method="post" id="formcheck" >
 										<div class="col-sm-12">
 											<h5 class="info-text">Let's start with the basic details</h5>
 										</div>
@@ -202,7 +202,7 @@
 															<div class="col-sm-5">
 																<div class="form-group">
 																	<label>Name</label> <input type="text"
-																		class="form-control" id="pName" placeholder="请输入真实姓名">
+																		class="form-control" id="pName" placeholder="请输入真实姓名" >
 																</div>
 															</div>
 															<div class="col-sm-5">
@@ -216,7 +216,7 @@
 															<div class="pull-right">
 																<label></label> <input
 																	class="btn btn-primary btn-block addPassenger"
-																	type="button" id="save" value="保存" />
+																	type="button" id="save" value="保存"  />
 															</div>
 
 														</div>
@@ -224,15 +224,14 @@
 													<div class="pull-right">
 														<input class="btn btn-primary btn-block addPassenger"
 															type="button" id="addPassenger" value="添加乘客" />
+														<input class="btn btn-primary btn-block"
+														type="button" id="check2" value="提交订单" />
+														
 													</div>
 													
 												</div>
 											</c:if>
 										</div>
-										           <div class="pull-right">
-													<input class="btn btn-primary btn-block"
-														type="button" id="check2" value="提交订单" />
-													</div>
 										</form>
 									</div>
 									<div class="tab-pane" id="check">
@@ -325,7 +324,7 @@
 																	<div class="form-group">
 																		<label>订单名称 ：</label> <input type="text"
 																			class="form-control" id="WIDsubject"
-																			name="WIDsubject">
+																			name="WIDsubject" readonly="readonly">
 																	</div>
 																</div>
 															</dd>
@@ -365,46 +364,12 @@
 										</div>
 									</div>
 								</div>
-								<div class="wizard-footer">
-									<div class="pull-right">
-										<input type='button'
-											class='btn btn-next btn-fill btn-success btn-wd' name='next'
-											value='Next' />
-										<!--做付钱的遮罩窗体-->
-										<input type='button'
-											class='btn btn-finish btn-fill btn-success btn-wd'
-											name='finish' value='Confirm' />
-									</div>
-									<div class="pull-left">
-										<input type='button'
-											class='btn btn-previous btn-default btn-wd' name='previous'
-											value='Previous' />
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</form>
 						</div>
 					</div>
 
 					<!-- wizard container -->
 
-					<div class="wizard-footer">
-						<div class="pull-right">
-							<input type='button'
-								class='btn btn-next btn-fill btn-success btn-wd' name='next'
-								value='Next' />
-							<!--做付钱的遮罩窗体-->
-							<input type='button'
-								class='btn btn-finish btn-fill btn-success btn-wd' name='finish'
-								value='Confirm' />
-						</div>
-						<div class="pull-left">
-							<input type='button' class='btn btn-previous btn-default btn-wd'
-								name='previous' value='Previous' />
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					</form>
+					
 				</div>
 			</div>
 			<!-- wizard container -->
@@ -475,7 +440,8 @@
 									$("#reloadPas").html("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value="+data[i]+"/><label>"+data[i]+"</label></div>");
 								}else if(data[i] != null){
 									$("#reloadPas").append("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value="+data[i]+"/><label>"+data[i]+"</label></div>");
-								}						
+								}
+								window.location.reload();
 							} 
                             }
 						
@@ -488,16 +454,17 @@
 				$(".zuo").click(function (){
 					var content = $(this).val();
 					$("#zuowei").val(content);
-					layer.msg("选择票位成功，为"+content);
+					layer.msg("选择座位成功，单价为"+content);
 				})
 				$("#check2").click(function (){
 					if($("#zuowei").val()==""){
-						layer.msg("请选择票座，点下那个按钮嗯嗯");
+						layer.msg("请选择座位!");
 					}
 					else {
 						   $("#formcheck").submit();
 					}
 				})
+				
 		})
 
 		/* <!-- 阿瓜的 --> */
@@ -509,7 +476,7 @@
 	<script type="text/javascript">
 	function GetDateNow() {
 		document.getElementById("WIDout_trade_no").value =  ${order.orderNum};
-		document.getElementById("WIDsubject").value = "测试";
+		document.getElementById("WIDsubject").value = ${order.orderNum * 3};
 		document.getElementById("WIDtotal_amount").value = ${order.price};
 	}
 	GetDateNow();

@@ -7,20 +7,27 @@ import com.cbis.entity.Orders;
 import com.cbis.entity.Passenger;
 
 public interface OrderService {
-    public List<Passenger> queryPassengers(int userId);
-  
-    public boolean addPassenger(Passenger passenger);
+	public List<Passenger> queryPassengers(int userId);
 
-    public boolean addOrder(Orders order);
+	public boolean addPassenger(Passenger passenger);
 
-    public List<Orders> queryOrders(int userId);
-    
-    //修改乘客表的信息
-    public boolean updatePassenger(Passenger passenger);
-    //根据订单编号查询订单
-    public Orders getOrdersByOrderNum(int orderNum);
-    //付款成功后修改订单状态
-    public boolean updateOrderByOrderNum(String orderNum);
-    //付款成功后生产流水订单
-    public boolean addOrderFlow(OrderFlow orderFlow);
+	public boolean addOrder(Orders order);
+
+	//根据id查订单
+	public List<Orders> queryOrders(int userId);
+
+	// 修改乘客表的信息
+	public boolean updatePassenger(Passenger passenger);
+
+	// 退票(根据订单ID修改state值)
+	public boolean updateOrderState(int id);
+
+	// 根据订单编号查询订单
+	public Orders getOrdersByOrderNum(int orderNum);
+
+	// 付款成功后修改订单状态
+	public boolean updateOrderByOrderNum(String orderNum);
+
+	// 付款成功后生产流水订单
+	public boolean addOrderFlow(OrderFlow orderFlow);
 }

@@ -11,6 +11,7 @@ import com.cbis.entity.BackPas;
 import com.cbis.entity.BackStation;
 import com.cbis.entity.BackTrain;
 import com.cbis.entity.BackUser;
+import com.cbis.entity.Orders;
 import com.cbis.service.BackTrainService;
 
 /**
@@ -69,6 +70,11 @@ public class BackTrainServiceImpl implements BackTrainService{
 		return list;
 	}
 	
-	
+
+	@Override
+	public List<Orders> queryAllOrders() {
+		// TODO Auto-generated method stub
+		return backTrainDao.selectAllOrders();
+	}
 
 }

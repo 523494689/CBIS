@@ -15,7 +15,9 @@ import com.cbis.entity.BackPas;
 import com.cbis.entity.BackStation;
 import com.cbis.entity.BackTrain;
 import com.cbis.entity.BackUser;
+import com.cbis.entity.Orders;
 import com.cbis.service.BackTrainService;
+import com.cbis.service.OrderService;
 
 /**
  * 后台的控制器
@@ -83,5 +85,16 @@ public class ManageController {
 		return userPasList;
 	}
 
-
+	/**
+	 * 后台显示订单信息
+	 */
+	@RequestMapping(value = "/showOrders")
+	public String showOrders(Model model) {
+		
+		List<Orders> orderList = backTrainService.queryAllOrders();
+		
+		model.addAttribute("orderList", orderList);
+		
+		return "Back/order";
+	}
 }

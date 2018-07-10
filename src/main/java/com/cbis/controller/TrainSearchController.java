@@ -153,6 +153,7 @@ public class TrainSearchController {
 		int fees = 0;
 		int passId = 0;
 		for (String string : cb1) {
+			System.out.println(string);
 			Passenger passenger = trainSearchService.queryPassengerBypName(string);
 			passId = passenger.getId();
 			list.add(passenger);

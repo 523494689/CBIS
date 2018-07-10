@@ -440,7 +440,8 @@
 									$("#reloadPas").html("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value="+data[i]+"/><label>"+data[i]+"</label></div>");
 								}else if(data[i] != null){
 									$("#reloadPas").append("<div class='col-sm-3'><input type='checkbox' name='cb1' id='cb1' value="+data[i]+"/><label>"+data[i]+"</label></div>");
-								}						
+								}
+								window.location.reload();
 							} 
                             }
 						

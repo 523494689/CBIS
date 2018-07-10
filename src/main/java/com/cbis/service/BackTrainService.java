@@ -6,6 +6,7 @@ import com.cbis.entity.BackPas;
 import com.cbis.entity.BackStation;
 import com.cbis.entity.BackTrain;
 import com.cbis.entity.BackUser;
+import com.cbis.entity.Orders;
 
 /**
  * 后台车次信息的service类
@@ -25,5 +26,8 @@ public interface BackTrainService {
 	
 	//后天显示用户绑定的所有乘客表
 	public List<BackPas> showPas(int userId);
+	
+	//查询所有订单
+	public List<Orders> queryAllOrders();
 
 }

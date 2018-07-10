@@ -9,6 +9,11 @@
 -->
 <!-- 绑定的dao -->
 <mapper namespace="com.cbis.dao.BackTrainDao">
+
+	<!-- 后台显示所有的订单信息 -->
+	<select id="selectAllOrders" resultType="com.cbis.entity.Orders">
+		select * from orders
+	</select>
     
     <!-- 后台显示所有的车次信息 -->
     <select id="showTrain" resultType="com.cbis.entity.BackTrain">

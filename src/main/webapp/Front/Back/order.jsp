@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -7,17 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
 	<!-- Bootstrap Styles-->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/Front/Back/assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/Front/Back/assets/css/font-awesome.css" rel="stylesheet" />
      <!-- Morris Chart Styles-->
    
         <!-- Custom Styles-->
-    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/Front/Back/assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
      <!-- TABLE STYLES-->
-    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/Front/Back/assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 </head>
 <body>
     <div id="wrapper">
@@ -111,22 +112,21 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 
-                    <li>
-                        <a href="train.html"><i class="fa fa-desktop"></i> 车次信息</a>
+                     <li>
+                        <a href="${pageContext.request.contextPath}/back/showTrain"><i class="fa fa-desktop"></i> 车次信息</a>
                     </li>
           					<li>
-                        <a href="station.html"><i class="fa fa-bar-chart-o"></i> 车站信息</a>
+                        <a href="${pageContext.request.contextPath}/back/showStation"><i class="fa fa-bar-chart-o"></i> 车站信息</a>
                     </li>
-                    <li>
-                        <a href="passengerinfo.html"><i class="fa fa-qrcode"></i> 乘客信息</a>
-                    </li>
+                    <!-- <li>
+                        <a href="passengerinfo.jsp"><i class="fa fa-qrcode"></i> 乘客信息</a>
+                    </li> -->
                     
                     <li>
-                        <a href="userinfo.html" ><i class="fa fa-table"></i> 用户信息</a>
+                        <a href="${pageContext.request.contextPath}/back/showUser" ><i class="fa fa-table"></i> 用户信息</a>
                     </li>
-                  
                     <li>
-                        <a href="order.html" class="active-menu"><i class="fa fa-table"></i> 订单信息</a>
+                        <a href="${pageContext.request.contextPath}/back/showOrders"  class="active-menu"><i class="fa fa-table"></i> 订单信息</a>
                     </li>
                     
 
@@ -158,16 +158,38 @@
                                     <thead>
                                         <tr>
                                             <th>订单编号</th>
-                                            <th>乘客姓名</th>
-                                            <th>车次</th>
+                                            <th>订单号</th>
+                                            <th>用户ID</th>
+                                            <th>车次编号</th>
                                             <th>出发站</th>
                                             <th>目的地</th>
-                                            <th>目的地</th>
-                                            <th>座位类型</th>
-                                            <th>操作</th>
+                                            <th>席位类型</th>
+                                            <th>价格</th>
+                                            <th>下单时间</th>
+                                            <th>订单状态</th>
                                         </tr>
                                     </thead>
+                                    <!-- 显示的内容 -->
+                                    <tbody>
+                                    <c:if test="${requestScope.orderList != null}">
+                                    <c:forEach items="${orderList}" var="orderList">
                                     
+										<tr>
+										<td>${orderList.id}</td>
+										<td>${orderList.orderNum}</td>
+										<td>${orderList.userId}</td>
+										<td>${orderList.trainNo}</td>
+										<td>${orderList.start}</td>
+										<td>${orderList.stop}</td>
+										<td>${orderList.seatType}</td>
+										<td>${orderList.price}</td>
+										<td>${orderList.oTime}</td>
+										<td>${orderList.state}</td>
+										</tr>
+										
+									</c:forEach>
+									</c:if>
+									</tbody>
                                     
                                     
                                 </table>
@@ -189,21 +211,21 @@
      <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
     <!-- jQuery Js -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="${pageContext.request.contextPath}/Front/Back/assets/js/jquery-1.10.2.js"></script>
       <!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/Front/Back/assets/js/bootstrap.min.js"></script>
     <!-- Metis Menu Js -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="${pageContext.request.contextPath}/Front/Back/assets/js/jquery.metisMenu.js"></script>
      <!-- DATA TABLE SCRIPTS -->
-    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
-    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/Front/Back/assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="${pageContext.request.contextPath}/Front/Back/assets/js/dataTables/dataTables.bootstrap.js"></script>
         <script>
             $(document).ready(function () {
                 $('#dataTables-example').dataTable();
             });
     </script>
          <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
+    <script src="${pageContext.request.contextPath}/Front/Back/assets/js/custom-scripts.js"></script>
     
    
 </body>

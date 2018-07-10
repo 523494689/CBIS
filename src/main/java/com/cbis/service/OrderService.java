@@ -13,6 +13,7 @@ public interface OrderService {
 
 	public boolean addOrder(Orders order);
 
+	//根据id查订单
 	public List<Orders> queryOrders(int userId);
 
 	// 修改乘客表的信息

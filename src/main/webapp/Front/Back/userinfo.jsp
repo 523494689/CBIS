@@ -124,47 +124,10 @@
                 <!-- /.dropdown -->
             </ul>
         </nav>
-        <!--/. NAV TOP  -->
-        <nav class="navbar-default navbar-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
-
-
-				<!-- /.dropdown -->
-
-				<!-- /.dropdown -->
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" aria-expanded="false"> <i
-						class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-				</a>
-					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i> 登录</a></li>
-						<li><a href="#"><i class="fa fa-gear fa-fw"></i> 注册</a></li>
-						<li class="divider"></li>
-						<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> 退出</a></li>
-					</ul> <!-- /.dropdown-user --></li>
-				<!-- /.dropdown -->
-			</ul>
-		</nav>
-		<!--/. NAV TOP  -->
+        
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
-
-					<li><a
-						href="${pageContext.request.contextPath}/back/showTrain"><i
-							class="fa fa-desktop"></i> 车次信息</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/back/showStation"><i
-							class="fa fa-bar-chart-o"></i> 车站信息</a></li>
-					<li><a href="passengerinfo.html"><i class="fa fa-qrcode"></i>
-							乘客信息</a></li>
-
-					<li><a
-						href="${pageContext.request.contextPath}/back/showUser"
-						class="active-menu"><i class="fa fa-table"></i> 用户信息</a></li>
-					<li><a href="order.html"><i class="fa fa-table"></i> 订单信息</a>
-					</li>
 
                     <li>
                         <a href="${pageContext.request.contextPath}/back/showTrain"><i class="fa fa-desktop"></i> 车次信息</a>
@@ -172,15 +135,15 @@
           					<li>
                         <a href="${pageContext.request.contextPath}/back/showStation"><i class="fa fa-bar-chart-o"></i> 车站信息</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="passengerinfo.html"><i class="fa fa-qrcode"></i> 乘客信息</a>
-                    </li>
+                    </li> -->
                     
                     <li>
-                        <a href="${pageContext.request.contextPath}/Front/Back/userinfo.jsp" class="active-menu"><i class="fa fa-table"></i> 用户信息</a>
+                        <a href="${pageContext.request.contextPath}/back/showUser" class="active-menu"><i class="fa fa-table"></i> 用户信息</a>
                     </li>
                      <li>
-                        <a href="order.html"><i class="fa fa-table"></i> 订单信息</a>
+                        <a href="${pageContext.request.contextPath}/back/showOrders"><i class="fa fa-table"></i> 订单信息</a>
                     </li>
 
 

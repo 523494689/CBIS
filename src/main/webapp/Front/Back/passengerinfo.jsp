@@ -117,15 +117,15 @@
           					<li>
                         <a href="${pageContext.request.contextPath}/back/showStation"><i class="fa fa-bar-chart-o"></i> 车站信息</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="passengerinfo.html" class="active-menu"><i class="fa fa-qrcode"></i> 乘客信息</a>
-                    </li>
+                    </li> -->
                     
                     <li>
-                        <a href="userinfo.html" ><i class="fa fa-table"></i> 用户信息</a>
+                        <a href="${pageContext.request.contextPath}/back/showUser" ><i class="fa fa-table"></i> 用户信息</a>
                     </li>
                      <li>
-                        <a href="order.html"><i class="fa fa-table"></i> 订单信息</a>
+                        <a href="${pageContext.request.contextPath}/back/showOrders"><i class="fa fa-table"></i> 订单信息</a>
                     </li>
 
                 </ul>
